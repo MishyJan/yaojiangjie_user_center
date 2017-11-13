@@ -16,9 +16,10 @@
         "test": "test.ts",
         "tsconfig": "tsconfig.app.json",
         "testTsconfig": "tsconfig.spec.json",
-        "prefix": "app",
+        "prefix": "yaojiangjie",
         "styles": [
-            "styles.css"
+            "sass/yaojiangjie.scss",
+            "styles.scss"
         ],
         "scripts": [],
         "environmentSource": "environments/environment.ts",
