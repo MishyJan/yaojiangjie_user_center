@@ -3,13 +3,10 @@
     width: 100vw;
     max-width: 480px;
     height: 50px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    @include positionMiddle(1);
     background-color: #3290ff;
     padding: 0 20px;
+    position: relative;
+    z-index: 1001;
     .logo-image {
         width: 70px;
         height: 24px;
@@ -20,13 +17,6 @@
         @include bg-image("/assets/common/images/admin/full-logo");
     }
     .lang-switch {
-        width: 24px;
-        height: 24px;
-        line-height: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.562);
-        border-radius: 4px;
-        margin-top: 12px;
-        text-align: center;
-        color: #FFF;
+        margin-top: 10px;
     }
 }

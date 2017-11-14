@@ -1,0 +1,17 @@
+{
+    "name": "Thinking Buddha",
+    "desc": "<p>Thinking Maitreya (AD 722-765), the temple's collection of ‘Maitreya Buddha’ is like the first artifact in all of Japan to be designated as a national treasure. Bodhisattva as a Buddhist works of art in the Asuka period. This statue of ‘Maitreya Bodhisattvas’ has a high bun, full face, bare upper body, body rounded. Nursery thin book posted on the body, the folds clear, better to show the texture of silk. Right hand cheek, was smiling, is a gesture is very elegant and beautiful Buddha, for the birds of the Buddhist art works.</p>",
+    "images": [
+        "http://media.vapps.com.cn/yaojiangjie/1-1.png"
+    ],
+    "voice": "",
+    "choice": {
+        "desc": "Buddha Stores",
+        "item": [
+            "http://media.vapps.com.cn/qianxinnan_museum/stores/store-1.jpg",
+            "http://media.vapps.com.cn/qianxinnan_museum/stores/store-2.jpg",
+            "http://media.vapps.com.cn/qianxinnan_museum/stores/store-3.jpg",
+            "http://media.vapps.com.cn/qianxinnan_museum/stores/store-4.jpg"
+        ]
+    }
+}

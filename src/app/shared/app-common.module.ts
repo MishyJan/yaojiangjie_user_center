@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './layout/header/header.component';
+import { SwitchLangComponent } from '../shared/common/switch-lang/switch-lang.component';
 
 @NgModule({
     imports: [
@@ -15,10 +16,12 @@ import { HeaderComponent } from './layout/header/header.component';
         RouterModule
     ],
     declarations: [
-        HeaderComponent
+        HeaderComponent,
+        SwitchLangComponent
     ],
     exports: [
-        HeaderComponent
+        HeaderComponent,
+        SwitchLangComponent
     ]
 })
 export class AppCommonModule {

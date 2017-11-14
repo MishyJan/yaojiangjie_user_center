@@ -1,5 +1,15 @@
 @import './../../sass/yaojiangjie/_mixin';
 .detail-wrap {
+    width: 100%;
+    max-width: 480px;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    @include positionMiddle(1);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
     background-color: #f8fdfe;
     .top-banner {
         width: 100%;
@@ -98,14 +108,15 @@
                 overflow-x: auto;
                 overflow-y: hidden;
                 .gift-content {
-                    width: calc(161px * 3 + 20px * 2);
+                    width: calc(160px * 4 + 20px * 3);
                     .gift-item+.gift-item {
                         margin-left: 20px;
                     }
                     .gift-item {
-                        width: 161px;
+                        width: 160px;
                         background-color: #FFF;
                         padding: 10px;
+                        text-align: center;
                         .title {
                             font-size: 14px;
                             color: #656565;
