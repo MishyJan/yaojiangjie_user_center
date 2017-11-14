@@ -34,6 +34,25 @@ export class YaojiangjieService {
         })
     }
 
+    getExhibitionInfo(callback) {
+        AppConsts.appLanguage == undefined ? AppConsts.appLanguage = localStorage.getItem("language") : AppConsts.appLanguage;
+        const url = `/assets/data/${AppConsts.appLanguage}/exhibition_info.json`;
+
+        this.ajax({
+            url: url,
+            type: "get",
+            data: "",
+            dataType: "json",
+            success: function (res, xml) {
+                if (callback) {
+                    callback(JSON.parse(res));
+                }
+            },
+            fail: function () {
+            }
+        })
+    }
+
     private ajax(options) {
         options = options || {};
         options.type = (options.type || "GET").toUpperCase();

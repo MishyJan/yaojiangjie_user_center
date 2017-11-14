@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './layout/header/header.component';
 import { SwitchLangComponent } from '../shared/common/switch-lang/switch-lang.component';
+import { PagingComponent } from '../shared/common/paging/paging.component';
 
 @NgModule({
     imports: [
@@ -17,11 +18,13 @@ import { SwitchLangComponent } from '../shared/common/switch-lang/switch-lang.co
     ],
     declarations: [
         HeaderComponent,
-        SwitchLangComponent
+        SwitchLangComponent,
+        PagingComponent
     ],
     exports: [
         HeaderComponent,
-        SwitchLangComponent
+        SwitchLangComponent,
+        PagingComponent
     ]
 })
 export class AppCommonModule {

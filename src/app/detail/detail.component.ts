@@ -15,6 +15,7 @@ import { LangService } from '../../service/change-lang.service';
 })
 export class DetailComponent implements OnInit {
     detailData: Detail = new Detail();
+    exhibitionData: any;
     page: number;
 
     constructor(
@@ -47,6 +48,11 @@ export class DetailComponent implements OnInit {
             .getDetailInfo(result, (res: Detail) => {
                 self.detailData = res;
                 document.getElementsByTagName("title")[0].innerHTML = res.name;
+            });
+
+        this._yaojiangjieService
+            .getExhibitionInfo(function (res) {
+                self.exhibitionData = res;
             });
     }
 }

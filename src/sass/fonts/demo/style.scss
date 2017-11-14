@@ -1,0 +1,69 @@
+@import "variables";
+
+@font-face {
+  font-family: 'yaojiangjie';
+  src:  url('#{$icomoon-font-path}/yaojiangjie.eot?reva5');
+  src:  url('#{$icomoon-font-path}/yaojiangjie.eot?reva5#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/yaojiangjie.ttf?reva5') format('truetype'),
+    url('#{$icomoon-font-path}/yaojiangjie.woff?reva5') format('woff'),
+    url('#{$icomoon-font-path}/yaojiangjie.svg?reva5#yaojiangjie') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="vapps-icon-"], [class*=" vapps-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'yaojiangjie' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.vapps-icon-app-back-catalog {
+  &:before {
+    content: $vapps-icon-app-back-catalog;
+  }
+}
+.vapps-icon-app-close {
+  &:before {
+    content: $vapps-icon-app-close;
+  }
+}
+.vapps-icon-app-next-page {
+  &:before {
+    content: $vapps-icon-app-next-page;
+  }
+}
+.vapps-icon-app-pause {
+  &:before {
+    content: $vapps-icon-app-pause;
+  }
+}
+.vapps-icon-app-play {
+  &:before {
+    content: $vapps-icon-app-play;
+  }
+}
+.vapps-icon-app-prev-page {
+  &:before {
+    content: $vapps-icon-app-prev-page;
+  }
+}
+.vapps-icon-app-right-arrow {
+  &:before {
+    content: $vapps-icon-app-right-arrow;
+  }
+}
+.vapps-icon-app-stop {
+  &:before {
+    content: $vapps-icon-app-stop;
+  }
+}
+
