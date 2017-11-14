@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './layout/header/header.component';
 import { SwitchLangComponent } from '../shared/common/switch-lang/switch-lang.component';
 import { PagingComponent } from '../shared/common/paging/paging.component';
+import { LightAudioComponent } from '../shared/common/light-audio/light-audio.component';
 
 @NgModule({
     imports: [
@@ -19,12 +20,14 @@ import { PagingComponent } from '../shared/common/paging/paging.component';
     declarations: [
         HeaderComponent,
         SwitchLangComponent,
-        PagingComponent
+        PagingComponent,
+        LightAudioComponent
     ],
     exports: [
         HeaderComponent,
         SwitchLangComponent,
-        PagingComponent
+        PagingComponent,
+        LightAudioComponent
     ]
 })
 export class AppCommonModule {

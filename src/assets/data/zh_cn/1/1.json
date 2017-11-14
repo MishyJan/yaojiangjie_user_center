@@ -8,7 +8,7 @@
     "images": [
         "http://media.vapps.com.cn/yaojiangjie/1-1.png"
     ],
-    "voice": "",
+    "voice": "http://media.vapps.com.cn/yaojiangjie/1.mp3",
     "choice": {
         "desc": "文创产品",
         "item": [{

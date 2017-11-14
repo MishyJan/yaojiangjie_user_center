@@ -1,0 +1,15 @@
+<section class="light-audio">
+    <section class="flex-left" *ngIf="isPlay" (click)="play()"><span class="icon yaojiangjie-icon-app-play"></span></section>
+    <section class="flex-left" *ngIf="!isPlay" (click)="pause()"><span class="icon yaojiangjie-icon-app-pause"></span></section>
+    <section class="flex-middle">
+        <section class="progress-wrap">
+            <section class="title-name text-overflow">{{ titleName }}</section>
+            <section class="progress" #progressEle>
+                <section class="loaded"></section>
+                <section class="line-slider" [style.width]="progressWidth"><span class="dot" id="dotDropEle"></span></section>
+            </section>
+        </section>
+    </section>
+    <section class="flex-right">{{ currentTime }}</section>
+    <audio #audioEle [src]="audioSrc" preload="auto">您的浏览器不支持!</audio>
+</section>

@@ -7,7 +7,9 @@
             <section class="pic-carousel box-shadow">
                 <img *ngFor="let imageItem of detailData.images" width="100%" [src]="imageItem" alt="">
             </section>
-            <section class="player-wrap box-shadow"></section>
+            <section class="player-wrap box-shadow">
+                <yaojiangjie-light-audio [audioSrc]="detailData.voice" [titleName]="detailData.name"></yaojiangjie-light-audio>
+            </section>
             <section class="intro-wrap">
                 <h4 class="little-title"><span class="ornament"></span><span class="text">{{ detailData.desc.title }}</span></h4>
                 <div class="intro-text" [innerHTML]="detailData.desc.text"></div>
@@ -31,6 +33,6 @@
     </section>
 </section>
 
-<section>
+<section *ngIf="exhibitionData">
     <yaojiangjie-paging [exhibitionData]="exhibitionData"></yaojiangjie-paging>
 </section>
