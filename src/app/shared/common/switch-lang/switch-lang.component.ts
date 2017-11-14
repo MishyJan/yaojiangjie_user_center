@@ -24,7 +24,7 @@ export class SwitchLangComponent implements OnInit {
         this.langFlag = false;
         this.langText = "En";
     } else {
-        this.langText = "中文";
+        this.langText = "中";
         this.langFlag = true;
     }
     AppConsts.appLanguage = lang;
@@ -42,7 +42,7 @@ export class SwitchLangComponent implements OnInit {
     }
     let lang = localStorage.getItem("language");
     let title = localStorage.getItem("title");
-    this.langText = lang === "zh_cn" ? "En" : "中文";
+    this.langText = lang === "zh_cn" ? "En" : "中";
     AppConsts.appLanguage = lang;
     AppConsts.appTitle = title;
 

@@ -3,7 +3,7 @@ import { appModuleAnimation } from '../../shared/animations/routerTransition';
 import { ActivatedRoute } from '@angular/router';
 import { YaojiangjieService } from '../../service/yaojiangjie.service';
 import { AppConsts } from '../AppConsts';
-import { Detail, Choice } from '../../shared/common-dto/detail';
+import { Detail, Choice, ExhibitsIntro } from '../../shared/common-dto/detail';
 import { LangService } from '../../service/change-lang.service';
 
 @Component({
@@ -29,6 +29,7 @@ export class DetailComponent implements OnInit {
 
     ngOnInit() {
         this.detailData.choice = new Choice();
+        this.detailData.desc = new ExhibitsIntro();
         this.getDetailPage();
     }
 
@@ -45,7 +46,7 @@ export class DetailComponent implements OnInit {
         this._yaojiangjieService
             .getDetailInfo(result, (res: Detail) => {
                 self.detailData = res;
-                document.getElementsByTagName("title")[0].innerHTML = AppConsts.appTitle + "—" + res.name;
+                document.getElementsByTagName("title")[0].innerHTML = res.name;
             });
     }
 }

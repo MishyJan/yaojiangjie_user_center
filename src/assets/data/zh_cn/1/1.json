@@ -1,17 +1,24 @@
 {
     "name": "思维菩萨",
-    "desc": "<p>思維彌勒（公元722-765年），本寺院所收藏的“彌勒菩薩”像是在全日本第一個被指定為國寶的文物。菩薩像為飛鳥時代的佛教藝術作品。這尊『彌勒菩薩半跏思惟像』高髮髻，面相丰满，袒露上身，肌体圆润。裙裾簿薄地贴在身上，褶纹清晰，较好地表现出丝绸的质感。右手托頰，呈微笑狀，是一尊姿態十分典雅優美的佛像，為飛鳥時代的佛教藝術作品。</p>",
+    "desc": {
+        "title": "展品介绍",
+        "text": "<p>思維彌勒（公元722-765年），本寺院所收藏的“彌勒菩薩”像是在全日本第一個被指定為國寶的文物。菩薩像為飛鳥時代的佛教藝術作品。這尊『彌勒菩薩半跏思惟像』高髮髻，面相丰满，袒露上身，肌体圆润。裙裾簿薄地贴在身上，褶纹清晰，较好地表现出丝绸的质感。右手托頰，呈微笑狀，是一尊姿態十分典雅優美的佛像，為飛鳥時代的佛教藝術作品。</p>"
+    },
+    "qrcodeTip": "长按二维码关注要讲解",
     "images": [
         "http://media.vapps.com.cn/yaojiangjie/1-1.png"
     ],
     "voice": "",
     "choice": {
         "desc": "文创产品",
-        "item": [
-            "http://media.vapps.com.cn/qianxinnan_museum/stores/store-1.jpg",
-            "http://media.vapps.com.cn/qianxinnan_museum/stores/store-2.jpg",
-            "http://media.vapps.com.cn/qianxinnan_museum/stores/store-3.jpg",
-            "http://media.vapps.com.cn/qianxinnan_museum/stores/store-4.jpg"
+        "item": [{
+                "name": "慈韵观音",
+                "imgUrl": "http://media.vapps.com.cn/thinking_buddha/stores/1-1.png"
+            },
+            {
+                "name": "思维菩萨",
+                "imgUrl": "http://media.vapps.com.cn/thinking_buddha/stores/1-2.png"
+            }
         ]
     }
 }
