@@ -2,6 +2,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
+    {
+        path: '',
+        redirectTo: '/detail/1/1',
+        pathMatch: 'full'
+    },
 ];
 
 @NgModule({
