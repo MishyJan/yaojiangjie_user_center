@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppConsts } from '../../../AppConsts';
+import { CatalogModalComponent } from '../../../shared/common/paging/catalog-modal/catalog-modal.component';
 
 @Component({
     selector: 'yaojiangjie-paging',
@@ -8,10 +9,12 @@ import { AppConsts } from '../../../AppConsts';
     styleUrls: ['./paging.component.scss']
 })
 export class PagingComponent implements OnInit {
+    subCatalogData: any;
     allPartSizeArr: number[] = [];
-    page: any;
-    head: any;
-    @Input() exhibitionData: string[];
+    part: number;
+    page: number;
+    @Input() exhibitionData: any;
+    @ViewChild('catalogModal') catalogModal: CatalogModalComponent;
     constructor(
         private _route: ActivatedRoute,
         private _router: Router
@@ -21,6 +24,7 @@ export class PagingComponent implements OnInit {
         this._route.params
             .subscribe(result => {
                 this.page = result.page;
+                this.part = result.part;
             })
     }
 
@@ -30,37 +34,45 @@ export class PagingComponent implements OnInit {
         }
     }
 
+    showCatalog(): void {
+        this.catalogModal.showCatalogModel();
+    }
+
     prevPage(): void {
         this.page--;
         this.countPaging();
-        window.location.href = `${AppConsts.appBaseUrl}/detail/${this.page}`;
-        // this._router.navigate(['/detail/info', this.head, this.page]);
+        window.location.href = `${AppConsts.appBaseUrl}/detail/${this.part}/${this.page}`;
     }
 
     nextPage(): void {
         this.page++;
         this.countPaging();
-        window.location.href = `${AppConsts.appBaseUrl}/detail/${this.page}`;
-        // this._router.navigate(['/detail/info', this.head, this.page]);
+        window.location.href = `${AppConsts.appBaseUrl}/detail/${this.part}/${this.page}`;
     }
 
-
+    // 翻页核心代码
     private countPaging(): void {
-        if (this.page <= 0) {
-            if (this.page <= 0 || this.page == undefined) {
-                this.page = 1;
+        if (this.page > this.allPartSizeArr[this.part-1]) {
+            this.part++;
+            if (this.part >= this.allPartSizeArr.length) {
+                this.part = this.allPartSizeArr.length;
             }
-            return;
-        } else if (this.page >= this.allPartSizeArr[0]) {
-            this.page = this.allPartSizeArr[0];
+            this.page = 1;
+        }
+
+        if (this.page <= 0) {
+            this.part--;
+            if (this.part <= 0) {
+                this.part = 1;
+            }
+            this.page = 1;
         }
     }
 
     //   计算目录每部分的最大值
     private countAllPartMaxSize(catalogs): void {
-        
-        catalogs.catalog.forEach(subCatalog => {
-            this.allPartSizeArr.push(+catalogs.catalog[catalogs.catalog.length - 1].value);
+        catalogs.catalog.subCatalog.forEach(subCatalog => {
+            this.allPartSizeArr.push(+subCatalog.item[subCatalog.item.length - 1].value);
         });
     }
 }

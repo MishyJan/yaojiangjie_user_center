@@ -1,0 +1,23 @@
+<section class="catalog-wrap bg-cover" (click)="hideCatalogModel($event)" [ngClass]="{'show': isShowCatalogModel}">
+    <section class="model-dialog" (click)="stopPropagation($event)">
+        <header class="model-header clearfix">
+            <div class="logo-image pull-left"></div>
+            <span class="close pull-right yaojiangjie-icon-app-close"></span>
+        </header>
+
+        <section class="model-body">
+            <section class="catalog-list">
+                <section *ngFor="let item of subCatalogData; let index = index;" class="item" [ngClass]="{'active': page == index}" (click)="toPageDetail(index)">
+                    <section class="img-wrap">
+                        <img width="100%" [src]="item.thumbnail" alt="thumbnail">
+                    </section>
+                    <section class="desc-wrap">
+                        <h1 class="title">{{ item.name }}</h1>
+                        <p class="desc">{{ item.desc }}</p>
+                    </section>
+                    <span class="icon yaojiangjie-icon-app-right-arrow"></span>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>

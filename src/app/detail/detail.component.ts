@@ -16,6 +16,7 @@ import { LangService } from '../../service/change-lang.service';
 export class DetailComponent implements OnInit {
     detailData: Detail = new Detail();
     exhibitionData: any;
+    part: number;
     page: number;
 
     constructor(
@@ -37,6 +38,7 @@ export class DetailComponent implements OnInit {
     getDetailPage(): void {
         this._route.params
             .subscribe(result => {
+                this.part = result.part;
                 this.page = result.page;
                 this.loadData(result);
             });

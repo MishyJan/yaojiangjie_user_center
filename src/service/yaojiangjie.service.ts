@@ -17,7 +17,7 @@ export class YaojiangjieService {
 
     getDetailInfo(path, callback) {
         AppConsts.appLanguage == undefined ? AppConsts.appLanguage = localStorage.getItem("language") : AppConsts.appLanguage;
-        const url = `/assets/data/${AppConsts.appLanguage}/${path.page}/${path.page}.json`;
+        const url = `/assets/data/${AppConsts.appLanguage}/${path.part}/${path.page}.json`;
 
         this.ajax({
             url: url,

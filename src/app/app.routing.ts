@@ -11,7 +11,7 @@ import { DetailComponent } from './detail/detail.component';
             component: AppComponent,
             children: [
                 {
-                    path: 'detail/:page',
+                    path: 'detail/:part/:page',
                     component: DetailComponent
                 }
             ]
