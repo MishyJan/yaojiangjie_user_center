@@ -1,4 +1,5 @@
 import { AppConsts } from './AppConsts';
+
 export class AppPreBootstrap {
 
 
@@ -13,7 +14,7 @@ export class AppPreBootstrap {
             localStorage.setItem("title", "要讲解");
         }
         AppPreBootstrap.ajax({
-            url: '/assets/appconfig.json',
+            url: 'assets/appconfig.json',
             type: "get",
             data: "",
             dataType: "json",
@@ -27,7 +28,7 @@ export class AppPreBootstrap {
                     AppConsts.appLanguage = "zh_cn";
                 } else if (lang === "en") {
                     AppConsts.appLanguage = "en";
-                } 
+                }
             },
             fail: function () {
             }

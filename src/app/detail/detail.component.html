@@ -11,15 +11,21 @@
                 <yaojiangjie-light-audio [audioSrc]="detailData.voice" [titleName]="detailData.name"></yaojiangjie-light-audio>
             </section>
             <section class="intro-wrap">
-                <h4 class="little-title"><span class="ornament"></span><span class="text">{{ detailData.desc.title }}</span></h4>
+                <h4 class="little-title">
+                    <span class="ornament"></span>
+                    <span class="text">{{ detailData.desc.title }}</span>
+                </h4>
                 <div class="intro-text" [innerHTML]="detailData.desc.text"></div>
             </section>
             <section class="qrcode-wrap">
-                <img class="img" width="120px" src="/assets/common/images/admin/yaojiangjie-qrcode.png" alt="qrcode">
+                <img class="img" width="120px" src="assets/common/images/admin/yaojiangjie-qrcode.png" alt="qrcode">
                 <p class="text">{{ detailData.qrcodeTip }}</p>
             </section>
             <section class="gift-wrap">
-                <h4 class="little-title"><span class="ornament"></span><span class="text">{{ detailData.choice.desc }}</span></h4>
+                <h4 class="little-title">
+                    <span class="ornament"></span>
+                    <span class="text">{{ detailData.choice.desc }}</span>
+                </h4>
                 <section class="gift-list">
                     <section class="gift-content clearfix">
                         <section class="gift-item pull-left" *ngFor="let item of detailData.choice.item">

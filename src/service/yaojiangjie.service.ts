@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
+
 import { AppConsts } from '../app/AppConsts';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx'
 
 @Injectable()
 export class YaojiangjieService {
@@ -17,7 +19,7 @@ export class YaojiangjieService {
 
     getDetailInfo(path, callback) {
         AppConsts.appLanguage == undefined ? AppConsts.appLanguage = localStorage.getItem("language") : AppConsts.appLanguage;
-        const url = `/assets/data/${AppConsts.appLanguage}/${path.part}/${path.page}.json`;
+        const url = `assets/data/${AppConsts.appLanguage}/${path.part}/${path.page}.json`;
 
         this.ajax({
             url: url,
@@ -36,7 +38,7 @@ export class YaojiangjieService {
 
     getExhibitionInfo(callback) {
         AppConsts.appLanguage == undefined ? AppConsts.appLanguage = localStorage.getItem("language") : AppConsts.appLanguage;
-        const url = `/assets/data/${AppConsts.appLanguage}/exhibition_info.json`;
+        const url = `assets/data/${AppConsts.appLanguage}/exhibition_info.json`;
 
         this.ajax({
             url: url,
