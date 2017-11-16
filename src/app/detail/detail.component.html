@@ -31,6 +31,7 @@
                         <section class="gift-item pull-left" *ngFor="let item of detailData.choice.item">
                             <img width="100%" [src]="item.imgUrl" alt="">
                             <h2 class="title">{{ item.name }}</h2>
+                            <a class="buy-link" *ngIf="exhibitionData" [href]="item.buyLink" target="_blank">{{ exhibitionData.buyText }}</a>
                         </section>
                     </section>
                 </section>

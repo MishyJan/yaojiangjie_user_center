@@ -107,7 +107,7 @@
                 overflow-x: auto;
                 overflow-y: hidden;
                 .gift-content {
-                    width: calc(160px * 4 + 20px * 3);
+                    width: calc(160px * 2 + 20px);
                     .gift-item+.gift-item {
                         margin-left: 20px;
                     }
@@ -120,6 +120,15 @@
                             font-size: 14px;
                             color: #656565;
                             margin-top: 10px;
+                        }
+                        .buy-link {
+                            display: inline-block;
+                            margin-top: 10px;
+                            padding: 4px 6px;
+                            font-size: 14px;
+                            color: #FFF;
+                            background-color: #3290ff;
+                            border-radius: 4px;
                         }
                     }
                 }
