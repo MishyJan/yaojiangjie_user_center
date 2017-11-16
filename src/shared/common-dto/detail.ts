@@ -4,6 +4,7 @@ export class Detail {
     voice: string;
     images: string[];
     choice: Choice;
+    qrcodeTip: string;
 }
 
 export class Choice {
