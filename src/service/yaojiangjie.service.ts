@@ -19,7 +19,7 @@ export class YaojiangjieService {
 
     getDetailInfo(path, callback) {
         AppConsts.appLanguage == undefined ? AppConsts.appLanguage = localStorage.getItem("language") : AppConsts.appLanguage;
-        const url = `assets/data/${AppConsts.appLanguage}/${path.part}/${path.page}.json`;
+        const url = AppConsts.appBaseUrl + `/assets/data/${AppConsts.appLanguage}/${path.part}/${path.page}.json`;
 
         this.ajax({
             url: url,
@@ -38,7 +38,7 @@ export class YaojiangjieService {
 
     getExhibitionInfo(callback) {
         AppConsts.appLanguage == undefined ? AppConsts.appLanguage = localStorage.getItem("language") : AppConsts.appLanguage;
-        const url = `assets/data/${AppConsts.appLanguage}/exhibition_info.json`;
+        const url = AppConsts.appBaseUrl + `/assets/data/${AppConsts.appLanguage}/exhibition_info.json`;
 
         this.ajax({
             url: url,

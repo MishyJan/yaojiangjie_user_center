@@ -1,19 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Injector, APP_INITIALIZER } from '@angular/core';
+import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { AppRoutes } from './app.routing';
 import { AppCommonModule } from './shared/app-common.module';
-import { DetailComponent } from './detail/detail.component';
+import { AppComponent } from './app.component';
 import { AppPreBootstrap } from './AppPreBootstrap';
-import { YaojiangjieService } from '../service/yaojiangjie.service';
+import { AppRoutes } from './app.routing';
+import { BrowserModule } from '@angular/platform-browser';
+import { DetailComponent } from './detail/detail.component';
 import { HttpModule } from '@angular/http';
 import { LangService } from '../service/change-lang.service';
+import { YaojiangjieService } from '../service/yaojiangjie.service';
 
 export function appInitializerFactory(injector: Injector) {
     return () => {
         AppPreBootstrap.run();
-    }
+    };
 }
 @NgModule({
     declarations: [
