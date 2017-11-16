@@ -1,10 +1,11 @@
+import { Choice, Detail, ExhibitsIntro } from '../../shared/common-dto/detail';
 import { Component, OnInit } from '@angular/core';
-import { appModuleAnimation } from '../../shared/animations/routerTransition';
+
 import { ActivatedRoute } from '@angular/router';
-import { YaojiangjieService } from '../../service/yaojiangjie.service';
 import { AppConsts } from '../AppConsts';
-import { Detail, Choice, ExhibitsIntro } from '../../shared/common-dto/detail';
 import { LangService } from '../../service/change-lang.service';
+import { YaojiangjieService } from '../../service/yaojiangjie.service';
+import { appModuleAnimation } from '../../shared/animations/routerTransition';
 
 @Component({
     selector: 'yaojiangjie-detail',
@@ -56,5 +57,9 @@ export class DetailComponent implements OnInit {
             .getExhibitionInfo(function (res) {
                 self.exhibitionData = res;
             });
+    }
+
+    buyProduct(url: string): void {
+        window.location.href = url;
     }
 }
