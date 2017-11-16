@@ -25,7 +25,7 @@
         "core-js": "^2.5.1",
         "rxjs": "^5.5.2",
         "zone.js": "^0.8.18",
-        "typescript": "2.5.0"
+        "typescript": "^2.4.2"
     },
     "devDependencies": {
         "@angular/cli": "^1.5.0",
@@ -47,7 +47,7 @@
         "protractor": "^5.2.0",
         "ts-node": "^3.3.0",
         "tslint": "^5.8.0",
-        "typescript": "2.5.0"
+        "typescript": "^2.4.2"
     },
     "main": "index.js",
     "repository": "http://vapps@vappshk.oicp.net:88/vappsdevelop/yaojiangjie_user_center.git",
