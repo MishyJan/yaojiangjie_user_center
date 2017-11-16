@@ -28,10 +28,9 @@
                 </h4>
                 <section class="gift-list">
                     <section class="gift-content clearfix">
-                        <section class="gift-item pull-left" *ngFor="let item of detailData.choice.item">
+                        <section class="gift-item pull-left" *ngFor="let item of detailData.choice.item" (click)="buyProduct(item.buyLink)">
                             <img width="100%" [src]="item.imgUrl" alt="">
                             <h2 class="title">{{ item.name }}</h2>
-                            <a class="buy-link" *ngIf="exhibitionData" [href]="item.buyLink" target="_blank">{{ exhibitionData.buyText }}</a>
                         </section>
                     </section>
                 </section>
