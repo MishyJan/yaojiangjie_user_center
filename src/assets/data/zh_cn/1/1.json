@@ -6,19 +6,19 @@
     },
     "qrcodeTip": "长按二维码关注要讲解",
     "images": [
-        "http://media.vapps.com.cn/yaojiangjie/1-1.png"
+        "https://static.vapps.com.cn/yaojiangjie/1-1.png"
     ],
-    "voice": "http://media.vapps.com.cn/yaojiangjie/1.mp3",
+    "voice": "https://static.vapps.com.cn/yaojiangjie/1.mp3",
     "choice": {
         "desc": "文创产品",
         "item": [{
                 "name": "慈韵观音",
-                "imgUrl": "http://media.vapps.com.cn/thinking_buddha/stores/1-1.png",
+                "imgUrl": "https://static.vapps.com.cn/thinking_buddha/stores/1-1.png",
                 "buyLink": "http://www.prettylov.com/rs-002"
             },
             {
                 "name": "思维菩萨",
-                "imgUrl": "http://media.vapps.com.cn/thinking_buddha/stores/1-2.png",
+                "imgUrl": "https://static.vapps.com.cn/thinking_buddha/stores/1-2.png",
                 "buyLink": "http://www.prettylov.com/rs-001"
             }
         ]
