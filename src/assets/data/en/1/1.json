@@ -2,7 +2,7 @@
     "name": "Thinking Buddha",
     "desc": {
         "title": "Exhibits Introduced",
-        "text": "<p>Thinking Maitreya (AD 722-765), the temple's collection of ‘Maitreya Buddha’ is like the first artifact in all of Japan to be designated as a national treasure. Bodhisattva as a Buddhist works of art in the Asuka period. This statue of ‘Maitreya Bodhisattvas’ has a high bun, full face, bare upper body, body rounded. Nursery thin book posted on the body, the folds clear, better to show the texture of silk. Right hand cheek, was smiling, is a gesture is very elegant and beautiful Buddha, for the birds of the Buddhist art works.</p>"
+        "text": "Thinking Maitreya (AD 722-765), is now hidden in Kyoto, Japan, Guanglong Temple. 'Thinking Maitreya Buddha' is like the first artifact in all of Japan to be designated as a treasure. Bodhisattva as a Buddhist works of art in the Asuka period. This『Maitreya Bodhisattva half thinking thinking』high hair, full face, bare upper body, body rounded. Nursery thin book posted on the body, the folds clear, better to show the texture of silk. Bodhisattva right hand cheek, was smiling, is a gesture is very elegant and beautiful Buddha."
     },
     "qrcodeTip": "Long press qr-code follow Yaojiangjie",
     "images": [
@@ -12,15 +12,15 @@
     "choice": {
         "desc": "Buddha Stores",
         "item": [{
+                "name": "Thinking Maitreya Buddha",
+                "imgUrl": "https://static.vapps.com.cn/thinking_buddha/stores/1-2.png",
+                "buyLink": "http://www.prettylov.com/rs-001"
+            },
+            {
                 "name": "CiYun Kwai-Yin",
                 "imgUrl": "https://static.vapps.com.cn/thinking_buddha/stores/1-1.png",
                 "buyLink": "http://www.prettylov.com/rs-002"
 
-            },
-            {
-                "name": "Thinking Maitreya Buddha",
-                "imgUrl": "https://static.vapps.com.cn/thinking_buddha/stores/1-2.png",
-                "buyLink": "http://www.prettylov.com/rs-001"
             }
         ]
     }
