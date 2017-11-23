@@ -9,6 +9,7 @@ import { DetailComponent } from './detail/detail.component';
 import { HttpModule } from '@angular/http';
 import { LangService } from '../service/change-lang.service';
 import { YaojiangjieService } from '../service/yaojiangjie.service';
+import { PageComponent } from './page/page.component';
 
 export function appInitializerFactory(injector: Injector) {
     return () => {
@@ -18,8 +19,9 @@ export function appInitializerFactory(injector: Injector) {
 @NgModule({
     declarations: [
         AppComponent,
-        DetailComponent
-    ],
+        DetailComponent,
+    PageComponent
+],
     imports: [
         HttpModule,
         BrowserModule,
