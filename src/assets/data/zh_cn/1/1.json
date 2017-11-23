@@ -14,12 +14,12 @@
         "item": [{
                 "name": "思维菩萨",
                 "imgUrl": "https://static.vapps.com.cn/thinking_buddha/stores/1-2.png",
-                "buyLink": "http://www.prettylov.com/rs-001"
+                "buyLink": "https://www.prettylov.com/rs-001"
             },
             {
                 "name": "慈韵观音",
                 "imgUrl": "https://static.vapps.com.cn/thinking_buddha/stores/1-1.png",
-                "buyLink": "http://www.prettylov.com/rs-002"
+                "buyLink": "https://www.prettylov.com/rs-002"
             }
         ]
     }
