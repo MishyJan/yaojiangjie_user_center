@@ -22,7 +22,6 @@
         "prefix": "yaojiangjie",
         "mobile": false,
         "styles": [
-            "../node_modules/fullpage.js/dist/jquery.fullpage.min.css",
             "../node_modules/bootstrap/dist/css/bootstrap.css",
             "../node_modules/sweetalert/dist/sweetalert.css",
             "assets/md-pro/css/material-dashboard.css",
@@ -31,9 +30,6 @@
             "../node_modules/toastr/build/toastr.css",
             "assets/common/styles/flatpickr.css",
             "assets/swiper/css/swiper.css",
-            "app/shared/layout.scss",
-            "app/shared/core.less",
-            "app/shared/skin.less",
             "sass/xiaoyuyue.scss",
             "sass/yaojiangjie.scss",
             "styles.css"
@@ -66,8 +62,6 @@
             "../src/assets/common/js/flatpickr.min.js",
             "../src/assets/common/js/flatpickr-zh.js",
             "../src/assets/md-pro/js/core/material.min.js",
-            "../node_modules/fullpage.js/vendors/scrolloverflow.min.js",
-            "../node_modules/fullpage.js/dist/jquery.fullpage.min.js",
             "../src/assets/common/js/jweixin-1.3.0.js"
         ],
         "environmentSource": "environments/environment.ts",

@@ -3,6 +3,7 @@ import { AppRouteGuard } from './shared/common/auth/auth-route-guard';
 import { BreadcrumbService } from 'shared/services/bread-crumb.service';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { IndexComponent } from 'app/index/index.component';
 
 @NgModule({
     imports: [
@@ -12,13 +13,12 @@ import { RouterModule } from '@angular/router';
                 component: AppComponent,
                 children: [
                     {
-                        path: 'auth',
-                        loadChildren: 'app/auth/auth.module#AuthModule', // Lazy load auth module
-                        data: { preload: true }
+                        path: 'index',
+                        component: IndexComponent
                     },
                     {
-                        path: 'index',
-                        loadChildren: 'app/home/home.module#HomeModule', // Lazy load home module
+                        path: 'auth',
+                        loadChildren: 'app/auth/auth.module#AuthModule', // Lazy load auth module
                         data: { preload: true }
                     },
                     {

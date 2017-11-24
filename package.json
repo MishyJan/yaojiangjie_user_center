@@ -41,7 +41,6 @@
         "core-js": "^2.5.0",
         "device.js": "^2.3.0",
         "famfamfam-flags": "^1.0.0",
-        "fullpage.js": "^2.9.4",
         "jasmine-spec-reporter": "^4.2.1",
         "jquery": "^3.2.1",
         "jquery-backstretch": "^2.1.16",

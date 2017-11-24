@@ -1,5 +1,3 @@
-import { element } from 'protractor';
-
 // 设置进入页面的启动加载页面，替换Abp框架的Loading动画
 // tslint:disable-next-line:class-name
 export class appLoadingBusy {

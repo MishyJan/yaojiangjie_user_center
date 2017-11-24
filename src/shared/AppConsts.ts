@@ -40,13 +40,5 @@ export class AppConsts {
 }
 
 export class MediaPath {
-
     static defaultProfilePictureUrl = '/assets/common/images/default-profile-picture.png';
-}
-
-export class MediaCompressFormat {
-    static bookingPictureFormat = 'imageView2/2/w/800/q/100|imageslim';
-    static outletPictureFormat = 'imageView2/2/w/800/q/100|imageslim';
-    static timelinePictureFormat = 'imageView2/2/w/100/q/100|imageslim';
-    static profilePictureFormat = 'imageView2/2/w/800/q/100|imageslim';
 }

@@ -12,13 +12,13 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 import { ServicesModule } from 'shared/services/services.module';
-import { UploaderComponent } from './shared/uploader/uploader.component';
 import { UtilsModule } from '@shared/utils/utils.module';
+import { IndexComponent } from 'app/index/index.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        UploaderComponent
+        IndexComponent,
     ],
     imports: [
         ngCommon.CommonModule,
