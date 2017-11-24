@@ -20,7 +20,7 @@ export class AppConsts {
     };
 
     static readonly localization = {
-        commonLocalizationSourceName: 'Xiaoyuyue',
+        commonLocalizationSourceName: 'Yaojiangjie',
         defaultLocalizationSourceName: 'UserCenter'
     };
 

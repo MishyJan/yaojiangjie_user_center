@@ -3,8 +3,8 @@ import { AfterViewInit, Component, Injector, OnInit, ViewContainerRef } from '@a
 import { AppComponentBase } from 'shared/common/app-component-base';
 import { AppConsts } from '@shared/AppConsts';
 import { Meta } from '@angular/platform-browser';
-import { WeChatShareResultDto } from 'app/shared/utils/wechat-share-timeline.input.dto';
 import { WeChatShareTimelineService } from 'shared/services/wechat-share-timeline.service';
+import { WeChatShareResultDto } from 'app/shared/utils/wechat.dto';
 
 @Component({
     templateUrl: './app.component.html'

@@ -12,3 +12,9 @@ export class WeChatShareResultDto {
     shareUrl: string;
 }
 
+
+export class JsApiSignatureInput {
+    sourceUrl: string;
+    nonceStr: string;
+    timestamp: string;
+}

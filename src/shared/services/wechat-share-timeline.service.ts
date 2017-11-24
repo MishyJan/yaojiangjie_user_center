@@ -1,11 +1,11 @@
 import { ActivatedRouteSnapshot, Event, NavigationEnd, Router } from '@angular/router';
 import { EventEmitter, Injectable } from '@angular/core';
-import { WeChatShareInputDto, WeChatShareResultDto } from 'app/shared/utils/wechat-share-timeline.input.dto';
 
 import { AppServiceBase } from 'shared/services/base.service';
 import { RandomHelper } from 'shared/helpers/RandomHelper';
 import { TitleService } from 'shared/services/title.service';
 import { WeChatJSServiceProxy } from 'shared/service-proxies/service-proxies';
+import { WeChatShareInputDto, WeChatShareResultDto } from 'app/shared/utils/wechat.dto';
 
 export declare class Breadcrumb {
     displayName: string;

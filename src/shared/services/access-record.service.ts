@@ -6,8 +6,8 @@ import { AppConsts } from './../AppConsts';
 import { CookiesService } from './cookies.service';
 import { Injectable } from '@angular/core';
 import { Moment } from 'moment';
-import { WeChatShareResultDto } from 'app/shared/utils/wechat-share-timeline.input.dto';
 import { async } from '@angular/core/testing';
+import { WeChatShareResultDto } from 'app/shared/utils/wechat.dto';
 
 const UA = require('ua-device');
 
