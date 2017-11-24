@@ -37,7 +37,7 @@ import { PagingComponent } from './paging/paging.component';
         TimeZoneComboComponent,
         EmptyPageComponent,
         JqPluginDirective,
-
+        PagingComponent
     ],
     providers: [
         AppLocalizationService
