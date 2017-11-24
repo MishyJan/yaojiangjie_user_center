@@ -1,0 +1,39 @@
+<section class="detail-wrap" *ngIf="detailData">
+    <section [@routerTransition]>
+        <section class="top-banner">
+            <h1 class="title">{{ detailData.name }}</h1>
+        </section>
+        <section class="content">
+            <section class="pic-carousel box-shadow">
+                <img *ngFor="let imageItem of detailData.images" width="100%" [src]="imageItem" alt="">
+            </section>
+            <section class="player-wrap box-shadow">
+            </section>
+            <section class="intro-wrap">
+                <h4 class="little-title">
+                    <span class="ornament"></span>
+                    <span class="text">{{ detailData.desc.title }}</span>
+                </h4>
+                <div class="intro-text" [innerHTML]="detailData.desc.text"></div>
+            </section>
+            <section class="qrcode-wrap">
+                <img class="img" width="120px" src="assets/common/images/admin/yaojiangjie-qrcode.png" alt="qrcode">
+                <p class="text">{{ detailData.qrcodeTip }}</p>
+            </section>
+            <section class="gift-wrap">
+                <h4 class="little-title">
+                    <span class="ornament"></span>
+                    <span class="text">{{ detailData.choice.desc }}</span>
+                </h4>
+                <section class="gift-list">
+                    <section class="gift-content clearfix">
+                        <section class="gift-item pull-left" *ngFor="let item of detailData.choice.item" (click)="buyProduct(item.buyLink)">
+                            <img width="100%" [src]="item.imgUrl" alt="">
+                            <h2 class="title">{{ item.name }}</h2>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>

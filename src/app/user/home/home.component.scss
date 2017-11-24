@@ -1,0 +1,27 @@
+.user-home-wrap {
+    padding: 15px;
+    background-color: #F7F7F7;
+    .content {
+        width: 100%;
+        height: 100%;
+        .user-header {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            background-color: #33BBFF;
+        }
+        .history-list {
+            margin-top: 15px;
+            .list-item+.list-item {
+                margin-top: 15px;
+            }
+            .list-item {
+                width: 100%;
+                height: 60px;
+                line-height: 60px;
+                text-align: center;
+                background-color: #FFF;
+            }
+        }
+    }
+}

@@ -1,0 +1,128 @@
+@import './../../sass/yaojiangjie/_mixin';
+.detail-wrap {
+    width: 100%;
+    max-width: 480px;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    @include positionMiddle(1);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: #f8fdfe;
+    .top-banner {
+        width: 100%;
+        height: 200px;
+        line-height: 200px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-image: url("/assets/common/images/admin/detail-bg.jpg");
+        .title {
+            font-size: 19px;
+            color: #FFF;
+            text-align: center;
+        }
+    }
+    .content {
+        width: 100%;
+        position: relative;
+        top: -40px;
+        left: 0;
+        padding: 0 20px;
+        .pic-carousel {
+            img {
+                display: block;
+            }
+        }
+        .player-wrap {
+            margin-top: 20px;
+        }
+        .intro-wrap {
+            margin-top: 20px;
+            .little-title {
+                margin-bottom: 12px;
+                .ornament {
+                    width: 18px;
+                    height: 22px;
+                    display: inline-block;
+                    margin-right: 14px;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center;
+                    @include bg-image("/assets/common/images/admin/logo");
+                }
+                .text {
+                    display: inline-block;
+                    transform: translateY(-5px);
+                    font-size: 15p;
+                    color: #333;
+                }
+            }
+            .intro-text {
+                font-size: 14px;
+                line-height: 1.6em;
+                color: #656565;
+                text-align: justify;
+                word-break: break-all;
+            }
+        }
+        .qrcode-wrap {
+            text-align: center;
+            margin: 40px 0;
+            .img {
+                display: inline-block;
+            }
+            .text {
+                font-size: 12px;
+                color: #656565;
+                margin-top: 12px;
+            }
+        }
+        .gift-wrap {
+            margin-top: 20px;
+            .little-title {
+                margin-bottom: 12px;
+                .ornament {
+                    width: 18px;
+                    height: 22px;
+                    display: inline-block;
+                    margin-right: 14px;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center;
+                    @include bg-image("/assets/common/images/admin/logo");
+                }
+                .text {
+                    display: inline-block;
+                    transform: translateY(-5px);
+                    font-size: 15p;
+                    color: #333;
+                }
+            }
+            .gift-list {
+                width: 100%;
+                overflow-x: auto;
+                overflow-y: hidden;
+                .gift-content {
+                    width: calc(160px * 2 + 20px);
+                    .gift-item+.gift-item {
+                        margin-left: 20px;
+                    }
+                    .gift-item {
+                        width: 160px;
+                        background-color: #FFF;
+                        padding: 10px;
+                        text-align: center;
+                        .title {
+                            font-size: 14px;
+                            color: #656565;
+                            margin-top: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

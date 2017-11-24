@@ -1,0 +1,45 @@
+<div [@routerTransition]>
+    <form #registerForm="ngForm">
+        <div class="register-wrap card">
+            <div class="logo-wrap">
+                <img src="/assets/common/images/login/logo-colorized.png" width="40px" alt="logo">
+            </div>
+            <div class="register-body form-horizontal">
+                <div class="row">
+                    <label class="col-md-1 col-sm-2 label-on-left">
+                        <span class="vapps-icon-app-login-phone"></span>
+                    </label>
+                    <div class="col-md-11 col-sm-10">
+                        <div class="validate-code-wrap form-group label-floating">
+                            <label class="control-label"></label>
+                            <input class="form-control" placeholder="{{l('PhoneNumber')}}" type="tel" name="phoneNumber" required [(ngModel)]="registerInput.phoneNumber">
+                            <div class="get-sms-btn">
+                                <button type="button" class="btn" (click)="send()" #smsBtn [disabled]="isSendSMS">{{l('GetVerificationCode')}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label class="col-md-1 col-sm-2 label-on-left">
+                        <span class="vapps-icon-app-login-code"></span>
+                    </label>
+                    <div class="col-md-11 col-sm-10">
+                        <div class="form-group label-floating">
+                            <label class="control-label"></label>
+                            <input class="form-control" placeholder="{{l('VerificationCode')}}" type="text" name="registerCode" required [(ngModel)]="registerInput.registerCode">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="register-btn-wrap">
+                    <button class="btn btn-register" type="button" [disabled]="!registerForm.form.valid" (click)="register()" [buttonBusy]="saving" [busyText]="'注册中...'">
+                        <i></i>
+                        <span>注册用户</span>
+                    </button>
+                </div>
+            </div>
+            <div class="register-footer"></div>
+        </div>
+    </form>
+</div>
