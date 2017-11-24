@@ -1,4 +1,4 @@
-<section class="detail-wrap">
+<section class="detail-wrap" *ngIf="detailData">
     <section [@routerTransition]>
         <section class="top-banner">
             <h1 class="title">{{ detailData.name }}</h1>
@@ -8,7 +8,6 @@
                 <img *ngFor="let imageItem of detailData.images" width="100%" [src]="imageItem" alt="">
             </section>
             <section class="player-wrap box-shadow">
-                <yaojiangjie-light-audio [audioSrc]="detailData.voice" [titleName]="detailData.name"></yaojiangjie-light-audio>
             </section>
             <section class="intro-wrap">
                 <h4 class="little-title">
@@ -37,8 +36,4 @@
             </section>
         </section>
     </section>
-</section>
-
-<section *ngIf="exhibitionData">
-    <yaojiangjie-paging [exhibitionData]="exhibitionData"></yaojiangjie-paging>
 </section>

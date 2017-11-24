@@ -1,42 +1,45 @@
-import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
+import * as ngCommon from '@angular/common';
 
-import { AppCommonModule } from './shared/app-common.module';
+import { HttpModule, JsonpModule } from '@angular/http';
+import { ModalModule, TooltipModule } from 'ngx-bootstrap';
+
+import { AbpModule } from '@abp/abp.module';
+import { AppCommonModule } from './shared/common/app-common.module';
 import { AppComponent } from './app.component';
-import { AppPreBootstrap } from './AppPreBootstrap';
-import { AppRoutes } from './app.routing';
-import { BrowserModule } from '@angular/platform-browser';
-import { DetailComponent } from './detail/detail.component';
-import { HttpModule } from '@angular/http';
-import { LangService } from '../service/change-lang.service';
-import { YaojiangjieService } from '../service/yaojiangjie.service';
-import { PageComponent } from './page/page.component';
+import { AppRoutingModule } from './app-routing.module';
+import { BreadcrumbService } from 'shared/services/bread-crumb.service';
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
+import { ServicesModule } from 'shared/services/services.module';
+import { UtilsModule } from '@shared/utils/utils.module';
+import { IndexComponent } from 'app/index/index.component';
 
-export function appInitializerFactory(injector: Injector) {
-    return () => {
-        AppPreBootstrap.run();
-    };
-}
 @NgModule({
     declarations: [
         AppComponent,
-        DetailComponent,
-    PageComponent
-],
+        IndexComponent,
+    ],
     imports: [
+        ngCommon.CommonModule,
+        FormsModule,
         HttpModule,
-        BrowserModule,
+        JsonpModule,
+        ModalModule.forRoot(),
+        TooltipModule.forRoot(),
+        AbpModule,
+        AppRoutingModule,
+        UtilsModule,
         AppCommonModule.forRoot(),
-        AppRoutes
+        ServiceProxyModule,
+        ServicesModule
     ],
     providers: [
-        YaojiangjieService,
-        LangService,
-        {
-            provide: APP_INITIALIZER,
-            useFactory: appInitializerFactory,
-            deps: [Injector],
-            multi: true
-        }
     ]
 })
-export class AppModule { }
+export class AppModule {
+    // 提前 注册 BreadcrumbService
+    constructor(private breadcrumbService: BreadcrumbService) {
+
+    }
+}

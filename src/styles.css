@@ -1,0 +1,167 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+}
+
+a,
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px white inset !important;
+    border-bottom: 1px solid #D2D2D2 !important;
+}
+
+.bas-reset {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.bootstrap-select .dropdown-toggle {
+    box-shadow: none !important;
+    outline: none;
+}
+
+
+/*.bootstrap-select.open .dropdown-toggle {
+    background-color: #FFF !important;
+    border-color: #FFF !important;
+}*/
+
+
+/* 覆盖bootstrap样式 */
+
+.bootstrap-select .dropdown-toggle:focus {
+    outline: none !important;
+}
+
+.close {
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+}
+
+.modal {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* .modal .modal-dialog {
+    top: 50%;
+}
+
+.modal .modal-content {
+    transform: translate(0, -50%);
+} */
+
+.btn {
+    font-weight: normal !important;
+}
+
+.btn:hover,
+.btn:focus,
+.btn.focus {
+    color: #FFF;
+}
+
+
+/* 覆盖material-Pro的样式  */
+
+.form-group.is-focused .form-control {
+    background-image: linear-gradient(#FF9641, #FF9641);
+}
+
+.radio input[type=radio]:checked~.circle {
+    border-color: #FF9800;
+}
+
+.radio input[type=radio]:checked~.check {
+    background-color: #FF9641;
+}
+
+.radio label .check:after {
+    background-color: #FF9641;
+}
+
+.form-control[disabled],
+fieldset[disabled] .form-control,
+.form-group .form-control[disabled],
+fieldset[disabled] .form-group .form-control {
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.btn,
+.navbar .navbar-nav>li>a.btn {
+    font-size: 14px;
+}
+
+.radio label span {
+    left: 0px;
+}
+
+a {
+    color: #FF9641;
+}
+
+
+/* 覆盖FullPage样式 */
+
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span,
+#fp-nav ul li a.active span,
+#fp-nav ul li:hover a.active span,
+.fp-slidesNav ul li a.active span,
+.fp-slidesNav ul li:hover a.active span {
+    background: #FF9641;
+}
+
+#fp-nav ul li .fp-tooltip {
+    color: #FF9641;
+}
+
+
+/* 覆盖bootstrap tabs样式 */
+
+.side-bar .nav-tabs {
+    margin-bottom: 4px;
+    /* 给底部阴影留出边距 */
+}
+
+
+/* 覆盖swiper样式 */
+
+.swiper-pagination-bullet-active {
+    background-color: #FF9641;
+}
+
+.tooltip.in {
+    transition: all .15s;
+}
+
+
+/* 由于bootstrap的弹窗modal导致部分不能点击的bug */
+
+.modal-backdrop.in {
+    display: none;
+}
+
+
+/* toast提示框 */
+
+.toast-success {
+    background-color: #FF9641;
+}
+
+.form-group {
+    margin: 10px 0 0 0;
+}
