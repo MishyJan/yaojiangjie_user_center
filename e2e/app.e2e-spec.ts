@@ -1,14 +1,14 @@
-import { AppPage } from './app.po';
+import { XiaoyuyuePage } from './app.po';
 
-describe('yaojiangjie-user-center App', () => {
-  let page: AppPage;
+describe('xiaoyuyue App', function() {
+  let page: XiaoyuyuePage;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new XiaoyuyuePage();
   });
 
-  it('should display welcome message', () => {
+  it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('app works!');
   });
 });

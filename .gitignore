@@ -1,35 +1,34 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
+dist/
 /tmp
-/out-tsc
 
 # dependencies
-/node_modules
+node_modules/
+node_modules.bak/
+/.vscode
+/bower_components
 
 # IDEs and editors
 /.idea
 .project
 .classpath
-.c9/
 *.launch
 .settings/
-*.sublime-workspace
-
-# IDE - VSCode
-.vscode
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+.vs/
+obj/
+bin/
+.editorconfig
+npm-debug.log.*
 
 # misc
 /.sass-cache
 /connect.lock
-/coverage
+/coverage/*
 /libpeerconnection.log
 npm-debug.log
+yarn-error.log
 testem.log
 /typings
 
@@ -37,8 +36,17 @@ testem.log
 /e2e/*.js
 /e2e/*.map
 
-# System Files
+#System Files
 .DS_Store
 Thumbs.db
 
-package-lock.json
+# VS files
+/User.Center.AngularUI.csproj.user
+project.lock.json
+Properties/launchSettings.json
+/MyCompanyName.User.Center.AngularUI.xproj.user
+
+aspnet-core/test/JMeter/AspNetZeroDotNetCoreSimpleTest.jmx
+/aspnet-core/build/outputs
+
+chromeDummyDir/*

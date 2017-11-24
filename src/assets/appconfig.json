@@ -1,5 +1,6 @@
-{
-    "appBaseUrl": "https://www.yaojiangjie.com/siweipusa",
-    "appLanguage": "zh_cn",
-    "appTitle": "思维菩萨"
+﻿{
+    "remoteServiceBaseUrl": "http://vappshk.oicp.net:6001",
+    "appBaseUrl": "http://www.yaojiangjie.com/test",
+    "appBusinessBaseUrl": "http://www.yaojiangjie.com/test",
+    "appLanguage": "zh_cn"
 }

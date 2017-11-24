@@ -1,38 +1,27 @@
-import { Choice, Detail, ExhibitsIntro } from '../../shared/common-dto/detail';
 import { Component, OnInit } from '@angular/core';
-
+import { appModuleAnimation } from 'shared/animations/routerTransition';
+import { YaojiangjieService } from 'shared/services/yaojiangjie-mock.service';
 import { ActivatedRoute } from '@angular/router';
-import { AppConsts } from '../AppConsts';
-import { LangService } from '../../service/change-lang.service';
-import { YaojiangjieService } from '../../service/yaojiangjie.service';
-import { appModuleAnimation } from '../../shared/animations/routerTransition';
 
 @Component({
-    selector: 'yaojiangjie-detail',
+    selector: 'xiaoyuyue-detail',
     templateUrl: './detail.component.html',
     styleUrls: ['./detail.component.scss'],
     animations: [appModuleAnimation()]
 
 })
 export class DetailComponent implements OnInit {
-    detailData: Detail = new Detail();
+    detailData: any;
     exhibitionData: any;
     part: number;
     page: number;
 
     constructor(
-        private _route: ActivatedRoute,
         private _yaojiangjieService: YaojiangjieService,
-        public langService: LangService
-    ) {
-        langService.change.subscribe(() => {
-            this.getDetailPage();
-        })
-    }
+        private _route: ActivatedRoute
+    ) { }
 
     ngOnInit() {
-        this.detailData.choice = new Choice();
-        this.detailData.desc = new ExhibitsIntro();
         this.getDetailPage();
     }
 
@@ -46,20 +35,16 @@ export class DetailComponent implements OnInit {
     }
 
     loadData(result: object): void {
-        let self = this;
         this._yaojiangjieService
-            .getDetailInfo(result, (res: Detail) => {
-                self.detailData = res;
-                document.getElementsByTagName("title")[0].innerHTML = res.name;
+            .getDetailInfo(result, (res: any) => {
+                this.detailData = res;
+                // document.getElementsByTagName("title")[0].innerHTML = res.name;
             });
 
         this._yaojiangjieService
-            .getExhibitionInfo(function (res) {
-                self.exhibitionData = res;
+            .getExhibitionInfo((res: any) => {
+                this.exhibitionData = res;
             });
     }
 
-    buyProduct(url: string): void {
-        window.location.href = url;
-    }
 }
