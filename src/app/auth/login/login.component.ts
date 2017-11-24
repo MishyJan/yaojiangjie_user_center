@@ -47,7 +47,7 @@ export class LoginComponent extends AppComponentBase implements OnInit, AfterVie
 
     ngOnInit(): void {
         if (this._sessionService.user) {
-            this._router.navigate(['/user/home']);
+            this._router.navigate(['/user']);
         }
 
         if (this.isWeiXin()) {

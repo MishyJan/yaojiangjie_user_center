@@ -1,16 +1,21 @@
-<div class="home-wrap">
-    <div class="content">
-        <div class="item scan-qrcode" (click)="scanQRCode()">
-            <div class="icon-wrap">
-                <span class="yaojiangjie-icon yaojiangjie-icon-app-qrcode"></span>
+<ng-container *ngIf="!scanQRCodeUrl; else elseTemplate">
+    <div class="home-wrap">
+        <div class="content">
+            <div class="item scan-qrcode" (click)="scanQRCode()">
+                <div class="icon-wrap">
+                    <span class="yaojiangjie-icon yaojiangjie-icon-app-qrcode"></span>
+                </div>
+                <div class="text">扫二维码</div>
             </div>
-            <div class="text">扫二维码</div>
-        </div>
-        <div class="item user" routerLink="/user">
-            <div class="icon-wrap">
-                <span class="yaojiangjie-icon yaojiangjie-icon-app-user"></span>
+            <div class="item user" routerLink="/user">
+                <div class="icon-wrap">
+                    <span class="yaojiangjie-icon yaojiangjie-icon-app-user"></span>
+                </div>
+                <div class="text">用户</div>
             </div>
-            <div class="text">用户</div>
         </div>
     </div>
-</div>
+</ng-container>
+<ng-template #elseTemplate>
+    <iframe src="scanQRCodeUrl" frameborder="0" width="100%" height="100%"></iframe>
+</ng-template>

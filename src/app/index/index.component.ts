@@ -8,7 +8,7 @@ import { WechatScanQRCodeService } from "shared/services/wechat-scanQRCode.servi
     styleUrls: ['./index.component.scss']
 })
 export class IndexComponent extends AppComponentBase implements OnInit {
-
+    scanQRCodeUrl: string;
     constructor
         (
         injector: Injector,
@@ -23,6 +23,12 @@ export class IndexComponent extends AppComponentBase implements OnInit {
     scanQRCode(): void {
         if(this.isWeiXin()) {
             this._wechatScanQRCodeService.init();
+            this._wechatScanQRCodeService
+            .scanQRCodeSuccess
+            .subscribe( result => {
+                this.scanQRCodeUrl = result;
+                alert(result);
+            })
         } else {
             this.message.warn("请在微信内打开!");
         }

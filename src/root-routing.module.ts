@@ -4,7 +4,6 @@ import { BreadcrumbService } from 'shared/services/bread-crumb.service';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
-
 ];
 
 @NgModule({
