@@ -18,8 +18,6 @@ export class YaojiangjieService {
     }
 
     getDetailInfo(path, callback) {
-        console.log(AppConsts.appLanguage);
-        
         AppConsts.appLanguage == undefined ? AppConsts.appLanguage = localStorage.getItem("language") : AppConsts.appLanguage;
         const url = `/assets/data/zh_cn/${path.part}/${path.page}.json`;
 

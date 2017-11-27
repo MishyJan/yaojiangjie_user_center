@@ -13,6 +13,7 @@ export class AppConsts {
     static bookingPictureFormat: string;
     static appBaseUrlFormat: string;
     static BookingPicture: string;
+    static WxJssdkUrl: string = window.location.href;
     static readonly externalLoginUrl = '/auth/login';
 
     static readonly userManagement = {

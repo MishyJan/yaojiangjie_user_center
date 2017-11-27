@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { WeChatJSServiceProxy, GetJsApiSignatureOutput } from 'shared/service-proxies/service-proxies';
 import { JsApiSignatureInput } from 'app/shared/utils/wechat.dto';
 import { RandomHelper } from 'shared/helpers/RandomHelper';
+import { AppConsts } from 'shared/AppConsts';
 
 @Injectable()
 export class WechatScanQRCodeService {
@@ -12,7 +13,7 @@ export class WechatScanQRCodeService {
     ) { }
 
     init(): void {
-        this.jsApiSignatureInput.sourceUrl = location.href;
+        this.jsApiSignatureInput.sourceUrl = AppConsts.WxJssdkUrl;
         this.jsApiSignatureInput.nonceStr = RandomHelper.randomString(10);
         this.jsApiSignatureInput.timestamp = moment().unix();
         this._wechatJSService
@@ -23,7 +24,7 @@ export class WechatScanQRCodeService {
             )
             .subscribe((result: GetJsApiSignatureOutput) => {
                 wx.config({
-                    debug: true,
+                    debug: false,
                     appId: result.appId,
                     nonceStr: this.jsApiSignatureInput.nonceStr,
                     timestamp: this.jsApiSignatureInput.timestamp,
