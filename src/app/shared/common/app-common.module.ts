@@ -35,7 +35,7 @@ import { UtilsModule } from '@shared/utils/utils.module';
         TimeZoneComboComponent,
         EmptyPageComponent,
         JqPluginDirective,
-
+        PagingComponent
     ],
     providers: [
         AppLocalizationService
