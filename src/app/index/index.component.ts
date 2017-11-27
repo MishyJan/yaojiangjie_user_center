@@ -21,6 +21,7 @@ export class IndexComponent extends AppComponentBase implements OnInit {
     }
 
     ngOnInit() {
+        this.scanQRCode();
     }
 
     scanQRCode(): void {
