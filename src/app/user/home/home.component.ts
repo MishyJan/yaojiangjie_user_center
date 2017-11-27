@@ -24,7 +24,6 @@ export class UserHomeComponent implements OnInit {
         this.colorArrs = ["#338EFF", "#02BF25", "#F79839"];
         let randomNum = parseInt(Math.random() * 3 + "");
         this.colorArrs.sort(function(){ return 0.5 - Math.random() });
-        console.log(randomNum);
         let style = {
             'border-left-color': this.colorArrs[randomNum]
         };
