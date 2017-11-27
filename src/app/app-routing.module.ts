@@ -19,6 +19,8 @@ import { IndexComponent } from 'app/index/index.component';
                     },
                     {
                         path: 'index',
+                        canActivate: [AppRouteGuard],
+                        canActivateChild: [AppRouteGuard],
                         component: IndexComponent
                     },
                     {

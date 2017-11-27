@@ -27,6 +27,7 @@
 
 
 /*
+    绝对定位方式居中
     $type == 1：水平居中
     $type == 2：垂直居中
     $type == 3：水平并垂直居中
@@ -46,5 +47,32 @@
         left: 50%;
         transform: translateX(-50%);
         transform: translateY(-50%);
+    }
+}
+
+
+/*
+    flex布局方式居中
+    $type == 1：水平居中
+    $type == 2：垂直居中
+    $type == 3：水平并垂直居中
+*/
+
+@mixin flexMiddle($type) {
+    display: flex;
+    flex-direction: column;
+    @if $type==1 {
+        /*水平居中*/
+        justify-content: center;
+    }
+    @else if $type==2 {
+        /*垂直居中*/
+        align-items: center;
+    }
+    @else if $type==3 {
+        /*垂直居中*/
+        align-items: center;
+        /*水平居中*/
+        justify-content: center;
     }
 }

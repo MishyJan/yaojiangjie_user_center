@@ -39,6 +39,10 @@ export class AppConsts {
     };
 }
 
-export class MediaPath {
+export class DefaultProfilePath {
     static defaultProfilePictureUrl = '/assets/common/images/default-profile-picture.png';
+}
+
+export class  ColourCode {
+    static readonly colors = ["#338EFF", "#02BF25", "#F79839"];
 }
