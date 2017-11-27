@@ -15,7 +15,7 @@ import { JqPluginDirective } from './libs/jq-plugin.directive';
 import { ModalModule } from 'ngx-bootstrap';
 import { TimeZoneComboComponent } from './timing/timezone-combo.component';
 import { UtilsModule } from '@shared/utils/utils.module';
-import { PagingComponent } from './paging/paging.component';
+import { PagingComponent } from 'app/shared/common/paging/paging.component';
 
 @NgModule({
     imports: [
