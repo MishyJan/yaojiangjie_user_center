@@ -12,8 +12,8 @@ import { UserHomeComponent } from './home/home.component';
         RouterModule.forChild([
             {
                 path: '',
-                canActivate: [AppRouteGuard],
-                canActivateChild: [AppRouteGuard],
+                // canActivate: [AppRouteGuard],
+                // canActivateChild: [AppRouteGuard],
                 component: UserComponent,
                 children: [
                     {
