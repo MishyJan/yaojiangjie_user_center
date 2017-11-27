@@ -230,11 +230,11 @@ export class LoginService {
         this._tokenAuthService.externalAuthenticate(model).subscribe((result: ExternalAuthenticateResultModel) => {
             if (result.waitingForActivation) {
                 this._messageService.info('您已成功注册,请完善基本信息!');
-                // this._router.navigate(['/account/supplementary-external-register', result.userId]);
+                this._router.navigate(['/account/supplementary-external-register', result.userId]);
                 return;
             }
 
-            this.login(result.tenantId, result.accessToken, result.encryptedAccessToken, result.expireInSeconds, true);
+            this.login(result.userId, result.accessToken, result.encryptedAccessToken, result.expireInSeconds, true);
         });
     }
 

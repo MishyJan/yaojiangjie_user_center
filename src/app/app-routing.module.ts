@@ -13,6 +13,11 @@ import { IndexComponent } from 'app/index/index.component';
                 component: AppComponent,
                 children: [
                     {
+                        path: '',
+                        redirectTo: '/index',
+                        pathMatch: 'full'
+                    },
+                    {
                         path: 'index',
                         component: IndexComponent
                     },
