@@ -14,11 +14,13 @@ import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module
 import { ServicesModule } from 'shared/services/services.module';
 import { UtilsModule } from '@shared/utils/utils.module';
 import { IndexComponent } from 'app/index/index.component';
+import { WxScanQRCodePageComponent } from './wxScanQRCodePage/wxScanQRCodePage.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         IndexComponent,
+        WxScanQRCodePageComponent
     ],
     imports: [
         ngCommon.CommonModule,

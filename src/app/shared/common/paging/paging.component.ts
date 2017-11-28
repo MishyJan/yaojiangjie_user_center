@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
+import { AppComponentBase } from 'shared/common/app-component-base';
 
 @Component({
-  selector: 'yaojiangjie-paging',
-  templateUrl: './paging.component.html',
-  styleUrls: ['./paging.component.scss']
+    selector: 'yaojiangjie-paging',
+    templateUrl: './paging.component.html',
+    styleUrls: ['./paging.component.scss']
 })
-export class PagingComponent implements OnInit {
+export class PagingComponent extends AppComponentBase implements OnInit {
 
-  constructor() { }
+    constructor(
+        private injector: Injector,
 
-  ngOnInit() {
-  }
+    ) {
+        super(injector);
+    }
 
+    ngOnInit() {
+    }
 }

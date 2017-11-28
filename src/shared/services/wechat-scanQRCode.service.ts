@@ -31,6 +31,10 @@ export class WechatScanQRCodeService {
                     signature: result.signature,
                     jsApiList: ['scanQRCode']
                 });
+
+                wx.ready( () => {
+                    this.scanQRCodeHandler();
+                })
             })
     }
 

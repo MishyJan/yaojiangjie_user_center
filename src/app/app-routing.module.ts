@@ -4,6 +4,7 @@ import { BreadcrumbService } from 'shared/services/bread-crumb.service';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IndexComponent } from 'app/index/index.component';
+import { WxScanQRCodePageComponent } from 'app/wxScanQRCodePage/wxScanQRCodePage.component';
 
 @NgModule({
     imports: [
@@ -22,6 +23,10 @@ import { IndexComponent } from 'app/index/index.component';
                         // canActivate: [AppRouteGuard],
                         // canActivateChild: [AppRouteGuard],
                         component: IndexComponent
+                    },
+                    {
+                        path: 'scan-qrcode',
+                        component: WxScanQRCodePageComponent
                     },
                     {
                         path: 'auth',

@@ -96,4 +96,6 @@ export abstract class AppComponentBase {
             return false;
         }
     }
+
+    // 记录微信jssdk扫码的URL
 }
