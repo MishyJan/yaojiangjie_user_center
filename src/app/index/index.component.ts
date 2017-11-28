@@ -21,18 +21,18 @@ export class IndexComponent extends AppComponentBase implements OnInit {
     }
 
     ngOnInit() {
-        this.scanQRCode();
+        this._wechatScanQRCodeService.init();
+        this._wechatScanQRCodeService
+            .scanQRCodeSuccess
+            .subscribe(result => {
+                this.scanQRCodeUrl = result;
+                this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.scanQRCodeUrl);
+            })
     }
 
     scanQRCode(): void {
         if (this.isWeiXin()) {
-            this._wechatScanQRCodeService.init();
-            this._wechatScanQRCodeService
-                .scanQRCodeSuccess
-                .subscribe(result => {
-                    this.scanQRCodeUrl = result;
-                    this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.scanQRCodeUrl);
-                })
+            this._wechatScanQRCodeService.scanQRCodeHandler();
         } else {
             this.message.warn("请在微信内打开!");
         }
