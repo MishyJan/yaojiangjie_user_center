@@ -1,8 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { AppComponentBase } from 'shared/common/app-component-base';
-import { WechatScanQRCodeService } from 'shared/services/wechat-scanQRCode.service';
-import { DomSanitizer } from '@angular/platform-browser';
 import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
+import { LocalStorageService } from 'shared/utils/local-storage.service';
 
 @Component({
     selector: 'yaojiangjie-wxScanQRCodePage',
@@ -11,33 +10,25 @@ import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
     animations: [appModuleSlowAnimation()]
 })
 export class WxScanQRCodePageComponent extends AppComponentBase implements OnInit {
-    trustScanQRCodeUrl: any;
-    scanQRCodeUrl: any;
+    scanQRCodeUrl: {};
 
     constructor(
         private injector: Injector,
-        private sanitizer: DomSanitizer,
-        private _wechatScanQRCodeService: WechatScanQRCodeService
+        private _localStorageService: LocalStorageService,
     ) {
         super(injector);
     }
 
     ngOnInit() {
-        this.scanQRCodeServiceInit();
+        this.getWxScanQRCodeUrl();
     }
 
-    scanQRCodeServiceInit(): void {
-        if (this.isWeiXin()) {
-            this._wechatScanQRCodeService.init();
-            this._wechatScanQRCodeService
-            .scanQRCodeSuccess
-            .subscribe(result => {
-                this.scanQRCodeUrl = result;
-                this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.scanQRCodeUrl);
-            })
-        } else {
-            this.message.warn("请在微信内打开!");
-        }
+    getWxScanQRCodeUrl(): void {
+        this._localStorageService
+        .getItem('wxScanQRCodeUrl')
+        .then(result => {
+            alert(result);
+            this.scanQRCodeUrl = result;
+        })
     }
-
 }
