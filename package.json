@@ -45,7 +45,7 @@
         "lodash": "^4.17.4",
         "moment": "^2.18.1",
         "moment-timezone": "^0.5.13",
-        "ngx-bootstrap": "^1.9.3",
+        "ngx-bootstrap": "^2.0.0-beta.9",
         "ngx-infinite-scroll": "^0.5.1",
         "ngxani": "^1.2.2",
         "push.js": "^1.0.4",
