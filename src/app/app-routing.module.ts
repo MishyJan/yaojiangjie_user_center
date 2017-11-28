@@ -20,12 +20,14 @@ import { WxScanQRCodePageComponent } from 'app/wxScanQRCodePage/wxScanQRCodePage
                     },
                     {
                         path: 'index',
-                        // canActivate: [AppRouteGuard],
-                        // canActivateChild: [AppRouteGuard],
+                        canActivate: [AppRouteGuard],
+                        canActivateChild: [AppRouteGuard],
                         component: IndexComponent
                     },
                     {
                         path: 'scan-qrcode',
+                        canActivate: [AppRouteGuard],
+                        canActivateChild: [AppRouteGuard],
                         component: WxScanQRCodePageComponent
                     },
                     {
@@ -39,8 +41,13 @@ import { WxScanQRCodePageComponent } from 'app/wxScanQRCodePage/wxScanQRCodePage
                         data: { preload: true }
                     },
                     {
-                        path: '',
+                        path: 'detail',
                         loadChildren: 'app/detail/detail.module#DetailModule', // Lazy load user module
+                        data: { preload: true }
+                    },
+                    {
+                        path: 'dir-manage',
+                        loadChildren: 'app/dir-manage/dir-manage.module#DirManageModule', // Lazy load user module
                         data: { preload: true }
                     }
                 ]
