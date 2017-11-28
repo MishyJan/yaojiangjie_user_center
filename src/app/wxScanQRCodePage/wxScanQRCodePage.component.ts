@@ -12,12 +12,12 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     animations: [appModuleSlowAnimation()]
 })
 export class WxScanQRCodePageComponent extends AppComponentBase implements OnInit, AfterViewInit {
-    trustScanQRCodeUrl: SafeResourceUrl = null;
+    trustScanQRCodeUrl: SafeResourceUrl;
 
     constructor(
         private injector: Injector,
-        private _location: Location,
         private sanitizer: DomSanitizer,
+        private _location: Location,
         private _localStorageService: LocalStorageService,
     ) {
         super(injector);
@@ -26,16 +26,19 @@ export class WxScanQRCodePageComponent extends AppComponentBase implements OnIni
     ngOnInit() {
         this.getWxScanQRCodeUrl();
     }
-
+    
     ngAfterViewInit() {
     }
 
     getWxScanQRCodeUrl(): void {
-        this._localStorageService.getItem('wxScanQRCodeUrl', (err, result) => {
-            alert("URLLLL"+result);
-            if (err) {
-                this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(result);
-            }
-        });
+        let tempUrl = localStorage.getItem('wxScanQRCodeUrl');
+        if (!tempUrl) {
+            this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl("");
+            this.message.confirm("未检测到二维码,请重新扫码!", () => {
+                this._location.back();
+            });
+            return;
+        }
+        this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tempUrl);
     }
 }

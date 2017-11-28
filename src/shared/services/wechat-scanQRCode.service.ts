@@ -52,7 +52,7 @@ export class WechatScanQRCodeService extends AppComponentBase {
                 scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                 success: res => {
                     // 当needResult 为 1 时，扫码返回的结果
-                    this._localStorageService.setItem('wxScanQRCodeUrl', res.resultStr);
+                    localStorage.setItem('wxScanQRCodeUrl', res.resultStr);
                     this._router.navigate(['/scan-qrcode']);
                     // window.location.href = AppConsts.appBaseUrl + "/scan-qrcode";
                 }
