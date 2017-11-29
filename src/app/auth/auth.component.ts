@@ -2,7 +2,6 @@ import { AfterViewInit, Component, Injector, OnInit, ViewContainerRef, ViewEncap
 
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { AppConsts } from '@shared/AppConsts';
-import { BookingServiceProxy } from 'shared/service-proxies/service-proxies';
 import { LoginService } from 'shared/services/login.service';
 import { WeChatShareTimelineService } from 'shared/services/wechat-share-timeline.service';
 
@@ -23,7 +22,6 @@ export class AuthComponent extends AppComponentBase implements OnInit, AfterView
         private _loginService: LoginService,
         viewContainerRef: ViewContainerRef,
         private _weChatShareTimelineService: WeChatShareTimelineService,
-        private _bookingServiceProxy: BookingServiceProxy
     ) {
         super(injector);
 

@@ -8,19 +8,19 @@ import { AppCommonModule } from './shared/common/app-common.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BreadcrumbService } from 'shared/services/bread-crumb.service';
+import { ExternalExhibitComponent } from './external-exhibit/external-exhibit.component';
 import { FormsModule } from '@angular/forms';
+import { IndexComponent } from 'app/index/index.component';
 import { NgModule } from '@angular/core';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 import { ServicesModule } from 'shared/services/services.module';
 import { UtilsModule } from '@shared/utils/utils.module';
-import { IndexComponent } from 'app/index/index.component';
-import { WxScanQRCodePageComponent } from './wxScanQRCodePage/wxScanQRCodePage.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         IndexComponent,
-        WxScanQRCodePageComponent
+        ExternalExhibitComponent
     ],
     imports: [
         ngCommon.CommonModule,

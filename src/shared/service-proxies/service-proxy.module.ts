@@ -12,9 +12,8 @@ import { NgModule } from '@angular/core';
         ApiServiceProxies.PictureServiceProxy,
         ApiServiceProxies.ProfileServiceProxy,
         ApiServiceProxies.SMSServiceProxy,
-        ApiServiceProxies.BookingServiceProxy,
-        ApiServiceProxies.PerBookingOrderServiceProxy,
-        ApiServiceProxies.BookingRecordServiceProxy,
+        ApiServiceProxies.AccessRecordServiceProxy,
+        ApiServiceProxies.ScanServiceProxy,
         ApiServiceProxies.WeChatJSServiceProxy
     ]
 })

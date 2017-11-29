@@ -1,10 +1,10 @@
 import { AppComponent } from './app.component';
 import { AppRouteGuard } from './shared/common/auth/auth-route-guard';
 import { BreadcrumbService } from 'shared/services/bread-crumb.service';
+import { ExternalExhibitComponent } from 'app/external-exhibit/external-exhibit.component';
+import { IndexComponent } from 'app/index/index.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IndexComponent } from 'app/index/index.component';
-import { WxScanQRCodePageComponent } from 'app/wxScanQRCodePage/wxScanQRCodePage.component';
 
 @NgModule({
     imports: [
@@ -25,10 +25,10 @@ import { WxScanQRCodePageComponent } from 'app/wxScanQRCodePage/wxScanQRCodePage
                         component: IndexComponent
                     },
                     {
-                        path: 'scan-qrcode',
+                        path: 'external-exhibit',
                         canActivate: [AppRouteGuard],
                         canActivateChild: [AppRouteGuard],
-                        component: WxScanQRCodePageComponent
+                        component: ExternalExhibitComponent
                     },
                     {
                         path: 'auth',
