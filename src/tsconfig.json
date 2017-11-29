@@ -21,7 +21,8 @@
       "@shared/*": ["./shared/*"],
       "@node_modules/*": ["../node_modules/*"],
       "@sass/*": ["./sass/*"],
-      "@assets/*": ["./assets/common/js/*"]
+      "@assets/*": ["./assets/common/js/*"],
+      "@angular/*": ["../node_modules/@angular/*"]
 
     }
   },
