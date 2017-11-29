@@ -1,4 +1,4 @@
-﻿import { BookingAccessRecordInputSource, BookingAccessRecordInputWeChatSource, ChatMessageDtoReadState, ChatMessageDtoSide, CodeSendInputCodeType, CurrentUserProfileEditDtoGender, DefaultTimezoneScope, FriendDtoState, IsTenantAvailableOutputState, Status, UserNotificationState } from '@shared/service-proxies/service-proxies';
+﻿import { AccessRecordInputSource, AccessRecordInputWeChatSource, ChatMessageDtoReadState, ChatMessageDtoSide, CodeSendInputCodeType, CurrentUserProfileEditDtoGender, DefaultTimezoneScope, FriendDtoState, IsTenantAvailableOutputState, UserNotificationState } from '@shared/service-proxies/service-proxies';
 
 export class AppChatMessageReadState {
     static Unread: number = ChatMessageDtoReadState._1;
@@ -49,15 +49,6 @@ export class VerificationCodeType {
     static PhoneVerify: number = CodeSendInputCodeType._70;
 }
 
-export class BookingOrderStatus {
-    static WaitConfirm: number = Status._1;
-    static ConfirmSuccess: number = Status._2;
-    static ConfirmFail: number = Status._3;
-    static Cancel: number = Status._4;
-    static WaitComment: number = Status._5;
-    static Complete: number = Status._6;
-}
-
 export class AppGender {
     static None: number = CurrentUserProfileEditDtoGender._0;
     static Male: number = CurrentUserProfileEditDtoGender._1;
@@ -65,13 +56,13 @@ export class AppGender {
 }
 
 
-export class BookingAccessSourceType {
+export class AccessSourceType {
 
-    static WeChat: number = BookingAccessRecordInputSource._10;
-    static WeiBo: number = BookingAccessRecordInputSource._20;
-    static QQ: number = BookingAccessRecordInputSource._30;
-    static QrCode: number = BookingAccessRecordInputSource._40;
-    static Other: number = BookingAccessRecordInputSource._50;
+    static WeChat: number = AccessRecordInputSource._10;
+    static WeiBo: number = AccessRecordInputSource._20;
+    static QQ: number = AccessRecordInputSource._30;
+    static QrCode: number = AccessRecordInputSource._40;
+    static Other: number = AccessRecordInputSource._50;
 
     static getType(source: string): number {
         switch (source) {
@@ -91,10 +82,10 @@ export class BookingAccessSourceType {
 
 export class WeChatAccessSourceType {
 
-    static SingleMessage: number = BookingAccessRecordInputWeChatSource._10;
-    static GroupMessage: number = BookingAccessRecordInputWeChatSource._20;
-    static TimeLine: number = BookingAccessRecordInputWeChatSource._30;
-    static Other: number = BookingAccessRecordInputWeChatSource._40;
+    static SingleMessage: number = AccessRecordInputWeChatSource._10;
+    static GroupMessage: number = AccessRecordInputWeChatSource._20;
+    static TimeLine: number = AccessRecordInputWeChatSource._30;
+    static Other: number = AccessRecordInputWeChatSource._40;
 
     static getType(source: string): number {
         switch (source) {

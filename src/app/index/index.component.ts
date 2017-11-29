@@ -1,8 +1,9 @@
-import { AppComponentBase } from "shared/common/app-component-base";
-import { Injector, Component, OnInit } from "@angular/core";
-import { WechatScanQRCodeService } from "shared/services/wechat-scanQRCode.service";
-import { DomSanitizer } from "@angular/platform-browser";
-import { LocalStorageService } from "shared/utils/local-storage.service";
+import { Component, Injector, OnInit } from '@angular/core';
+
+import { AppComponentBase } from 'shared/common/app-component-base';
+import { DomSanitizer } from '@angular/platform-browser';
+import { LocalStorageService } from 'shared/utils/local-storage.service';
+import { WeChatScanQRCodeService } from 'shared/services/wechat-scan-qrcode.service';
 
 @Component({
     selector: 'xiaoyuyue-index',
@@ -15,7 +16,7 @@ export class IndexComponent extends AppComponentBase implements OnInit {
         injector: Injector,
         private sanitizer: DomSanitizer,
         private _localStorageService: LocalStorageService,
-        private _wechatScanQRCodeService: WechatScanQRCodeService
+        private _wechatScanQRCodeService: WeChatScanQRCodeService
         ) {
         super(injector);
     }

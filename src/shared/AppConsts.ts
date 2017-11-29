@@ -1,5 +1,4 @@
-﻿import { Booking } from './service-proxies/service-proxies';
-import { state } from '@angular/core';
+﻿import { state } from '@angular/core';
 
 export class AppConsts {
 
@@ -10,9 +9,7 @@ export class AppConsts {
     static appBaseUrl: string;
     static appLanguage: string;
     static appBusinessBaseUrl: string;
-    static bookingPictureFormat: string;
     static appBaseUrlFormat: string;
-    static BookingPicture: string;
     static WxJssdkUrl: string = window.location.href;
     static readonly externalLoginUrl = '/auth/login';
 
@@ -36,7 +33,7 @@ export class AppConsts {
     }
 
     static readonly accessRecord = {
-        bookings: 'access_bookings'
+        scanResult: 'scanResult',
     };
 }
 
@@ -44,6 +41,6 @@ export class DefaultProfilePath {
     static defaultProfilePictureUrl = '/assets/common/images/default-profile-picture.png';
 }
 
-export class  ColourCode {
+export class ColourCode {
     static readonly colors = ["#338EFF", "#02BF25", "#F79839"];
 }

@@ -5,8 +5,8 @@ import { LoginService } from 'shared/services/login.service';
 import { NgModule } from '@angular/core';
 import { TenantService } from 'shared/services/tenant.service';
 import { TitleService } from 'shared/services/title.service';
+import { WeChatScanQRCodeService } from 'shared/services/wechat-scan-qrcode.service';
 import { WeChatShareTimelineService } from 'shared/services/wechat-share-timeline.service';
-import { WechatScanQRCodeService } from 'shared/services/wechat-scanQRCode.service';
 
 @NgModule({
     providers: [
@@ -17,7 +17,7 @@ import { WechatScanQRCodeService } from 'shared/services/wechat-scanQRCode.servi
         BreadcrumbService,
         TitleService,
         WeChatShareTimelineService,
-        WechatScanQRCodeService
+        WeChatScanQRCodeService
     ]
 })
 export class ServicesModule { }

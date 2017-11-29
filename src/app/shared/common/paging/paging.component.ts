@@ -1,8 +1,9 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
+
 import { AppComponentBase } from 'shared/common/app-component-base';
-import { WechatScanQRCodeService } from 'shared/services/wechat-scanQRCode.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LocalStorageService } from 'shared/utils/local-storage.service';
+import { WeChatScanQRCodeService } from 'shared/services/wechat-scan-qrcode.service';
 
 @Component({
     selector: 'yaojiangjie-paging',
@@ -15,7 +16,7 @@ export class PagingComponent extends AppComponentBase implements OnInit {
     constructor(
         private injector: Injector,
         private sanitizer: DomSanitizer,
-        private _wechatScanQRCodeService: WechatScanQRCodeService
+        private _wechatScanQRCodeService: WeChatScanQRCodeService
     ) {
         super(injector);
     }
