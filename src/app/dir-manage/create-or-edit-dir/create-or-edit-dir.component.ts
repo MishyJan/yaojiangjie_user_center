@@ -1,7 +1,8 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Injector, OnInit } from '@angular/core';
+
 import { AppComponentBase } from 'shared/common/app-component-base';
-import { Router, ActivatedRoute } from '@angular/router';
-import { LocalStorageService } from 'shared/utils/local-storage.service';
+import { LocalStorageService } from 'shared/services/local-storage.service';
 
 @Component({
     selector: 'yaojiangjie-create-or-edit-dir',
