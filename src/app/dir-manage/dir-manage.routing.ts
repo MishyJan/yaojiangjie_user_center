@@ -4,19 +4,19 @@ import { CreateOrEditSubdirComponent } from 'app/dir-manage/create-or-edit-subdi
 
 const routes: Routes = [
     {
-        path: 'create-dir',
+        path: 'create',
         component: CreateOrEditDirComponent
     },
     {
-        path: 'edit-dir/:id',
-        component: CreateOrEditDirComponent
-    },
-    {
-        path: 'create-subdir',
+        path: 'create/subdir',
         component: CreateOrEditSubdirComponent
     },
     {
-        path: 'edit-subdir/:id',
+        path: 'edit/:dirId',
+        component: CreateOrEditDirComponent
+    },
+    {
+        path: 'edit/subdir/:dirId/:subDirId',
         component: CreateOrEditSubdirComponent
     },
 ];

@@ -54,7 +54,6 @@ export class WechatScanQRCodeService extends AppComponentBase {
                     // 当needResult 为 1 时，扫码返回的结果
                     localStorage.setItem('wxScanQRCodeUrl', res.resultStr);
                     this._router.navigate(['/scan-qrcode']);
-                    // window.location.href = AppConsts.appBaseUrl + "/scan-qrcode";
                 }
             });
         } else {

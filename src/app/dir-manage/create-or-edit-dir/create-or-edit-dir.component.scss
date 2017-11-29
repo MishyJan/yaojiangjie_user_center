@@ -1,0 +1,39 @@
+.dir-wrap {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+    .wrap {
+        .dir-content {
+            .item+.item {
+                margin-top: 10px;
+            }
+            .item {
+                display: flex;
+                padding: 6px;
+                color: #808080;
+                background-color: #FFF;
+                border-radius: 4px;
+                overflow: hidden;
+                .img-wrap {
+                    width: 60px;
+                    height: 60px;
+                    flex: 0 0 60px;
+                    margin-right: 20px;
+                    .thumbnail {
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+                .desc-wrap {
+                    flex: 1;
+                    .title {
+                        line-height: 60px;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

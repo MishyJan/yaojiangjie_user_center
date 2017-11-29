@@ -1,3 +1,14 @@
-<p>
-  create-or-edit-dir works!
-</p>
+<div class="dir-wrap">
+    <div class="wrap">
+        <div class="dir-content">
+            <div class="item box-shadow" *ngFor="let item of wxScanQRCodeInfoList">
+                <div class="img-wrap">
+                    <img [src]="item.imgUrlList[0]" class="thumbnail" alt="thumbnail">
+                </div>
+                <div class="desc-wrap">
+                    <p class="title">{{ item.title }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
