@@ -6,10 +6,11 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class LocalStorageService {
 
-    getItem(key: string) {
-        return localForage.getItem(key).then(result => {
-            return result;
-        });
+    getItem(key: string, callback: any): void {
+        if (!localForage) {
+            return;
+        }
+        localForage.getItem(key, callback);
     }
 
     // 封装获取localForage，getItem()

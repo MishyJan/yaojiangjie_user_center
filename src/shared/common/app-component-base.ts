@@ -96,4 +96,12 @@ export abstract class AppComponentBase {
             return false;
         }
     }
+
+    // 记录微信jssdk扫码的URL
+
+    // 是否有效的URL
+    isValidURL(url: string): boolean {
+        var reg = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
+        return reg.test(url);
+    }
 }

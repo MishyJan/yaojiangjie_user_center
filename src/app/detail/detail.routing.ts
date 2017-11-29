@@ -3,7 +3,7 @@ import { DetailComponent } from 'app/detail/detail.component';
 
 const routes: Routes = [
   { 
-      path: 'detail/:part/:page',
+      path: ':part/:page',
       component: DetailComponent
    },
 ];

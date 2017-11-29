@@ -4,6 +4,7 @@ import { BreadcrumbService } from 'shared/services/bread-crumb.service';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IndexComponent } from 'app/index/index.component';
+import { WxScanQRCodePageComponent } from 'app/wxScanQRCodePage/wxScanQRCodePage.component';
 
 @NgModule({
     imports: [
@@ -19,9 +20,15 @@ import { IndexComponent } from 'app/index/index.component';
                     },
                     {
                         path: 'index',
-                        // canActivate: [AppRouteGuard],
-                        // canActivateChild: [AppRouteGuard],
+                        canActivate: [AppRouteGuard],
+                        canActivateChild: [AppRouteGuard],
                         component: IndexComponent
+                    },
+                    {
+                        path: 'scan-qrcode',
+                        canActivate: [AppRouteGuard],
+                        canActivateChild: [AppRouteGuard],
+                        component: WxScanQRCodePageComponent
                     },
                     {
                         path: 'auth',
@@ -34,8 +41,13 @@ import { IndexComponent } from 'app/index/index.component';
                         data: { preload: true }
                     },
                     {
-                        path: '',
+                        path: 'detail',
                         loadChildren: 'app/detail/detail.module#DetailModule', // Lazy load user module
+                        data: { preload: true }
+                    },
+                    {
+                        path: 'dir-manage',
+                        loadChildren: 'app/dir-manage/dir-manage.module#DirManageModule', // Lazy load user module
                         data: { preload: true }
                     }
                 ]

@@ -9,13 +9,17 @@
     background-color: $color-black-l;
     transform: translateY(-50%);
     border-radius: 4px;
+    margin: 0;
     .icon {
         width: 42px;
         height: 42px;
         line-height: 42px;
         text-align: center;
-        font-size: 12px;
+        font-size: 18px;
         cursor: pointer;
         color: #FFF;
+        &:nth-child(2) {
+            font-size: 16px;
+        }
     }
 }
