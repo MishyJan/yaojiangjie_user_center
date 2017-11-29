@@ -1,3 +1,21 @@
-<p>
-  create-or-edit-dir works!
-</p>
+<div class="dir-wrap">
+    <div class="wrap">
+        <div class="dir-content">
+            <div class="item box-shadow" [ngClass]="{'open': touchedListType[index]}" (touchstart)="onTouchInit($event)" (touchmove)="onTouchMove($event, index)" *ngFor="let item of wxScanQRCodeInfoList; let index = index;">
+                <div class="touch-item">
+                    <div class="img-wrap">
+                        <img [src]="item.imgUrlList[0]" class="thumbnail" alt="thumbnail">
+                    </div>
+                    <div class="desc-wrap">
+                        <p class="title">{{ item.title }}</p>
+                    </div>
+                </div>
+                <div class="handle-wrap">
+                    <span>删除</span>
+                    <span>编辑</span>
+                    <span>收藏</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
