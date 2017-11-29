@@ -62,7 +62,7 @@ export class WeChatScanQRCodeService extends AppComponentBase {
         //     this.message.warn("请在微信内打开!");
         // }
 
-        localStorage.setItem('wxScanQRCodeUrl', "http://www.vdaolan.com/hy/exhibit_list.php");
+        this._localStorageService.setItem('wxScanQRCodeUrl', "http://www.vdaolan.com/hy/exhibit_list.php");
         this._router.navigate(['/external-exhibit']);
     }
 }

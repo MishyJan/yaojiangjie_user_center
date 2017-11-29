@@ -40,15 +40,16 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
     }
 
     getWxScanQRCodeUrl(): void {
-        let tempUrl = localStorage.getItem('wxScanQRCodeUrl');
-        if (!tempUrl) {
-            this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('');
-            this.message.confirm('未检测到二维码,请重新扫码!', () => {
-                this._location.back();
-            });
-            return;
-        }
-        this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tempUrl);
+        this._localStorageService.getItemOrNull<string>('wxScanQRCodeUrl').then(tempUrl => {
+            if (!tempUrl) {
+                this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('');
+                this.message.confirm('未检测到二维码,请重新扫码!', () => {
+                    this._location.back();
+                });
+                return;
+            }
+            this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(tempUrl);
+        });
     }
 
     /* 模拟扫码后将数据写入localstorage中，key为："wxScanQRCodeInfoList" */
