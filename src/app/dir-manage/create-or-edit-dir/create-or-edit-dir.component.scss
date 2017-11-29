@@ -10,28 +10,62 @@
                 margin-top: 10px;
             }
             .item {
-                display: flex;
+                position: relative;
                 padding: 6px;
                 color: #808080;
                 background-color: #FFF;
                 border-radius: 4px;
                 overflow: hidden;
-                .img-wrap {
-                    width: 60px;
-                    height: 60px;
-                    flex: 0 0 60px;
-                    margin-right: 20px;
-                    .thumbnail {
-                        width: 60px;
-                        height: 60px;
+                &.open {
+                    .touch-item {
+                        left: -120px;
+                    }
+                    .handle-wrap {
+                        right: 0;
                     }
                 }
-                .desc-wrap {
-                    flex: 1;
-                    .title {
-                        line-height: 60px;
-                        font-size: 15px;
+                // &.close {
+                //     .touch-item {
+                //         left: 0;
+                //     }
+                //     .handle-wrap {
+                //         right: -120px;
+                //     }
+                // }
+                .touch-item {
+                    width: 100%;
+                    display: flex;
+                    position: relative;
+                    left: 0px;
+                    transition: all .3s;
+                    .img-wrap {
+                        width: 60px;
+                        height: 60px;
+                        flex: 0 0 60px;
+                        margin-right: 20px;
+                        .thumbnail {
+                            width: 60px;
+                            height: 60px;
+                        }
                     }
+                    .desc-wrap {
+                        flex: 1;
+                        .title {
+                            line-height: 60px;
+                            font-size: 15px;
+                        }
+                    }
+                }
+                .handle-wrap {
+                    width: 120px;
+                    height: 72px;
+                    line-height: 72px;
+                    position: absolute;
+                    top: 0;
+                    right: -120px;
+                    color: #FFF;
+                    background-color: #3290ff;
+                    transition: all .3s;
                 }
             }
         }

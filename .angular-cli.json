@@ -24,12 +24,9 @@
         "styles": [
             "../node_modules/bootstrap/dist/css/bootstrap.css",
             "assets/md-pro/css/material-dashboard.css",
-            "assets/common/styles/xiaoyuyue-icon.css",
-            "assets/common/styles/yaojiangjie-icon.css",
             "../node_modules/toastr/build/toastr.css",
             "assets/common/styles/flatpickr.css",
             "assets/swiper/css/swiper.css",
-            "sass/xiaoyuyue.scss",
             "sass/yaojiangjie.scss",
             "styles.css"
         ],

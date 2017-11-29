@@ -9,6 +9,10 @@ import { LocalStorageService } from 'shared/utils/local-storage.service';
     styleUrls: ['./create-or-edit-dir.component.scss']
 })
 export class CreateOrEditDirComponent extends AppComponentBase implements OnInit {
+    touchedListType: boolean[] = [];
+    touchedEndX: number;
+    // touch起始位置
+    touchedStartX: number;
     /* 微信扫码保存的数据 */
     wxScanQRCodeInfoList: any;
     /* 获取目录ID */
@@ -25,6 +29,9 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
 
     ngOnInit() {
         this.loadData();
+        document.addEventListener('touchstart', () => {
+            this.onTouchResetState();
+        })
     }
 
     /* 获取数据 */
@@ -41,15 +48,40 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
                             }
                             this.wxScanQRCodeInfoList = result;
                         }) */
-                        let result = localStorage.getItem('wxScanQRCodeInfoList');
-                        
-                        if (!result) {
-                            this.message.warn("未检测到数据");
-                            return;
-                        }
-                        this.wxScanQRCodeInfoList = JSON.parse(result);
-                        console.log(this.wxScanQRCodeInfoList);
+            let result = localStorage.getItem('wxScanQRCodeInfoList');
+
+            if (!result) {
+                this.message.warn("未检测到数据");
+                return;
+            }
+            this.wxScanQRCodeInfoList = JSON.parse(result);
         }
+    }
+
+    onTouchInit(event: TouchEvent): void {
+        this.touchedStartX = event.changedTouches[0].pageX;
+        this.onTouchResetState();
+    }
+
+    onTouchMove(event: TouchEvent, index: number): void {
+        event.cancelBubble = true;
+        this.touchedEndX = event.changedTouches[0].pageX;
+        let diffX = this.touchedEndX - this.touchedStartX;
+        if (diffX > 0) {
+            console.log("右滑");
+            this.touchedListType[index] = false;
+        } else {
+            console.log("左滑");
+            this.touchedListType[index] = true;
+        }
+
+    }
+
+    // 还原touch后的状态
+    private onTouchResetState(): void {
+        this.touchedListType.forEach((ele, inx) => {
+            this.touchedListType[inx] = false;
+        });
     }
 
     /* 
