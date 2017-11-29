@@ -2,7 +2,7 @@ import { AfterViewInit, Component, Injector, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { AppComponentBase } from 'shared/common/app-component-base';
-import { LocalStorageService } from 'shared/utils/local-storage.service';
+import { LocalStorageService } from 'shared/services/local-storage.service';
 import { Location } from '@angular/common';
 import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
 

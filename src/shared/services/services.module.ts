@@ -1,6 +1,8 @@
 import { AccessRecordService } from 'shared/services/access-record.service';
 import { BreadcrumbService } from 'shared/services/bread-crumb.service';
 import { CookiesService } from 'shared/services/cookies.service';
+import { FileDownloadService } from './file-download.service';
+import { LocalStorageService } from 'shared/services/local-storage.service';
 import { LoginService } from 'shared/services/login.service';
 import { NgModule } from '@angular/core';
 import { TenantService } from 'shared/services/tenant.service';
@@ -17,7 +19,9 @@ import { WeChatShareTimelineService } from 'shared/services/wechat-share-timelin
         BreadcrumbService,
         TitleService,
         WeChatShareTimelineService,
-        WeChatScanQRCodeService
+        WeChatScanQRCodeService,
+        LocalStorageService,
+        FileDownloadService
     ]
 })
 export class ServicesModule { }

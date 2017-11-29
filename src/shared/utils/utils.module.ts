@@ -3,8 +3,6 @@ import { BusyIfDirective } from './busy-if.directive';
 import { ButtonBusyDirective } from './button-busy.directive'
 import { CurrencyInputDirective } from './currency-input.directive';
 import { EqualValidator } from './validation/equal-validator.directive';
-import { FileDownloadService } from './file-download.service';
-import { LocalStorageService } from './local-storage.service';
 import { MinValueValidator } from './validation/min-value-validator.directive';
 import { MomentFormatPipe } from './moment-format.pipe';
 import { NgModule } from '@angular/core';
@@ -12,8 +10,6 @@ import { PasswordComplexityValidator } from './validation/password-complexity-va
 
 @NgModule({
     providers: [
-        FileDownloadService,
-        LocalStorageService
     ],
     declarations: [
         EqualValidator,

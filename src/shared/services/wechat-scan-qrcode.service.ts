@@ -4,7 +4,7 @@ import { GetJsApiSignatureOutput, WeChatJSServiceProxy } from 'shared/service-pr
 import { AppComponentBase } from 'shared/common/app-component-base';
 import { AppConsts } from 'shared/AppConsts';
 import { JsApiSignatureInput } from 'app/shared/utils/wechat.dto';
-import { LocalStorageService } from 'shared/utils/local-storage.service';
+import { LocalStorageService } from 'shared/services/local-storage.service';
 import { RandomHelper } from 'shared/helpers/RandomHelper';
 import { Router } from '@angular/router';
 

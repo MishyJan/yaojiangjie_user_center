@@ -2,7 +2,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 
 import { AppComponentBase } from 'shared/common/app-component-base';
 import { DomSanitizer } from '@angular/platform-browser';
-import { LocalStorageService } from 'shared/utils/local-storage.service';
+import { LocalStorageService } from 'shared/services/local-storage.service';
 import { WeChatScanQRCodeService } from 'shared/services/wechat-scan-qrcode.service';
 
 @Component({

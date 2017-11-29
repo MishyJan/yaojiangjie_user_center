@@ -22,7 +22,6 @@ export class AccessRecordService {
     constructor(
         private _cookiesService: CookiesService,
         private _recordService: AccessRecordServiceProxy,
-        private _appAuthService: AppAuthService
     ) { }
 
     init(source: string, weChatSource: string, href: string) {

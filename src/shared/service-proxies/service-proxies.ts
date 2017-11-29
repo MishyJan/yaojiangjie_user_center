@@ -14,11 +14,12 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 
-import { Observable } from 'rxjs/Observable';
-import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
-import { Http, Headers, ResponseContentType, Response } from '@angular/http';
-
 import * as moment from 'moment';
+
+import { Headers, Http, Response, ResponseContentType } from '@angular/http';
+import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
+
+import { Observable } from 'rxjs/Observable';
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
