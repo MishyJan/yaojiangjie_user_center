@@ -3,11 +3,13 @@ import { Component, Injector, OnInit } from '@angular/core';
 
 import { AppComponentBase } from 'shared/common/app-component-base';
 import { LocalStorageService } from 'shared/services/local-storage.service';
+import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
 
 @Component({
     selector: 'yaojiangjie-create-or-edit-dir',
     templateUrl: './create-or-edit-dir.component.html',
-    styleUrls: ['./create-or-edit-dir.component.scss']
+    styleUrls: ['./create-or-edit-dir.component.scss'],
+    animations: [appModuleSlowAnimation()]
 })
 export class CreateOrEditDirComponent extends AppComponentBase implements OnInit {
     touchedListType: boolean[] = [];
@@ -23,14 +25,14 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
         private injector: Injector,
         private _router: Router,
         private _route: ActivatedRoute,
-        private _lcalStorageService: LocalStorageService
+        private _localStorageService: LocalStorageService
     ) {
         super(injector);
     }
 
     ngOnInit() {
         this.loadData();
-        document.addEventListener('touchstart', () => {
+        document.addEventListener('click', (event: Event) => {
             this.onTouchResetState();
         })
     }
@@ -40,7 +42,7 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
         if (this.checkIsCreateOrEditState()) {
             // 创建状态则获取localstorage的数据（扫码后将分析的数据保存localstorage中）
             // localstorageKey为"wxScanQRCodeInfoList"
-            this._lcalStorageService.getItemOrNull('wxScanQRCodeInfoList').then( result => {
+            this._localStorageService.getItemOrNull('wxScanQRCodeInfoList').then(result => {
                 if (!result) {
                     this.message.warn("未检测到数据");
                     return;
@@ -56,6 +58,7 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
     }
 
     onTouchMove(event: TouchEvent, index: number): void {
+        event.stopPropagation();
         event.cancelBubble = true;
         this.touchedEndX = event.changedTouches[0].pageX;
         let diffX = this.touchedEndX - this.touchedStartX;
@@ -67,6 +70,21 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
             this.touchedListType[index] = true;
         }
 
+    }
+
+    // 编辑目录条目详情
+    editDirItem(itemId: number, event: Event): void {
+        event.cancelBubble = true;
+        event.stopPropagation();
+        console.log('yes');
+        
+        if (this.checkIsCreateOrEditState()) {
+            let url = `/dir-manage/create/dir-item/${itemId}`;
+            this._router.navigate([url]);
+        } else {
+            let url = `/dir-manage/edit/dir-item/${this.dirId}/${itemId}`;
+            this._router.navigate([url]);
+        }
     }
 
     // 还原touch后的状态

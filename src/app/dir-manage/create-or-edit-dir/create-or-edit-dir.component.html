@@ -1,26 +1,29 @@
-<div class="dir-wrap">
-    <div class="wrap">
-        <div class="dir-content">
-            <div class="item box-shadow" [ngClass]="{'open': touchedListType[index]}" (touchstart)="onTouchInit($event)" (touchmove)="onTouchMove($event, index)" *ngFor="let item of wxScanQRCodeInfoList; let index = index;">
-                <div class="touch-item">
-                    <div class="img-wrap">
-                        <img [src]="item.imgUrlList[0]" class="thumbnail" alt="thumbnail">
+<div [@routerTransition] style="height: 100%;">
+    <div class="dir-wrap">
+        <div class="wrap">
+            <div class="dir-content">
+                <div class="item box-shadow" [@routerTransition] [ngClass]="{'open': touchedListType[index]}" *ngFor="let item of wxScanQRCodeInfoList; let index = index;">
+                    <div class="touch-item" (touchstart)="onTouchInit($event)" (touchmove)="onTouchMove($event, index)">
+                        <div class="img-wrap">
+                            <img [src]="item.imgUrlList[0]" class="thumbnail-img" alt="thumbnail">
+                        </div>
+                        <div class="desc-wrap">
+                            <p class="title">{{ item.title }}</p>
+                        </div>
                     </div>
-                    <div class="desc-wrap">
-                        <p class="title">{{ item.title }}</p>
+                    <div class="handle-wrap">
+                        <span class="yaojiangjie-icon yaojiangjie-icon-app-delete"></span>
+                        <span *ngIf="checkIsCreateOrEditState()" (click)="editDirItem(index, $event)" class="yaojiangjie-icon yaojiangjie-icon-app-edit"></span>
+                        <span *ngIf="!checkIsCreateOrEditState()" (click)="editDirItem(item.id, $event)" class="yaojiangjie-icon yaojiangjie-icon-app-edit"></span>
+                        <span class="yaojiangjie-icon yaojiangjie-icon-app-not-collection"></span>
                     </div>
-                </div>
-                <div class="handle-wrap">
-                    <span class="yaojiangjie-icon yaojiangjie-icon-app-delete"></span>
-                    <span class="yaojiangjie-icon yaojiangjie-icon-app-edit"></span>
-                    <span class="yaojiangjie-icon yaojiangjie-icon-app-not-collection"></span>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="dir-footer">
-        <div class="handle-item clear-all">清空</div>
-        <div class="handle-item save-all">保存</div>
+        <div class="dir-footer">
+            <div class="handle-item clear-all"><button class="btn btn-block">清空</button></div>
+            <div class="handle-item save-all"><button class="btn btn-block">保存</button></div>
+        </div>
     </div>
 </div>

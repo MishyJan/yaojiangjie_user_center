@@ -56,11 +56,37 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
     temporaryMockData(): void {
         let temporary1 = new TemporaryData();
         temporary1.title = "何绍基书法与湖湘传脉";
-        temporary1.imgUrlList = ["http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-10.jpg", "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-01.jpg", "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-03.jpg"];
+        temporary1.imgUrlList = [
+            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-10.jpg",
+            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-01.jpg",
+            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-03.jpg",
+            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-10.jpg",
+            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-01.jpg",
+            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-03.jpg",
+            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-10.jpg",
+            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-01.jpg",
+            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-03.jpg",
+            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-10.jpg",
+            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-01.jpg",
+            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-03.jpg"
+        ];
 
         let temporary2 = new TemporaryData();
         temporary2.title = "笔砚写成七尺躯";
-        temporary2.imgUrlList = ["http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-1.jpg", "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-3.jpg"];
+        temporary2.imgUrlList = [
+            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-1.jpg",
+            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-3.jpg",
+            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-1.jpg",
+            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-3.jpg",
+            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-1.jpg",
+            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-3.jpg",
+            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-1.jpg",
+            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-3.jpg",
+            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-1.jpg",
+            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-3.jpg",
+            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-1.jpg",
+            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-3.jpg"
+        ];
 
         this.temporaryList[0] = temporary1;
         this.temporaryList[1] = temporary2;

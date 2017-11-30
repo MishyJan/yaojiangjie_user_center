@@ -13,7 +13,6 @@
             }
             .item {
                 position: relative;
-                padding: 6px;
                 color: #808080;
                 background-color: #FFF;
                 border-radius: 4px;
@@ -26,14 +25,6 @@
                         right: 0;
                     }
                 }
-                // &.close {
-                //     .touch-item {
-                //         left: 0;
-                //     }
-                //     .handle-wrap {
-                //         right: -120px;
-                //     }
-                // }
                 .touch-item {
                     width: 100%;
                     display: flex;
@@ -41,27 +32,27 @@
                     left: 0px;
                     transition: all .3s;
                     .img-wrap {
-                        width: 60px;
-                        height: 60px;
+                        width: 80px;
+                        height: 80px;
                         flex: 0 0 60px;
                         margin-right: 20px;
-                        .thumbnail {
-                            width: 60px;
-                            height: 60px;
+                        .thumbnail-img {
+                            width: 80px;
+                            height: 80px;
                         }
                     }
                     .desc-wrap {
                         flex: 1;
                         .title {
-                            line-height: 60px;
+                            line-height: 80px;
                             font-size: 15px;
                         }
                     }
                 }
                 .handle-wrap {
                     width: 120px;
-                    height: 72px;
-                    line-height: 72px;
+                    height: 80px;
+                    line-height: 80px;
                     display: flex;
                     position: absolute;
                     top: 0;
@@ -91,14 +82,21 @@
             flex: 1;
             text-align: center;
             font-size: 15px;
+            .btn {
+                border-radius: 0;
+            }
         }
         .clear-all {
-            color: #4D4D4D;
-            background-color: #FFF;
+            .btn {
+                color: #4D4D4D;
+                background-color: #FFF;
+            }
         }
         .save-all {
-            color: #FFF;
-            background-color: $color-theme;
+            .btn {
+                color: #FFF;
+                background-color: $color-theme;
+            }
         }
     }
 }
