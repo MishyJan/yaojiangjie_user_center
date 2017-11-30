@@ -9,7 +9,7 @@ export class LocalStorageService {
 
     // 封装获取localForage，getItem()
     // 接受一个值，获取localForage的目标key
-    getItem<T>(key: string, callback: any) {
+    getItem<T>(key: string, callback: any): Promise<T> {
         return localForage.getItem<T>(key).then(result => {
             if (result) {
                 return _.cloneDeep<T>(result);
@@ -23,7 +23,7 @@ export class LocalStorageService {
         });
     }
 
-    getItemOrNull<T>(key: string) {
+    getItemOrNull<T>(key: string): Promise<T> {
         return localForage.getItem<T>(key).then(result => {
             if (result) {
                 return _.cloneDeep<T>(result);
