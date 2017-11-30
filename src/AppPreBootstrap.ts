@@ -15,6 +15,7 @@ export class AppPreBootstrap {
     static cookiesService = new CookiesService();
 
     static run(callback: () => void): void {
+        AppConsts.WxJssdkUrl = location.href;
         $.material.init();
         AppPreBootstrap.getApplicationConfig(() => {
             const queryStringObj = UrlHelper.getQueryParameters();

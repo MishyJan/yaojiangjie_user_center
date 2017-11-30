@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class WeChatScanQRCodeService extends AppComponentBase {
+    scanResult: string;
     jsApiSignatureInput: JsApiSignatureInput = new JsApiSignatureInput();
     constructor(
         private injector: Injector,
@@ -62,7 +63,8 @@ export class WeChatScanQRCodeService extends AppComponentBase {
         //     this.message.warn("请在微信内打开!");
         // }
 
-        this._localStorageService.setItem('wxScanQRCodeUrl', "http://www.vdaolan.com/hy/exhibit_list.php");
+        this.scanResult = "http://www.vdaolan.com/hy/exhibit_list.php"
+        // this._localStorageService.setItem('wxScanQRCodeUrl', );
         this._router.navigate(['/external-exhibit']);
     }
 }
