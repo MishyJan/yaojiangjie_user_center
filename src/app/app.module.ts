@@ -15,12 +15,14 @@ import { NgModule } from '@angular/core';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
 import { ServicesModule } from 'shared/services/services.module';
 import { UtilsModule } from '@shared/utils/utils.module';
+import { LookedExhibitComponent } from './looked-exhibit/looked-exhibit.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         IndexComponent,
-        ExternalExhibitComponent
+        ExternalExhibitComponent,
+        LookedExhibitComponent
     ],
     imports: [
         ngCommon.CommonModule,

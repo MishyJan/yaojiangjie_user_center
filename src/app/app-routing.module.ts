@@ -5,6 +5,7 @@ import { ExternalExhibitComponent } from 'app/external-exhibit/external-exhibit.
 import { IndexComponent } from 'app/index/index.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { LookedExhibitComponent } from 'app/looked-exhibit/looked-exhibit.component';
 
 @NgModule({
     imports: [
@@ -29,6 +30,12 @@ import { RouterModule } from '@angular/router';
                         canActivate: [AppRouteGuard],
                         canActivateChild: [AppRouteGuard],
                         component: ExternalExhibitComponent
+                    },
+                    {
+                        path: 'looked-exhibit',
+                        canActivate: [AppRouteGuard],
+                        canActivateChild: [AppRouteGuard],
+                        component: LookedExhibitComponent
                     },
                     {
                         path: 'auth',
