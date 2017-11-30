@@ -1,3 +1,5 @@
+@import "../../../sass/yaojiangjie/mixin";
+@import "../../../sass/yaojiangjie/colors";
 .dir-wrap {
     height: 100%;
     width: 100%;
@@ -60,14 +62,43 @@
                     width: 120px;
                     height: 72px;
                     line-height: 72px;
+                    display: flex;
                     position: absolute;
                     top: 0;
                     right: -120px;
-                    color: #FFF;
-                    background-color: #3290ff;
                     transition: all .3s;
+                    color: #338FFF;
+                    .yaojiangjie-icon {
+                        flex: 1;
+                        @include flexMiddle(1);
+                        font-size: 20px;
+                        text-align: center;
+                    }
                 }
             }
+        }
+    }
+    .dir-footer {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0px;
+        .handle-item {
+            height: 50px;
+            line-height: 50px;
+            flex: 1;
+            text-align: center;
+            font-size: 15px;
+        }
+        .clear-all {
+            color: #4D4D4D;
+            background-color: #FFF;
+        }
+        .save-all {
+            color: #FFF;
+            background-color: $color-theme;
         }
     }
 }

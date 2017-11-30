@@ -65,6 +65,6 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
         this.temporaryList[0] = temporary1;
         this.temporaryList[1] = temporary2;
 
-        localStorage.setItem("wxScanQRCodeInfoList", JSON.stringify(this.temporaryList));
+        this._localStorageService.setItem("wxScanQRCodeInfoList", this.temporaryList);
     }
 }

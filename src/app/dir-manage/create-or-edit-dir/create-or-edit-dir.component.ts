@@ -40,22 +40,13 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
         if (this.checkIsCreateOrEditState()) {
             // 创建状态则获取localstorage的数据（扫码后将分析的数据保存localstorage中）
             // localstorageKey为"wxScanQRCodeInfoList"
-            /*             this._lcalStorageService.getItem('wxScanQRCodeInfoList', (err, result) => {
-                            console.log(err);
-                            console.log(result);
-                            if (!err) {
-                                this.message.warn("未检测到数据");
-                                return;
-                            }
-                            this.wxScanQRCodeInfoList = result;
-                        }) */
-            let result = localStorage.getItem('wxScanQRCodeInfoList');
-
-            if (!result) {
-                this.message.warn("未检测到数据");
-                return;
-            }
-            this.wxScanQRCodeInfoList = JSON.parse(result);
+            this._lcalStorageService.getItemOrNull('wxScanQRCodeInfoList').then( result => {
+                if (!result) {
+                    this.message.warn("未检测到数据");
+                    return;
+                }
+                this.wxScanQRCodeInfoList = result;
+            })
         }
     }
 
