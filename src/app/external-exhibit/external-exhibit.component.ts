@@ -9,11 +9,6 @@ import { WeChatScanQRCodeService } from 'shared/services/wechat-scan-qrcode.serv
 import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
 import { ScanServiceProxy, CreateOrUpdateRecordInput } from 'shared/service-proxies/service-proxies';
 
-export class TemporaryData {
-    title: string;
-    imgUrlList: string[];
-}
-
 @Component({
     selector: 'yaojiangjie-externalExhibit',
     templateUrl: './external-exhibit.component.html',
@@ -21,7 +16,6 @@ export class TemporaryData {
     animations: [appModuleSlowAnimation()]
 })
 export class ExternalExhibitComponent extends AppComponentBase implements OnInit, AfterViewInit {
-    temporaryList: TemporaryData[] = [];
     trustScanQRCodeUrl: SafeResourceUrl;
     scanRecordInput: CreateOrUpdateRecordInput = new CreateOrUpdateRecordInput();
 
@@ -39,20 +33,13 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
     }
 
     ngOnInit() {
-        // 临时测试
-        this.temporaryMockData();
-        this.getWxScanQRCodeUrl();
-    }
-
-    ngAfterViewInit() {
         this.getWxScanQRCodeUrl();
     }
 
     getWxScanQRCodeUrl(): void {
         if (this._weChatScanQRCodeService.scanResult) {
-            this.scanRecordInput.url = this._weChatScanQRCodeService.scanResult;
-            this.scanRecordInput.catalogId = null;
-            this._scanServiceProxy.createOrUpdateRecord(this.scanRecordInput);
+            // this.createRecord(this._weChatScanQRCodeService.scanResult);
+            this.createRecord("http://www.vdaolan.com/hy/exhibit_list.php");
 
             this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this._weChatScanQRCodeService.scanResult);
         } else {
@@ -61,45 +48,11 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
         }
     }
 
-    /* 模拟扫码后将数据写入localstorage中，key为："wxScanQRCodeInfoList" */
-    temporaryMockData(): void {
-        let temporary1 = new TemporaryData();
-        temporary1.title = "何绍基书法与湖湘传脉";
-        temporary1.imgUrlList = [
-            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-10.jpg",
-            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-01.jpg",
-            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-03.jpg",
-            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-10.jpg",
-            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-01.jpg",
-            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-03.jpg",
-            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-10.jpg",
-            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-01.jpg",
-            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-03.jpg",
-            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-10.jpg",
-            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-01.jpg",
-            "http://www.vdaolan.com/hy/2017/hsj/img/img_nw/33-03.jpg"
-        ];
-
-        let temporary2 = new TemporaryData();
-        temporary2.title = "笔砚写成七尺躯";
-        temporary2.imgUrlList = [
-            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-1.jpg",
-            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-3.jpg",
-            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-1.jpg",
-            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-3.jpg",
-            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-1.jpg",
-            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-3.jpg",
-            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-1.jpg",
-            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-3.jpg",
-            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-1.jpg",
-            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-3.jpg",
-            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-1.jpg",
-            "http://www.vdaolan.com/hy/2017/mqrwh/img/img_nw/60-3.jpg"
-        ];
-
-        this.temporaryList[0] = temporary1;
-        this.temporaryList[1] = temporary2;
-
-        this._localStorageService.setItem("mockWxScanQRCodeInfoList", this.temporaryList);
+    // 获取URL让服务器分析页面，创建分析记录
+    createRecord(url: string): void {
+        this.scanRecordInput.url = url;
+        this.scanRecordInput.catalogId = null;
+        this._scanServiceProxy.createOrUpdateRecord(this.scanRecordInput).subscribe();
+        this._localStorageService.removeItem("wxScaenQRCodeInfoList");
     }
 }

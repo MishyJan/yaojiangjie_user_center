@@ -15,10 +15,10 @@
             </div>
             <div class="footer">
                 <div class="form-group" *ngIf="wxScanQRCodeInfoDirItem">
-                    <input type="text" name="title" [(ngModel)]="wxScanQRCodeInfoDirItem.title" class="form-control">
+                    <input type="text" name="title" [(ngModel)]="wxScanQRCodeInfoDirItem.name" class="form-control">
                 </div>
 
-                <button class="btn btn-block">保存</button>
+                <button class="btn btn-block" (click)="saveData()">保存</button>
             </div>
         </div>
     </div>

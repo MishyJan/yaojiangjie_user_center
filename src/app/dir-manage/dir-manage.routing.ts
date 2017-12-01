@@ -8,7 +8,7 @@ const routes: Routes = [
         component: CreateOrEditDirComponent
     },
     {
-        path: 'create/dir-item/:dirItemIndex',
+        path: 'create/dir-item/:dirItemId',
         component: CreateOrEditSubdirComponent
     },
     {

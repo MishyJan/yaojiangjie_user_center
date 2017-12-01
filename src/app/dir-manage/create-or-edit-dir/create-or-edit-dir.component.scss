@@ -34,12 +34,10 @@
                     .img-wrap {
                         width: 80px;
                         height: 80px;
-                        flex: 0 0 60px;
+                        flex: 0 0 80px;
                         margin-right: 20px;
-                        .thumbnail-img {
-                            width: 80px;
-                            height: 80px;
-                        }
+                        background-size: cover;
+                        background-position: top left;
                     }
                     .desc-wrap {
                         flex: 1;

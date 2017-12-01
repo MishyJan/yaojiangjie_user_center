@@ -11,12 +11,10 @@ export class LocalStorageService {
     // 接受一个值，获取localForage的目标key
     getItem<T>(key: string, callback: any): Promise<T> {
         return localForage.getItem<T>(key).then(result => {
-            debugger
             if (result) {
                 return _.cloneDeep<T>(result);
             } else {
                 return callback().toPromise().then(dataResult => {
-                    debugger
                     result = dataResult;
                     localForage.setItem(key, dataResult);
                     return _.cloneDeep<T>(result);

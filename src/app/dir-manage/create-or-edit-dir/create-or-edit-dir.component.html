@@ -4,17 +4,15 @@
             <div class="dir-content">
                 <div class="item box-shadow" [@routerTransition] [ngClass]="{'open': touchedListType[index]}" *ngFor="let item of wxScanQRCodeInfoList; let index = index;">
                     <div class="touch-item" (touchstart)="onTouchInit($event)" (touchmove)="onTouchMove($event, index)">
-                        <div class="img-wrap">
-                            <img [src]="item.coverUrl" class="thumbnail-img" alt="thumbnail">
+                        <div class="img-wrap" [ngStyle]="{'background-image': 'url(' + item.coverUrl + ')'}">
                         </div>
                         <div class="desc-wrap">
                             <p class="title">{{ item.name }}</p>
                         </div>
                     </div>
                     <div class="handle-wrap">
-                        <span class="yaojiangjie-icon yaojiangjie-icon-app-delete"></span>
-                        <span *ngIf="checkIsCreateOrEditState()" (click)="editDirItem(index, $event)" class="yaojiangjie-icon yaojiangjie-icon-app-edit"></span>
-                        <span *ngIf="!checkIsCreateOrEditState()" (click)="editDirItem(item.id, $event)" class="yaojiangjie-icon yaojiangjie-icon-app-edit"></span>
+                        <span (click)="deleteDirItem(item.id)" class="yaojiangjie-icon yaojiangjie-icon-app-delete"></span>
+                        <span (click)="editDirItem(item.id)" class="yaojiangjie-icon yaojiangjie-icon-app-edit"></span>
                         <span class="yaojiangjie-icon yaojiangjie-icon-app-not-collection"></span>
                     </div>
                 </div>

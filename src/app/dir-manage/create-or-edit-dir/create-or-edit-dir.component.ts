@@ -4,7 +4,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { AppComponentBase } from 'shared/common/app-component-base';
 import { LocalStorageService } from 'shared/services/local-storage.service';
 import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
-import { ScanServiceProxy, PagedResultDtoOfScanRecordListDto, ScanRecordListDto } from 'shared/service-proxies/service-proxies';
+import { ScanServiceProxy, PagedResultDtoOfScanRecordListDto, ScanRecordListDto, BatchDeleteInput } from 'shared/service-proxies/service-proxies';
 import { AppConsts } from 'shared/AppConsts';
 
 @Component({
@@ -14,7 +14,9 @@ import { AppConsts } from 'shared/AppConsts';
     animations: [appModuleSlowAnimation()]
 })
 export class CreateOrEditDirComponent extends AppComponentBase implements OnInit {
-    wxScanQRCodeInfoList: ScanRecordListDto[] = [];
+    scanRecordIds: BatchDeleteInput[] = [];
+    wxScanQRCodeInfoList: ScanRecordListDto[] = []
+
     /* getRecordScan获取扫描记录DTO */
     skipCount: number = 0;
     maxResultCount: number = AppConsts.grid.defaultPageSize;
@@ -50,22 +52,8 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
 
     /* 获取数据 */
     loadData(): void {
-        debugger
         if (this.checkIsCreateOrEditState()) {
-            // 创建状态则获取localstorage的数据（扫码后将分析的数据保存localstorage中）
-            // localstorageKey为"wxScanQRCodeInfoList"
-            this._localStorageService.getItemOrNull('mockWxScanQRCodeInfoList').then(result => {
-                if (!result) {
-                    this.message.warn("未检测到数据");
-                    return;
-                }
-                this.mockWxScanQRCodeInfoList = result;
-            })
-
-            this._localStorageService.removeItem("wxScaenQRCodeInfoList");
-            debugger
             this._localStorageService.getItem('wxScaenQRCodeInfoList', () => {
-                debugger
                 return this._scanServiceProxy.getRecords(
                     this.calalogId,
                     this.name,
@@ -73,7 +61,7 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
                     this.maxResultCount,
                     this.skipCount
                 )
-            }).then( (result: PagedResultDtoOfScanRecordListDto) => {
+            }).then((result: PagedResultDtoOfScanRecordListDto) => {
                 console.log(result);
                 this.wxScanQRCodeInfoList = result.items;
             })
@@ -101,11 +89,7 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
     }
 
     // 编辑目录条目详情
-    editDirItem(itemId: number, event: Event): void {
-        event.cancelBubble = true;
-        event.stopPropagation();
-        console.log('yes');
-
+    editDirItem(itemId: number): void {
         if (this.checkIsCreateOrEditState()) {
             let url = `/dir-manage/create/dir-item/${itemId}`;
             this._router.navigate([url]);
@@ -113,6 +97,22 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
             let url = `/dir-manage/edit/dir-item/${this.dirId}/${itemId}`;
             this._router.navigate([url]);
         }
+    }
+
+    // 删除目录条目
+    deleteDirItem(itemId: number): void {
+        console.log(itemId);
+        
+        this.message.confirm("您是否要删除此条目?", (res) => {
+            if (res) {
+                this.scanRecordIds[0] = itemId;
+                this._scanServiceProxy
+                    .batchDelete(this.scanRecordIds)
+                    .subscribe(result => {
+                        this.message.success("删除成功!");
+                    })
+            }
+        })
     }
 
     // 还原touch后的状态
