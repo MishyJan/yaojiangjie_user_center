@@ -7,6 +7,8 @@ import { CreateOrEditDirComponent } from 'app/dir-manage/create-or-edit-dir/crea
 import { CreateOrEditSubdirComponent } from 'app/dir-manage/create-or-edit-subdir/create-or-edit-subdir.component';
 import { DirManageRoutes } from 'app/dir-manage/dir-manage.routing';
 import { FormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap';
+import { SaveDirModelComponent } from 'app/dir-manage/create-or-edit-dir/save-dir-model/save-dir-model.component';
 
 @NgModule({
     imports: [
@@ -14,11 +16,13 @@ import { FormsModule } from '@angular/forms';
         DirManageRoutes,
         FormsModule,
         ngCommon.CommonModule,
+        ModalModule.forRoot(),
     ],
     declarations: [
         DirManageComponent,
         CreateOrEditDirComponent,
-        CreateOrEditSubdirComponent
+        CreateOrEditSubdirComponent,
+        SaveDirModelComponent
     ]
 })
 export class DirManageModule { }

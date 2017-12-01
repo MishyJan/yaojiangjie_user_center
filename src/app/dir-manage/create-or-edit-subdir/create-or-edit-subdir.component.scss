@@ -26,7 +26,11 @@
                     .img-wrap {
                         width: 100%;
                         padding: 5px;
-                        border: 1px solid transparent;
+                        border: 2px solid transparent;
+                        transition: all 0.4s;
+                        &.active {
+                            border: 2px solid $color-theme;
+                        }
                     }
                 }
             }

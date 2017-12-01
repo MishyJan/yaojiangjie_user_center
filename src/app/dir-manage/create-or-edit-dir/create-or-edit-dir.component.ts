@@ -1,11 +1,12 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 
 import { AppComponentBase } from 'shared/common/app-component-base';
 import { LocalStorageService } from 'shared/services/local-storage.service';
 import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
-import { ScanServiceProxy, PagedResultDtoOfScanRecordListDto, ScanRecordListDto, BatchDeleteInput } from 'shared/service-proxies/service-proxies';
+import { ScanServiceProxy, PagedResultDtoOfScanRecordListDto, ScanRecordListDto, BatchDeleteInput, CreateOrUpdateCatalogInput } from 'shared/service-proxies/service-proxies';
 import { AppConsts } from 'shared/AppConsts';
+import { SaveDirModelComponent } from 'app/dir-manage/create-or-edit-dir/save-dir-model/save-dir-model.component';
 
 @Component({
     selector: 'yaojiangjie-create-or-edit-dir',
@@ -32,6 +33,8 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
     mockWxScanQRCodeInfoList: any;
     /* 获取目录ID */
     dirId: string;
+
+    @ViewChild('saveDirModel') saveDirModel: SaveDirModelComponent;
 
     constructor(
         private injector: Injector,
@@ -62,7 +65,17 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
                     this.skipCount
                 )
             }).then((result: PagedResultDtoOfScanRecordListDto) => {
-                console.log(result);
+                this.wxScanQRCodeInfoList = result.items;
+            })
+        } else {
+            this.calalogId = +this.dirId;
+            this._scanServiceProxy.getRecords(
+                this.calalogId,
+                this.name,
+                this.sorting,
+                this.maxResultCount,
+                this.skipCount
+            ).subscribe( result => {
                 this.wxScanQRCodeInfoList = result.items;
             })
         }
@@ -79,10 +92,8 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
         this.touchedEndX = event.changedTouches[0].pageX;
         let diffX = this.touchedEndX - this.touchedStartX;
         if (diffX > 0) {
-            console.log("右滑");
             this.touchedListType[index] = false;
         } else {
-            console.log("左滑");
             this.touchedListType[index] = true;
         }
 
@@ -99,10 +110,8 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
         }
     }
 
-    // 删除目录条目
+    // 删除单个目录条目
     deleteDirItem(itemId: number): void {
-        console.log(itemId);
-        
         this.message.confirm("您是否要删除此条目?", (res) => {
             if (res) {
                 this.scanRecordIds.ids[0] = itemId;
@@ -110,9 +119,35 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
                     .batchDelete(this.scanRecordIds)
                     .subscribe(result => {
                         this.message.success("删除成功!");
+                        this.scanRecordIds.ids = [];
+                        this.loadData();
                     })
             }
         })
+    }
+
+    // 清空所有目录条目
+    deleteAllDirItem(): void {
+        this.wxScanQRCodeInfoList.forEach(element => {
+            this.scanRecordIds.ids.push(element.id);
+        });
+
+        this.message.confirm("您是否要删除所有数据?", (res) => {
+            if (res) {
+                this._scanServiceProxy
+                    .batchDelete(this.scanRecordIds)
+                    .subscribe(result => {
+                        this.message.success("已全部清空!");
+                        this.scanRecordIds.ids = [];
+                        this._router.navigate(['/']);
+                    })
+            }
+        })
+    }
+
+    // 保存目录
+    saveDir(): void {
+        this.saveDirModel.showModel(this.wxScanQRCodeInfoList);
     }
 
     // 还原touch后的状态

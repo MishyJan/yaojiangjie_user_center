@@ -3,12 +3,12 @@
         <div class="water-fall-wrap">
             <div class="water-fall-content">
                 <div class="item-column">
-                    <div class="img-wrap" [@routerTransition] *ngFor="let srcItem of imgListLeftColumn">
+                    <div class="img-wrap" [@routerTransition] [ngClass]="{'active': srcItem == selectedCoverUrl}" (click)="selectedCoverImgHandle(srcItem)" *ngFor="let srcItem of imgListLeftColumn">
                         <img width="100%" [src]="srcItem" alt="exhibit">
                     </div>
                 </div>
                 <div class="item-column">
-                    <div class="img-wrap" [@routerTransition] *ngFor="let srcItem of imgListRightColumn">
+                    <div class="img-wrap" [@routerTransition] [ngClass]="{'active': srcItem == selectedCoverUrl}" (click)="selectedCoverImgHandle(srcItem)" *ngFor="let srcItem of imgListRightColumn">
                         <img width="100%" [src]="srcItem" alt="exhibit">
                     </div>
                 </div>

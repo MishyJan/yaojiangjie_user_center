@@ -1,0 +1,32 @@
+@import '../../../../sass/yaojiangjie/_colors';
+.dir-wrap {
+    .modal-body {
+        padding-top: 0;
+        .save-dir-wrap {
+            .header {
+                height: 50px;
+                line-height: 50px;
+                cursor: pointer;
+            }
+            .content {
+                height: 0;
+                overflow: hidden;
+                transition: height .4s;
+                .dir-item {
+                    height: 44px;
+                    line-height: 44px;
+                    color: #000;
+                    border-bottom: 1px solid rgb(224, 224, 224);
+                }
+            }
+        }
+        .new-dir-wrap {
+            margin-top: 30px;
+        }
+        .save-btn-wrap {
+            .btn {
+                background-color: $color-theme;
+            }
+        }
+    }
+}

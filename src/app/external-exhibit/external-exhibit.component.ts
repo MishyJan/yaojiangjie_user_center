@@ -15,7 +15,7 @@ import { ScanServiceProxy, CreateOrUpdateRecordInput } from 'shared/service-prox
     styleUrls: ['./external-exhibit.component.scss'],
     animations: [appModuleSlowAnimation()]
 })
-export class ExternalExhibitComponent extends AppComponentBase implements OnInit, AfterViewInit {
+export class ExternalExhibitComponent extends AppComponentBase implements OnInit {
     trustScanQRCodeUrl: SafeResourceUrl;
     scanRecordInput: CreateOrUpdateRecordInput = new CreateOrUpdateRecordInput();
 
@@ -38,8 +38,8 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
 
     getWxScanQRCodeUrl(): void {
         if (this._weChatScanQRCodeService.scanResult) {
-            // this.createRecord(this._weChatScanQRCodeService.scanResult);
-            this.createRecord("http://www.vdaolan.com/hy/exhibit_list.php");
+            this.createRecord(this._weChatScanQRCodeService.scanResult);
+            // this.createRecord("http://www.vdaolan.com/hy/exhibit_list.php");
 
             this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this._weChatScanQRCodeService.scanResult);
         } else {

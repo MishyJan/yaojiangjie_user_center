@@ -20,8 +20,10 @@
         </div>
 
         <div class="dir-footer">
-            <div class="handle-item clear-all"><button class="btn btn-block">清空</button></div>
-            <div class="handle-item save-all"><button class="btn btn-block">保存</button></div>
+            <div (click)="deleteAllDirItem()" class="handle-item clear-all"><button class="btn btn-block">清空</button></div>
+            <div (click)="saveDir()" class="handle-item save-all"><button class="btn btn-block">保存</button></div>
         </div>
     </div>
 </div>
+
+<yaojiangjie-save-dir-model #saveDirModel></yaojiangjie-save-dir-model>

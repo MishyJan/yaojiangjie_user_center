@@ -21,6 +21,9 @@ export class CreateOrEditSubdirComponent extends AppComponentBase implements OnI
     // 目录ID
     dirId: string;
 
+    // 保存被选中的图片
+    selectedCoverUrl: string;
+
     constructor(
         private injector: Injector,
         private _route: ActivatedRoute,
@@ -41,31 +44,37 @@ export class CreateOrEditSubdirComponent extends AppComponentBase implements OnI
             .getRecordForEdit(+this.dirItemId)
             .subscribe(result => {
                 this.wxScanQRCodeInfoDirItem = result;
+                this.selectedCoverUrl = result.coverUrl;
                 this.transferWaterFallData(this.wxScanQRCodeInfoDirItem);
-                console.log(result);
             })
     }
 
     saveData(): void {
         this.recordInput = this.wxScanQRCodeInfoDirItem;
         this.recordInput.catalogId = null;
+        this.recordInput.coverUrl = this.selectedCoverUrl;
         this._scanServiceProxy
         .createOrUpdateRecord(this.recordInput)
         .subscribe( result => {
             this.message.success("保存成功!");
+            this.loadData();
         });
     }
 
+    selectedCoverImgHandle(imgUrl: string): void {
+        this.selectedCoverUrl = imgUrl;
+    }
+
     /* 
-        将图片数据转换为两个数组，分为两列，数组索引奇数为左边瀑布流，偶数为右边瀑布流
+        将图片数据转换为两个数组，分为两列，数组索引奇数为右边瀑布流，偶数为左边瀑布流
      */
     private transferWaterFallData(data: GetRecordForEditOutput): void {
         data.images.forEach((element, inx) => {
             // 为零则偶数，反之为奇数
             if (inx % 2) {
-                this.imgListLeftColumn.push(element);
-            } else {
                 this.imgListRightColumn.push(element);
+            } else {
+                this.imgListLeftColumn.push(element);
             }
         });
     }
