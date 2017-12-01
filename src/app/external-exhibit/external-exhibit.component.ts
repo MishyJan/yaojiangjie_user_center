@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { WeChatScanQRCodeService } from 'shared/services/wechat-scan-qrcode.service';
 import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
+import { ScanServiceProxy, CreateOrUpdateRecordInput } from 'shared/service-proxies/service-proxies';
 
 export class TemporaryData {
     title: string;
@@ -22,15 +23,16 @@ export class TemporaryData {
 export class ExternalExhibitComponent extends AppComponentBase implements OnInit, AfterViewInit {
     temporaryList: TemporaryData[] = [];
     trustScanQRCodeUrl: SafeResourceUrl;
+    scanRecordInput: CreateOrUpdateRecordInput = new CreateOrUpdateRecordInput();
 
     constructor(
         private injector: Injector,
         private el: ElementRef,
         private sanitizer: DomSanitizer,
-
         private _router: Router,
         private _location: Location,
         private _localStorageService: LocalStorageService,
+        private _scanServiceProxy: ScanServiceProxy,
         private _weChatScanQRCodeService: WeChatScanQRCodeService
     ) {
         super(injector);
@@ -48,9 +50,13 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
 
     getWxScanQRCodeUrl(): void {
         if (this._weChatScanQRCodeService.scanResult) {
-            this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this._weChatScanQRCodeService.scanResult);
+            this.scanRecordInput.url = this._weChatScanQRCodeService.scanResult;
+            this.scanRecordInput.catalogId = null;
+            this._scanServiceProxy.createOrUpdateRecord(this.scanRecordInput);
 
+            this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this._weChatScanQRCodeService.scanResult);
         } else {
+            this.message.warn("未能检测到有效的URL");
             this._router.navigate(['/index']);
         }
     }
@@ -94,6 +100,6 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
         this.temporaryList[0] = temporary1;
         this.temporaryList[1] = temporary2;
 
-        this._localStorageService.setItem("wxScanQRCodeInfoList", this.temporaryList);
+        this._localStorageService.setItem("mockWxScanQRCodeInfoList", this.temporaryList);
     }
 }

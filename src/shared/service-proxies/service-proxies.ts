@@ -14,12 +14,11 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 
-import * as moment from 'moment';
-
-import { Headers, Http, Response, ResponseContentType } from '@angular/http';
-import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
-
 import { Observable } from 'rxjs/Observable';
+import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
+import { Http, Headers, ResponseContentType, Response } from '@angular/http';
+
+import * as moment from 'moment';
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
@@ -5837,14 +5836,17 @@ export class ScanServiceProxy {
 
     /**
      * 获取记录扫描
+     * @catalogId (optional) 分类Id
      * @name (optional) 页面名称
      * @sorting (optional) 排序字段 (eg:Id DESC)
      * @maxResultCount 最大结果数量(等同:PageSize)
      * @skipCount 列表跳过数量(等同: PageSize*PageIndex)
      * @return Success
      */
-    getRecordScan(name: string, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfScanRecordListDto> {
-        let url_ = this.baseUrl + "/api/services/app/Scan/GetRecordScan?";
+    getRecords(catalogId: number, name: string, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfScanRecordListDto> {
+        let url_ = this.baseUrl + "/api/services/app/Scan/GetRecords?";
+        if (catalogId !== undefined)
+            url_ += "CatalogId=" + encodeURIComponent("" + catalogId) + "&"; 
         if (name !== undefined)
             url_ += "Name=" + encodeURIComponent("" + name) + "&"; 
         if (sorting !== undefined)
@@ -5868,11 +5870,11 @@ export class ScanServiceProxy {
         };
 
         return this.http.request(url_, options_).flatMap((response_ : any) => {
-            return this.processGetRecordScan(response_);
+            return this.processGetRecords(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
                 try {
-                    return this.processGetRecordScan(response_);
+                    return this.processGetRecords(response_);
                 } catch (e) {
                     return <Observable<PagedResultDtoOfScanRecordListDto>><any>Observable.throw(e);
                 }
@@ -5881,7 +5883,7 @@ export class ScanServiceProxy {
         });
     }
 
-    protected processGetRecordScan(response: Response): Observable<PagedResultDtoOfScanRecordListDto> {
+    protected processGetRecords(response: Response): Observable<PagedResultDtoOfScanRecordListDto> {
         const status = response.status; 
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
@@ -5899,12 +5901,63 @@ export class ScanServiceProxy {
     }
 
     /**
+     * 获取扫描记录详情
+     * @return Success
+     */
+    getRecordForEdit(id: number): Observable<GetRecordForEditOutput> {
+        let url_ = this.baseUrl + "/api/services/app/Scan/GetRecordForEdit?";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined and cannot be null.");
+        else
+            url_ += "id=" + encodeURIComponent("" + id) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_ : any) => {
+            return this.processGetRecordForEdit(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetRecordForEdit(response_);
+                } catch (e) {
+                    return <Observable<GetRecordForEditOutput>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<GetRecordForEditOutput>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetRecordForEdit(response: Response): Observable<GetRecordForEditOutput> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? GetRecordForEditOutput.fromJS(resultData200) : new GetRecordForEditOutput();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<GetRecordForEditOutput>(<any>null);
+    }
+
+    /**
      * 创建或更新扫描记录
      * @input (optional) 
      * @return Success
      */
-    createOrUpdateRecordScan(input: CreateOrUpdateScanRecordInput): Observable<void> {
-        let url_ = this.baseUrl + "/api/services/app/Scan/CreateOrUpdateRecordScan";
+    createOrUpdateRecord(input: CreateOrUpdateRecordInput): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Scan/CreateOrUpdateRecord";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
@@ -5918,11 +5971,11 @@ export class ScanServiceProxy {
         };
 
         return this.http.request(url_, options_).flatMap((response_ : any) => {
-            return this.processCreateOrUpdateRecordScan(response_);
+            return this.processCreateOrUpdateRecord(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
                 try {
-                    return this.processCreateOrUpdateRecordScan(response_);
+                    return this.processCreateOrUpdateRecord(response_);
                 } catch (e) {
                     return <Observable<void>><any>Observable.throw(e);
                 }
@@ -5931,7 +5984,54 @@ export class ScanServiceProxy {
         });
     }
 
-    protected processCreateOrUpdateRecordScan(response: Response): Observable<void> {
+    protected processCreateOrUpdateRecord(response: Response): Observable<void> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            return Observable.of<void>(<any>null);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<void>(<any>null);
+    }
+
+    /**
+     * 批量删除扫码记录
+     * @input (optional) 
+     * @return Success
+     */
+    batchDelete(input: BatchDeleteInput): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Scan/BatchDelete";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(input);
+
+        let options_ : any = {
+            body: content_,
+            method: "post",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_ : any) => {
+            return this.processBatchDelete(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processBatchDelete(response_);
+                } catch (e) {
+                    return <Observable<void>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<void>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processBatchDelete(response: Response): Observable<void> {
         const status = response.status; 
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
@@ -17708,7 +17808,86 @@ export interface IScanRecordListDto {
     id: number;
 }
 
-export class CreateOrUpdateScanRecordInput implements ICreateOrUpdateScanRecordInput {
+export class GetRecordForEditOutput implements IGetRecordForEditOutput {
+    /** 页面名称 */
+    name: string;
+    /** Url */
+    url: string;
+    /** 封面Url */
+    coverUrl: string;
+    /** 分类Id */
+    catalogId: number;
+    /** 是否置顶 */
+    sticked: boolean;
+    /** 图片 */
+    images: string[];
+    id: number;
+
+    constructor(data?: IGetRecordForEditOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.name = data["name"];
+            this.url = data["url"];
+            this.coverUrl = data["coverUrl"];
+            this.catalogId = data["catalogId"];
+            this.sticked = data["sticked"];
+            if (data["images"] && data["images"].constructor === Array) {
+                this.images = [];
+                for (let item of data["images"])
+                    this.images.push(item);
+            }
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): GetRecordForEditOutput {
+        let result = new GetRecordForEditOutput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
+        data["url"] = this.url;
+        data["coverUrl"] = this.coverUrl;
+        data["catalogId"] = this.catalogId;
+        data["sticked"] = this.sticked;
+        if (this.images && this.images.constructor === Array) {
+            data["images"] = [];
+            for (let item of this.images)
+                data["images"].push(item);
+        }
+        data["id"] = this.id;
+        return data; 
+    }
+}
+
+export interface IGetRecordForEditOutput {
+    /** 页面名称 */
+    name: string;
+    /** Url */
+    url: string;
+    /** 封面Url */
+    coverUrl: string;
+    /** 分类Id */
+    catalogId: number;
+    /** 是否置顶 */
+    sticked: boolean;
+    /** 图片 */
+    images: string[];
+    id: number;
+}
+
+export class CreateOrUpdateRecordInput implements ICreateOrUpdateRecordInput {
     /** 页面名称 */
     name: string;
     /** Url */
@@ -17721,7 +17900,7 @@ export class CreateOrUpdateScanRecordInput implements ICreateOrUpdateScanRecordI
     sticked: boolean;
     id: number;
 
-    constructor(data?: ICreateOrUpdateScanRecordInput) {
+    constructor(data?: ICreateOrUpdateRecordInput) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -17741,8 +17920,8 @@ export class CreateOrUpdateScanRecordInput implements ICreateOrUpdateScanRecordI
         }
     }
 
-    static fromJS(data: any): CreateOrUpdateScanRecordInput {
-        let result = new CreateOrUpdateScanRecordInput();
+    static fromJS(data: any): CreateOrUpdateRecordInput {
+        let result = new CreateOrUpdateRecordInput();
         result.init(data);
         return result;
     }
@@ -17759,7 +17938,7 @@ export class CreateOrUpdateScanRecordInput implements ICreateOrUpdateScanRecordI
     }
 }
 
-export interface ICreateOrUpdateScanRecordInput {
+export interface ICreateOrUpdateRecordInput {
     /** 页面名称 */
     name: string;
     /** Url */
@@ -17771,6 +17950,51 @@ export interface ICreateOrUpdateScanRecordInput {
     /** 是否置顶 */
     sticked: boolean;
     id: number;
+}
+
+export class BatchDeleteInput implements IBatchDeleteInput {
+    /** 需要删除的扫码记录Id */
+    ids: number[] = [];
+
+    constructor(data?: IBatchDeleteInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            if (data["ids"] && data["ids"].constructor === Array) {
+                this.ids = [];
+                for (let item of data["ids"])
+                    this.ids.push(item);
+            }
+        }
+    }
+
+    static fromJS(data: any): BatchDeleteInput {
+        let result = new BatchDeleteInput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (this.ids && this.ids.constructor === Array) {
+            data["ids"] = [];
+            for (let item of this.ids)
+                data["ids"].push(item);
+        }
+        return data; 
+    }
+}
+
+export interface IBatchDeleteInput {
+    /** 需要删除的扫码记录Id */
+    ids: number[];
 }
 
 export class PagedResultDtoOfCatalogListDto implements IPagedResultDtoOfCatalogListDto {
@@ -17885,7 +18109,7 @@ export class CreateOrUpdateCatalogInput implements ICreateOrUpdateCatalogInput {
     /** 是否置顶 */
     sticked: boolean;
     /** 扫码记录 */
-    scanRecords: CreateOrUpdateScanRecordInput[];
+    scanRecords: CreateOrUpdateRecordInput[];
     id: number;
 
     constructor(data?: ICreateOrUpdateCatalogInput) {
@@ -17904,7 +18128,7 @@ export class CreateOrUpdateCatalogInput implements ICreateOrUpdateCatalogInput {
             if (data["scanRecords"] && data["scanRecords"].constructor === Array) {
                 this.scanRecords = [];
                 for (let item of data["scanRecords"])
-                    this.scanRecords.push(CreateOrUpdateScanRecordInput.fromJS(item));
+                    this.scanRecords.push(CreateOrUpdateRecordInput.fromJS(item));
             }
             this.id = data["id"];
         }
@@ -17936,7 +18160,7 @@ export interface ICreateOrUpdateCatalogInput {
     /** 是否置顶 */
     sticked: boolean;
     /** 扫码记录 */
-    scanRecords: CreateOrUpdateScanRecordInput[];
+    scanRecords: CreateOrUpdateRecordInput[];
     id: number;
 }
 

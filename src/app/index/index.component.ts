@@ -24,7 +24,6 @@ export class IndexComponent extends AppComponentBase implements OnInit {
     }
 
     ngOnInit() {
-        this._wechatScanQRCodeService.init();
     }
 
     scanQRCode(): void {

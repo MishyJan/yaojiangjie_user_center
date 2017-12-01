@@ -5,10 +5,10 @@
                 <div class="item box-shadow" [@routerTransition] [ngClass]="{'open': touchedListType[index]}" *ngFor="let item of wxScanQRCodeInfoList; let index = index;">
                     <div class="touch-item" (touchstart)="onTouchInit($event)" (touchmove)="onTouchMove($event, index)">
                         <div class="img-wrap">
-                            <img [src]="item.imgUrlList[0]" class="thumbnail-img" alt="thumbnail">
+                            <img [src]="item.coverUrl" class="thumbnail-img" alt="thumbnail">
                         </div>
                         <div class="desc-wrap">
-                            <p class="title">{{ item.title }}</p>
+                            <p class="title">{{ item.name }}</p>
                         </div>
                     </div>
                     <div class="handle-wrap">
