@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Injector, OnInit, ViewChild } from '@angular/core';
+import { CreateOrUpdateRecordInput, ScanServiceProxy } from 'shared/service-proxies/service-proxies';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { AppComponentBase } from 'shared/common/app-component-base';
@@ -7,7 +8,6 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { WeChatScanQRCodeService } from 'shared/services/wechat-scan-qrcode.service';
 import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
-import { ScanServiceProxy, CreateOrUpdateRecordInput } from 'shared/service-proxies/service-proxies';
 
 @Component({
     selector: 'yaojiangjie-externalExhibit',

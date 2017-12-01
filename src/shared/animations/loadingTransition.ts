@@ -9,7 +9,7 @@ export class appLoadingBusy {
         let effectTitleEle = $('<h1></h1>').addClass('effect-title-wrap').text(appLoadingBusy.effectTitle);
         let loadingAniWrap = $('<div></div>').addClass('loading-wrap');
         let loadingSpinner = $('<div class="spinner"><i></i></div>');
-        let imgLogo = $('<img width="100%">').addClass('logo').attr('src', '/assets/common/images/admin/logo@3x.png');
+        let imgLogo = $('<img width="100%">').addClass('logo').attr('src', '/assets/common/images/admin/logo@4x.jpg');
         imgLogo.attr('width', '96px');
         let appLoadingBusyWrap = $('<div></div>').addClass('app-loading-busy-wrap');
 
