@@ -14,7 +14,7 @@ import { AppConsts } from 'shared/AppConsts';
     animations: [appModuleSlowAnimation()]
 })
 export class CreateOrEditDirComponent extends AppComponentBase implements OnInit {
-    scanRecordIds: BatchDeleteInput[] = [];
+    scanRecordIds: BatchDeleteInput = new BatchDeleteInput();
     wxScanQRCodeInfoList: ScanRecordListDto[] = []
 
     /* getRecordScan获取扫描记录DTO */
@@ -105,7 +105,7 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
         
         this.message.confirm("您是否要删除此条目?", (res) => {
             if (res) {
-                this.scanRecordIds[0] = itemId;
+                this.scanRecordIds.ids[0] = itemId;
                 this._scanServiceProxy
                     .batchDelete(this.scanRecordIds)
                     .subscribe(result => {
