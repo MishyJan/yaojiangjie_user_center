@@ -68,7 +68,7 @@ export abstract class AppComponentBase {
         if (momentTime === undefined) {
             return '';
         }
-
+        if (typeof momentTime !== 'object') { momentTime = moment(momentTime); };
         const localDatetimeString = momentTime.local().format(format);
         return localDatetimeString;
     }

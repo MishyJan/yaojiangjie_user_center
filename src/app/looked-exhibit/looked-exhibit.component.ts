@@ -43,7 +43,6 @@ export class LookedExhibitComponent extends AppComponentBase implements OnInit {
                 this.skipCount
                 )
         }).then((result: PagedResultDtoOfCatalogListDto) => {
-            console.log(result);
             this.allDirSelectData = result.items;
         })
     }

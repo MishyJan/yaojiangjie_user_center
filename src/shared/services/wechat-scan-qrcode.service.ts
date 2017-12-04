@@ -7,7 +7,11 @@ import { JsApiSignatureInput } from 'app/shared/utils/wechat.dto';
 import { LocalStorageService } from 'shared/services/local-storage.service';
 import { RandomHelper } from 'shared/helpers/RandomHelper';
 import { Router } from '@angular/router';
+import { device } from 'device.js';
 
+export class jsApiInput {
+
+}
 @Injectable()
 export class WeChatScanQRCodeService extends AppComponentBase {
     scanResult: string = "http://www.vdaolan.com/hy/exhibit_list.php";
@@ -19,6 +23,10 @@ export class WeChatScanQRCodeService extends AppComponentBase {
         private _wechatJSService: WeChatJSServiceProxy
     ) {
         super(injector);
+    }
+    
+    ngOnInit() {
+        
     }
 
     init(): void {
