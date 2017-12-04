@@ -4,7 +4,7 @@ import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppComponentBase } from 'shared/common/app-component-base';
 import { LocalStorageService } from 'shared/services/local-storage.service';
 import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
-import { ScanServiceProxy, PagedResultDtoOfScanRecordListDto, ScanRecordListDto, BatchDeleteInput, CreateOrUpdateCatalogInput } from 'shared/service-proxies/service-proxies';
+import { ScanServiceProxy, PagedResultDtoOfScanRecordListDto, ScanRecordListDto, BatchDeleteInput, CreateOrUpdateCatalogInput, CreateOrUpdateRecordInput } from 'shared/service-proxies/service-proxies';
 import { AppConsts } from 'shared/AppConsts';
 import { SaveDirModelComponent } from 'app/dir-manage/create-or-edit-dir/save-dir-model/save-dir-model.component';
 
@@ -17,6 +17,7 @@ import { SaveDirModelComponent } from 'app/dir-manage/create-or-edit-dir/save-di
 export class CreateOrEditDirComponent extends AppComponentBase implements OnInit {
     scanRecordIds: BatchDeleteInput = new BatchDeleteInput();
     wxScanQRCodeInfoList: ScanRecordListDto[] = []
+    recordInput: CreateOrUpdateRecordInput = new CreateOrUpdateRecordInput();
 
     /* getRecordScan获取扫描记录DTO */
     skipCount: number = 0;
@@ -66,6 +67,7 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
                 )
             }).then((result: PagedResultDtoOfScanRecordListDto) => {
                 this.wxScanQRCodeInfoList = result.items;
+                this.checkHasScanRecord();
             })
         } else {
             this.calalogId = +this.dirId;
@@ -77,6 +79,7 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
                 this.skipCount
             ).subscribe( result => {
                 this.wxScanQRCodeInfoList = result.items;
+                this.checkHasScanRecord();
             })
         }
     }
@@ -145,6 +148,29 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
         })
     }
 
+    // 置顶条目
+    toggleStick(index: number): void {
+        this.recordInput = new CreateOrUpdateRecordInput();
+
+        this.recordInput.catalogId = this.checkIsCreateOrEditState() ? null : this.wxScanQRCodeInfoList[index].catalogId;
+        this.recordInput.coverUrl = this.wxScanQRCodeInfoList[index].coverUrl;
+        this.recordInput.id = this.wxScanQRCodeInfoList[index].id;
+        this.recordInput.name = this.wxScanQRCodeInfoList[index].name;
+        this.recordInput.url = this.wxScanQRCodeInfoList[index].url;
+        this.recordInput.sticked = !this.wxScanQRCodeInfoList[index].sticked;
+        
+        this._scanServiceProxy
+        .createOrUpdateRecord(this.recordInput)
+        .subscribe( result => {
+            this.loadData();
+            // if (this.wxScanQRCodeInfoList[index].sticked) {
+            //     this.notify.success("置顶成功!");
+            //     return;
+            // }
+            // this.notify.success("取消置顶成功!");
+        })
+    }
+
     // 保存目录
     saveDir(): void {
         this.saveDirModel.showModel(this.wxScanQRCodeInfoList);
@@ -168,4 +194,14 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
         return this.dirId ? false : true;
     }
 
+    /* 
+        检测是否有扫码数据记录
+        @return void
+    */ 
+    private checkHasScanRecord(): void {
+        if (this.wxScanQRCodeInfoList.length <= 0) {
+            this.message.warn("暂无扫码记录,请扫码!");
+            this._router.navigate(['/index']);
+        }
+    }
 }

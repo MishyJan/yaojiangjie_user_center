@@ -3,14 +3,16 @@
         <div class="content">
             <div class="exhibit-item" (click)="toDirPath(item.id)" *ngFor="let item of allDirSelectData">
                 <div class="flex-left">
-                    <p class="month">11月</p>
-                    <p class="day">30</p>
+                    <p class="month">{{ t(item.creationTime, 'MM') }}月</p>
+                    <p class="day">{{ t(item.creationTime, 'DD') }}</p>
                 </div>
                 <div class="flex-right box-shadow">
                     <div class="img-wrap" [ngStyle]="{'background-image': 'url(' + item.coverUrl + ')'}"></div>
-                    <p class="title text-overflow">{{ item.name }}</p>
+                    <div class="bottom-info">
+                        <p class="title text-overflow">{{ item.name }}</p>
+                        <div class="exhibit-num box-shadow"><span class="number">{{ item.count }}</span></div>
+                    </div>
                 </div>
-                <div class="exhibit-num box-shadow">{{ item.count }}P</div>
             </div>
         </div>
     </div>

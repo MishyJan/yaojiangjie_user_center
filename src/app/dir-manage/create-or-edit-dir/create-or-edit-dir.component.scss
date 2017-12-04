@@ -31,6 +31,20 @@
                     position: relative;
                     left: 0px;
                     transition: all .3s;
+                    .triangle-wrap {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        @include cssTriangle('topLeft', 26px, $color-theme);
+                        .icon {
+                            position: absolute;
+                            top: -24px;
+                            left: 2px;
+                            font-size: 10px;
+                            color: #FFF;
+                            transform: scale(0.6);
+                        }
+                    }
                     .img-wrap {
                         width: 80px;
                         height: 80px;
@@ -57,7 +71,7 @@
                     right: -120px;
                     transition: all .3s;
                     color: #338FFF;
-                    .yaojiangjie-icon {
+                    .icon {
                         flex: 1;
                         @include flexMiddle(1);
                         font-size: 20px;

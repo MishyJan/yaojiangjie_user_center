@@ -5,28 +5,33 @@
                 <div class="modal-header">
                     <h4 class="modal-title pull-left"><img src="/assets/common/images/admin/chromatic-logo@3x.png" width="70px" alt=""></h4>
                     <button type="button" class="close pull-right" aria-label="Close" (click)="saveDirModel.hide()">
-                                <span aria-hidden="true">&times;</span>
+                                <span class="yaojiangjie-icon-app-close"></span>
                             </button>
                 </div>
                 <div class="modal-body">
-                    <div class="save-dir-wrap" *ngIf="allDirSelectData.length > 0">
+                    <div class="save-dir-wrap" *ngIf="allDirSelectData.length > 0 && checkIsCreateOrEditState()">
                         <div class="header" (click)="toggleShowExistedDir()">
-                            <span>保存到目录</span>
-                            <span>∨</span>
+                            <span class="text">保存到目录</span>
+                            <span class="icon yaojiangjie-icon-app-drop-down"></span>
                         </div>
                         <div class="content" [ngStyle]="{'height': getExistedDirHeight()}">
-                            <div class="dir-item" (click)="getSelectedDirId(item.id)" *ngFor="let item of allDirSelectData">{{ item.name }}</div>
+                            <div class="dir-item" (click)="getSelectedDirInfo(item, index)" *ngFor="let item of allDirSelectData; let index = index;">
+                                <div class="text">{{ item.name }}</div>
+                                <div class="icon yaojiangjie-icon-app-confirm" [hidden]="!(selectedDirIndex === index)"></div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="new-dir-wrap">
                         <div class="form-group">
-                            <input type="text" name="newDir" placeholder="保存为新目录" class="form-control" [(ngModel)]="catalogInput.name" [disabled]="isShowExistedDirFlag">
+                            <input type="text" name="newDir" *ngIf="checkIsCreateOrEditState()" placeholder="保存为新目录" class="form-control" [(ngModel)]="catalogInputName" [disabled]="isShowExistedDirFlag">
+                            <input type="text" name="newDir" *ngIf="!checkIsCreateOrEditState()" placeholder="更新目录名" class="form-control" [(ngModel)]="catalogInputName" [disabled]="isShowExistedDirFlag">
                         </div>
                     </div>
 
                     <div class="save-btn-wrap">
-                        <button class="btn btn-block" (click)="saveDirData()">保存</button>
+                        <button class="btn btn-block" *ngIf="checkIsCreateOrEditState()" (click)="saveDirData()">保存</button>
+                        <button class="btn btn-block" *ngIf="!checkIsCreateOrEditState()" (click)="saveDirData()">更新</button>
                     </div>
                 </div>
             </div>

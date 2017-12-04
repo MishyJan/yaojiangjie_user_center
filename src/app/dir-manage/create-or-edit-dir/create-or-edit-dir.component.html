@@ -4,6 +4,7 @@
             <div class="dir-content">
                 <div class="item box-shadow" [@routerTransition] [ngClass]="{'open': touchedListType[index]}" *ngFor="let item of wxScanQRCodeInfoList; let index = index;">
                     <div class="touch-item" (touchstart)="onTouchInit($event)" (touchmove)="onTouchMove($event, index)">
+                        <div class="triangle-wrap" *ngIf="item.sticked"><span class="icon yaojiangjie-icon-app-collection"></span></div>
                         <div class="img-wrap" [ngStyle]="{'background-image': 'url(' + item.coverUrl + ')'}">
                         </div>
                         <div class="desc-wrap">
@@ -11,9 +12,9 @@
                         </div>
                     </div>
                     <div class="handle-wrap">
-                        <span (click)="deleteDirItem(item.id)" class="yaojiangjie-icon yaojiangjie-icon-app-delete"></span>
-                        <span (click)="editDirItem(item.id)" class="yaojiangjie-icon yaojiangjie-icon-app-edit"></span>
-                        <span class="yaojiangjie-icon yaojiangjie-icon-app-not-collection"></span>
+                        <span (click)="deleteDirItem(item.id)" class="icon yaojiangjie-icon-app-delete"></span>
+                        <span (click)="editDirItem(item.id)" class="icon yaojiangjie-icon-app-edit"></span>
+                        <span (click)="toggleStick(index)" class="icon" [ngClass]="{'yaojiangjie-icon-app-not-collection': !item.sticked, 'yaojiangjie-icon-app-collection': item.sticked}"></span>
                     </div>
                 </div>
             </div>
@@ -21,7 +22,8 @@
 
         <div class="dir-footer">
             <div (click)="deleteAllDirItem()" class="handle-item clear-all"><button class="btn btn-block">清空</button></div>
-            <div (click)="saveDir()" class="handle-item save-all"><button class="btn btn-block">保存</button></div>
+            <div (click)="saveDir()" *ngIf="checkIsCreateOrEditState()" class="handle-item save-all"><button class="btn btn-block">保存</button></div>
+            <div (click)="saveDir()" *ngIf="!checkIsCreateOrEditState()" class="handle-item save-all"><button class="btn btn-block">更新</button></div>
         </div>
     </div>
 </div>
