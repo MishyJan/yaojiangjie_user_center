@@ -1,7 +1,8 @@
+import { ColourCode, DefaultProfilePath } from 'shared/AppConsts';
 import { Component, OnInit } from '@angular/core';
+import { CurrentUserProfileEditDto, ProfileServiceProxy } from 'shared/service-proxies/service-proxies';
+
 import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
-import { DefaultProfilePath, ColourCode } from 'shared/AppConsts';
-import { ProfileServiceProxy, CurrentUserProfileEditDto } from 'shared/service-proxies/service-proxies';
 
 @Component({
     selector: 'yaojiangjie-home',
@@ -18,20 +19,7 @@ export class UserHomeComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        // this.getUserAvatar();
         this.getCurrentLoginInformations();
-        this.userAvatarUrl = DefaultProfilePath.defaultProfilePictureUrl;
-    }
-
-    getUserAvatar(): void {
-            this._profileServiceProxy.getProfilePicture().subscribe(result => {
-                if (result && result.profilePicture) {
-                    console.log(result);
-                    
-                    // this.userAvatarUrl = result.profilePicture;
-                    this.userAvatarUrl ? this.userAvatarUrl : DefaultProfilePath.defaultProfilePictureUrl;
-                }
-            });
     }
 
     getCurrentLoginInformations(): void {
@@ -39,7 +27,7 @@ export class UserHomeComponent implements OnInit {
             .getCurrentUserProfileForEdit()
             .subscribe((result: CurrentUserProfileEditDto) => {
                 console.log(result);
-                
+                this.userAvatarUrl = result.profilePictureUrl ? result.profilePictureUrl : DefaultProfilePath.defaultProfilePictureUrl;
                 this.shownLoginName = result.nickName;
             })
     }

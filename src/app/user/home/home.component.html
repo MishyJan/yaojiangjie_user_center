@@ -3,9 +3,28 @@
         <div class="content">
             <div class="user-header">
                 <div class="avatar-wrap">
-                    <img class="avatar" [src]="userAvatarUrl" alt="userAvatar">
+                    <p class="avatar"  [ngStyle]="{'background-image': 'url(' + userAvatarUrl + ')'}" alt="avatar"></p>
                     <h1 class="user-name">{{ shownLoginName }}</h1>
                 </div>
+            </div>
+
+            <div class="user-setting box-shadow">
+                    <div class="list-item clearfix" routerLink="/user/settings">
+                        <span class="text pull-left">账户安全</span>
+                        <span class="icon pull-right yaojiangjie-icon-app-drop-down"></span>
+                    </div>
+                    <div class="list-item clearfix" routerLink="/user/about">
+                        <span class="text pull-left">关于要讲解</span>
+                        <span class="icon pull-right yaojiangjie-icon-app-drop-down"></span>
+                    </div>
+                    <div class="list-item clearfix">
+                        <span class="text pull-left" routerLink="/user/feedback">意见反馈</span>
+                        <span class="icon pull-right yaojiangjie-icon-app-drop-down"></span>
+                    </div>
+                    <div class="list-item clearfix">
+                        <span class="text pull-left">退出账户</span>
+                        <span class="icon pull-right yaojiangjie-icon-app-drop-down"></span>
+                    </div>
             </div>
         </div>
     </div>

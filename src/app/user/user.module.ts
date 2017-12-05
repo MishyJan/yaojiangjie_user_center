@@ -10,6 +10,9 @@ import { UserComponent } from './user.component';
 import { UserRoutingModule } from './user-routing.module';
 import { UtilsModule } from '@shared/utils/utils.module';
 import { UserHomeComponent } from 'app/user/home/home.component';
+import { AboutComponent } from './about/about.component';
+import { SettingsComponent } from './settings/settings.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
     imports: [
@@ -27,8 +30,11 @@ import { UserHomeComponent } from 'app/user/home/home.component';
     ],
     declarations: [
         UserComponent,
-        UserHomeComponent
-    ],
+        UserHomeComponent,
+    AboutComponent,
+    SettingsComponent,
+    FeedbackComponent
+],
     providers: [
     ],
     bootstrap: [UserComponent]

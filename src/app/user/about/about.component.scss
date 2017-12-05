@@ -1,0 +1,42 @@
+@import '../../../sass/yaojiangjie/_colors';
+@import '../../../sass/yaojiangjie/_mixin';
+.about-wrap {
+    width: 100%;
+    padding: 15px;
+    overflow-y: auto;
+    .avatar-wrap {
+        width: 60px;
+        height: 60px;
+        margin: 5px auto 20px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: $color-theme;
+        @include flexMiddle(3);
+    }
+    /*  公用样式 */
+    .section-item + .section-item {
+        margin-top: 20px;
+    }
+    .section-item {
+        .sub-title {
+            color: $color-theme;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .desc {
+            color: #666;
+            font-size: 12px;
+            text-align: justify;
+            line-height: 20px;
+        }
+    }
+
+    .summary-wrap {
+        .title {
+            color: $color-theme;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    }
+}

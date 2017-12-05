@@ -24,14 +24,14 @@ export class WeChatScanQRCodeService extends AppComponentBase {
     ) {
         super(injector);
     }
-    
+
     ngOnInit() {
-        
+
     }
 
     init(): void {
         console.log(device);
-        
+
         if (device.ios) {
             this.jsApiSignatureInput.sourceUrl = AppConsts.WxJssdkUrl;
         } else {
