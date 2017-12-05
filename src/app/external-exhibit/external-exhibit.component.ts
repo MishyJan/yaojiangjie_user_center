@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { AfterViewInit, Component, ElementRef, Injector, OnInit, ViewChild } from '@angular/core';
 import { CreateOrUpdateRecordInput, ScanServiceProxy } from 'shared/service-proxies/service-proxies';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -5,7 +6,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AppComponentBase } from 'shared/common/app-component-base';
 import { LocalStorageService } from 'shared/services/local-storage.service';
 import { Location } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
 import { WeChatScanQRCodeService } from 'shared/services/wechat-scan-qrcode.service';
 import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
 
@@ -48,8 +48,8 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
 
     getWxScanQRCodeUrl(): void {
         if (this._weChatScanQRCodeService.scanResult) {
-            // this.createRecord(this._weChatScanQRCodeService.scanResult);
-            this.createRecord("http://www.vdaolan.com/hy/exhibit_list.php");
+            this.createRecord(this._weChatScanQRCodeService.scanResult);
+            // this.createRecord("http://www.vdaolan.com/hy/exhibit_list.php");
             this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this._weChatScanQRCodeService.scanResult);
             this._localStorageService.removeItem("wxScaenQRCodeInfoList");
         } else {
