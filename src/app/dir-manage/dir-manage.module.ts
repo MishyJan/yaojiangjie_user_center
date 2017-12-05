@@ -9,6 +9,8 @@ import { DirManageRoutes } from 'app/dir-manage/dir-manage.routing';
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap';
 import { SaveDirModelComponent } from 'app/dir-manage/create-or-edit-dir/save-dir-model/save-dir-model.component';
+import { AppCommonModule } from 'app/shared/common/app-common.module';
+
 
 @NgModule({
     imports: [
@@ -17,6 +19,7 @@ import { SaveDirModelComponent } from 'app/dir-manage/create-or-edit-dir/save-di
         FormsModule,
         ngCommon.CommonModule,
         ModalModule.forRoot(),
+        AppCommonModule,
     ],
     declarations: [
         DirManageComponent,

@@ -176,22 +176,22 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
         this.saveDirModel.showModel(this.wxScanQRCodeInfoList);
     }
 
-    // 还原touch后的状态
-    private onTouchResetState(): void {
-        this.touchedListType.forEach((ele, inx) => {
-            this.touchedListType[inx] = false;
-        });
-    }
-
     /* 
         检测状态: 判断是否是创建全新目录还是编辑已有目录
         @return boolean
         createState: true
         editState: false
     */
-    private checkIsCreateOrEditState(): boolean {
+    public checkIsCreateOrEditState(): boolean {
         this.dirId = this._route.snapshot.paramMap.get('dirId');
         return this.dirId ? false : true;
+    }
+
+    // 还原touch后的状态
+    private onTouchResetState(): void {
+        this.touchedListType.forEach((ele, inx) => {
+            this.touchedListType[inx] = false;
+        });
     }
 
     /* 

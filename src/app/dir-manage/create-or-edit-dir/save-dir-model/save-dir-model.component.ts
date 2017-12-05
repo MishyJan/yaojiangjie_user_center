@@ -114,7 +114,7 @@ export class SaveDirModelComponent extends AppComponentBase implements OnInit {
     createState: true
     editState: false
 */
-    private checkIsCreateOrEditState(): boolean {
+    public checkIsCreateOrEditState(): boolean {
         return this._route.snapshot.paramMap.get('dirId') ? false : true;
     }
 
