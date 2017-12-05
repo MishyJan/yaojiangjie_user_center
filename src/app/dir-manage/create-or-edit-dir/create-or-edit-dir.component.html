@@ -3,7 +3,7 @@
         <div class="wrap">
             <div class="dir-content">
                 <div class="item box-shadow" [@routerTransition] [ngClass]="{'open': touchedListType[index]}" *ngFor="let item of wxScanQRCodeInfoList; let index = index;">
-                    <div class="touch-item" (touchstart)="onTouchInit($event)" (touchmove)="onTouchMove($event, index)">
+                    <div class="touch-item" (click)="linkTargetPage(item.url)" (touchstart)="onTouchInit($event)" (touchmove)="onTouchMove($event, index)">
                         <div class="triangle-wrap" *ngIf="item.sticked"><span class="icon yaojiangjie-icon-app-collection"></span></div>
                         <div class="img-wrap" [ngStyle]="{'background-image': 'url(' + item.coverUrl + ')'}">
                         </div>

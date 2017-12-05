@@ -1,8 +1,10 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { AppComponentBase } from 'shared/common/app-component-base';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
 import { ScanServiceProxy, GetRecordForEditOutput, CreateOrUpdateRecordInput } from 'shared/service-proxies/service-proxies';
+import { LocalStorageService } from 'shared/services/local-storage.service';
 
 @Component({
     selector: 'yaojiangjie-edit-subdir',
@@ -26,7 +28,9 @@ export class CreateOrEditSubdirComponent extends AppComponentBase implements OnI
 
     constructor(
         private injector: Injector,
+        private _location: Location,
         private _route: ActivatedRoute,
+        private _localStorageService: LocalStorageService,
         private _scanServiceProxy: ScanServiceProxy,
     ) {
         super(injector);
@@ -57,7 +61,8 @@ export class CreateOrEditSubdirComponent extends AppComponentBase implements OnI
         .createOrUpdateRecord(this.recordInput)
         .subscribe( result => {
             this.message.success("保存成功!");
-            this.loadData();
+            this._localStorageService.removeItem("wxScaenQRCodeInfoList");
+            this._location.back();
         });
     }
 

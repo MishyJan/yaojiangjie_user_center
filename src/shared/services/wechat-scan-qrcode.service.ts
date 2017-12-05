@@ -30,7 +30,13 @@ export class WeChatScanQRCodeService extends AppComponentBase {
     }
 
     init(): void {
-        this.jsApiSignatureInput.sourceUrl = AppConsts.WxJssdkUrl;
+        console.log(device);
+        
+        if (device.ios) {
+            this.jsApiSignatureInput.sourceUrl = AppConsts.WxJssdkUrl;
+        } else {
+            this.jsApiSignatureInput.sourceUrl = location.href;
+        }
         this.jsApiSignatureInput.nonceStr = RandomHelper.randomString(10);
         this.jsApiSignatureInput.timestamp = moment().unix();
         this._wechatJSService

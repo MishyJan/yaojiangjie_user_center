@@ -30,8 +30,6 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
     touchedEndX: number;
     // touch起始位置
     touchedStartX: number;
-    /* 微信扫码保存的数据 */
-    mockWxScanQRCodeInfoList: any;
     /* 获取目录ID */
     dirId: string;
 
@@ -123,6 +121,7 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
                     .subscribe(result => {
                         this.message.success("删除成功!");
                         this.scanRecordIds.ids = [];
+                        this._localStorageService.removeItem("wxScaenQRCodeInfoList");
                         this.loadData();
                     })
             }
@@ -142,6 +141,7 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
                     .subscribe(result => {
                         this.message.success("已全部清空!");
                         this.scanRecordIds.ids = [];
+                        this._localStorageService.removeItem("wxScaenQRCodeInfoList");
                         this._router.navigate(['/']);
                     })
             }
@@ -162,18 +162,19 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
         this._scanServiceProxy
         .createOrUpdateRecord(this.recordInput)
         .subscribe( result => {
+            this._localStorageService.removeItem("wxScaenQRCodeInfoList");
             this.loadData();
-            // if (this.wxScanQRCodeInfoList[index].sticked) {
-            //     this.notify.success("置顶成功!");
-            //     return;
-            // }
-            // this.notify.success("取消置顶成功!");
         })
     }
 
     // 保存目录
     saveDir(): void {
         this.saveDirModel.showModel(this.wxScanQRCodeInfoList);
+    }
+
+    // 跳转到展品页
+    linkTargetPage(url: string): void {
+        this._router.navigate(['/external-exhibit'], {queryParams: {exhibitUrl: url}});
     }
 
     /* 
