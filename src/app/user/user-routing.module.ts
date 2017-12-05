@@ -28,7 +28,7 @@ import { UserHomeComponent } from './home/home.component';
                         component: AboutComponent
                     },
                     {
-                        path: ' feedback',
+                        path: 'feedback',
                         component: FeedbackComponent
                     },
                     {

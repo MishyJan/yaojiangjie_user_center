@@ -1,0 +1,21 @@
+@import '../../../sass/yaojiangjie/_mixin';
+.feedback-wrap {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 0 15%;
+    @include flexMiddle(3);
+    .qrcode-wrap {
+        width: 100%;
+        padding: 20px 20px 40px 20px;
+        background-color: #fff;
+        border-radius: 4px;
+        .content {
+            text-align: center;
+            color: #808080;
+            .text {
+                margin-top: 15px;
+            }
+        }
+    }
+}
