@@ -40,13 +40,11 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
                 // 如果路由带有可选参数，即从已有的目录跳转过来，则不创建扫码记录；反之则是扫码进入
                 if (params['exhibitUrl']) {
                     this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(params['exhibitUrl']);
-                    return;
                 }
-                this._weChatScanQRCodeService
-                    .successScanHandle
-                    .subscribe((url: string) => {
-                        this.getWxScanQRCodeUrl(url);
-                    });
+
+                if (params['wxScanUrl']) {
+                    this.getWxScanQRCodeUrl(params['wxScanUrl']);
+                }
             });
     }
 
