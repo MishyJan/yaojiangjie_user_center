@@ -38,7 +38,7 @@ export class WeChatScanQRCodeService extends AppComponentBase {
             )
             .subscribe((result: GetJsApiSignatureOutput) => {
                 wx.config({
-                    debug: true,
+                    // debug: true,
                     appId: result.appId,
                     nonceStr: this.jsApiSignatureInput.nonceStr,
                     timestamp: this.jsApiSignatureInput.timestamp,
