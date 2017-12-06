@@ -30,7 +30,7 @@ export class AppConsts {
         defaultPageSize: 10,
         pageSizes: [5, 10, 20, 50, 100],
         maxPageSize: 1000,
-    }
+    };
 
     static readonly accessRecord = {
         scanResult: 'scanResult',
@@ -42,5 +42,5 @@ export class DefaultProfilePath {
 }
 
 export class ColourCode {
-    static readonly colors = ["#338EFF", "#02BF25", "#F79839"];
+    static readonly colors = ['#338EFF', '#02BF25', '#F79839'];
 }

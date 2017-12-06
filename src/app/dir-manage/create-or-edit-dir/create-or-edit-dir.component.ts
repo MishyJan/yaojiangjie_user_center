@@ -120,9 +120,9 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
                         this.message.success('删除成功!');
                         this.scanRecordIds.ids = [];
                         this.loadData();
-                    })
+                    });
             }
-        })
+        });
     }
 
     // 清空所有目录条目
@@ -130,7 +130,6 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
         this.wxScanQRCodeInfoList.forEach(element => {
             this.scanRecordIds.ids.push(element.id);
         });
-
         this.message.confirm('您是否要删除所有数据?', (res) => {
             if (res) {
                 this._scanServiceProxy
@@ -139,9 +138,18 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
                         this.message.success('已全部清空!');
                         this.scanRecordIds.ids = [];
                         this._router.navigate(['/']);
-                    })
+                    });
             }
-        })
+        });
+    }
+
+    deleteDir(): void {
+        this._scanServiceProxy
+        .deleteCatalog(+this.dirId)
+        .subscribe( () => {
+            this.notify.success('目录删除成功!');
+            this._router.navigate(['/looked-exhibit']);
+        });
     }
 
     // 置顶条目
@@ -190,12 +198,12 @@ export class CreateOrEditDirComponent extends AppComponentBase implements OnInit
         });
     }
 
-    /* 
+    /*
         检测是否有扫码数据记录
         @return void
     */
     private checkHasScanRecord(): void {
-        if (this.wxScanQRCodeInfoList.length <= 0) {
+        if (this.wxScanQRCodeInfoList.length <= 0 && this.checkIsCreateOrEditState()) {
             this.message.warn('暂无扫码记录,请扫码!');
             this._router.navigate(['/index']);
         }
