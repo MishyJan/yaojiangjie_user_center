@@ -1,3 +1,5 @@
+@import '../../../sass//yaojiangjie/_mixin';
+@import '../../../sass//yaojiangjie/_colors';
 .login-wrap {
     width: calc(100% - 60px);
     position: relative;
@@ -17,9 +19,9 @@
         border-radius: 50%;
         text-align: center;
         box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+        @include flexMiddle(3);
         img {
             display: inline-block;
-            margin-right: 6px;
         }
     }
     .login-body {
@@ -28,11 +30,11 @@
             width: 100%;
         }
         .account-action {
-            color: #FF9641;
+            color: $color-theme;
             margin-top: 20px;
         }
         .login-btn-wrap {
-            background-color: #FF9641; // border-radius: 30px;
+            background-color: $color-theme;
             font-size: 16px;
             margin: 0 auto;
             margin-top: 20px;
@@ -43,7 +45,7 @@
             .title-text {
                 display: flex;
                 position: relative;
-                color: #AAAAAA;
+                color: #AAA;
                 .text {
                     padding: 0 10px;
                 }
@@ -62,6 +64,9 @@
                 margin-top: 24px;
                 .item {
                     flex: 1;
+                    &.wechat-icon {
+                        font-size: 38px;
+                    }
                 }
             }
         }
@@ -76,7 +81,7 @@
         right: 0;
         .btn {
             font-size: 12px;
-            background-color: #ff9742;
+            background-color: $color-theme;
             padding: 8px 14px 7px 14px;
         }
     }

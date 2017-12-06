@@ -28,7 +28,6 @@ export class LoginComponent extends AppComponentBase implements OnInit, AfterVie
     ordinaryLogin = true;
     saving = false;
     isSendSMS = false;
-    
     @ViewChild('smsBtn') _smsBtn: ElementRef;
     constructor(
         injector: Injector,

@@ -1,10 +1,12 @@
+@import '../../../sass//yaojiangjie/_colors';
+@import '../../../sass//yaojiangjie/_mixin';
 .register-wrap {
-    width: 380px;
+    width: calc(100% - 60px);
     position: relative;
-    display: block;
     margin: 100px auto 0;
     padding: 60px 30px 30px;
     background-color: #FFF;
+    border-radius: 6px;
     .logo-wrap {
         width: 100px;
         height: 100px;
@@ -17,10 +19,10 @@
         border-radius: 50%;
         text-align: center;
         box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+        @include flexMiddle(3);
         img {
             width: 40px;
             display: inline-block;
-            margin-right: 6px;
         }
     }
     .register-body {
@@ -31,8 +33,9 @@
                 top: -14px;
                 right: 0;
                 .btn {
+                    font-size: 12px;
                     padding: 8px 14px 7px 14px;
-                    background-color: #ff9742;
+                    background-color: $color-theme;
                 }
             }
         }
@@ -48,6 +51,7 @@
                 margin-bottom: 20px;
                 background: url("/assets/common/images/login/bg-gradient.jpg");
                 background-repeat: repeat-y;
+                background-color: $color-theme;
             }
         }
     }

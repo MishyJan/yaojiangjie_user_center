@@ -3,7 +3,6 @@ import { Component, ElementRef, Injector, NgModule, OnInit, ViewChild } from '@a
 
 import { AppComponentBase } from '@shared/common/app-component-base';
 import { LoginService } from "shared/services/login.service";
-import { RegisterModel } from './register.model';
 import { Router } from '@angular/router';
 import { VerificationCodeType } from "shared/AppEnums";
 import { accountModuleAnimation } from '@shared/animations/routerTransition';

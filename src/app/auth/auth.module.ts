@@ -24,7 +24,6 @@ import { ResetPasswordComponent } from './password/reset-password.component';
 import { SendTwoFactorCodeComponent } from './login/send-two-factor-code.component';
 import { TenantChangeComponent } from './shared/tenant-change.component';
 import { TenantChangeModalComponent } from './shared/tenant-change-modal.component';
-import { TenantRegistrationHelperService } from './register/tenant-registration-helper.service';
 import { TooltipModule } from 'ngx-bootstrap';
 import { UtilsModule } from '@shared/utils/utils.module';
 import { ValidateTwoFactorCodeComponent } from './login/validate-two-factor-code.component';
@@ -62,7 +61,6 @@ import { ValidateTwoFactorCodeComponent } from './login/validate-two-factor-code
         LuosimaoCaptcha
     ],
     providers: [
-        TenantRegistrationHelperService,
         TooltipModule
     ]
 })
