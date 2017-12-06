@@ -28,7 +28,7 @@ export class UserHomeComponent implements OnInit {
             .subscribe((result: CurrentUserProfileEditDto) => {
                 console.log(result);
                 this.userAvatarUrl = result.profilePictureUrl ? result.profilePictureUrl : DefaultProfilePath.defaultProfilePictureUrl;
-                this.shownLoginName = result.nickName;
+                this.shownLoginName = result.name;
             })
     }
 }

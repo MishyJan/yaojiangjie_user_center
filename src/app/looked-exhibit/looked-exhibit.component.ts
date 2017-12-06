@@ -16,9 +16,9 @@ export class LookedExhibitComponent extends AppComponentBase implements OnInit {
     allDirSelectData: CatalogListDto[];
     /* 获取所有目录DTO */
     dirName: string;
-    skipCount: number = 0;
+    skipCount = 0;
     maxResultCount: number = AppConsts.grid.defaultPageSize;
-    sorting: string
+    sorting: string;
     constructor(
         private injector: Injector,
         private _router: Router,
@@ -34,17 +34,15 @@ export class LookedExhibitComponent extends AppComponentBase implements OnInit {
 
     // 获取所有目录
     getAllDir(): void {
-        this._localStorageService.getItem('allDirSelectData', () => {
-            return this._scanServiceProxy
-                .getAllCatalog(
-                this.dirName,
-                this.sorting,
-                this.maxResultCount,
-                this.skipCount
-                )
-        }).then((result: PagedResultDtoOfCatalogListDto) => {
-            this.allDirSelectData = result.items;
-        })
+        this._scanServiceProxy
+            .getAllCatalog(
+            this.dirName,
+            this.sorting,
+            this.maxResultCount,
+            this.skipCount
+            ).subscribe((result: PagedResultDtoOfCatalogListDto) => {
+                this.allDirSelectData = result.items;
+            });
     }
 
     toDirPath(id: number): void {

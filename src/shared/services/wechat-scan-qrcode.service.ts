@@ -9,13 +9,10 @@ import { RandomHelper } from 'shared/helpers/RandomHelper';
 import { Router } from '@angular/router';
 import { device } from 'device.js';
 
-export class jsApiInput {
-
-}
 @Injectable()
 export class WeChatScanQRCodeService extends AppComponentBase {
-    scanResult: string = "http://www.vdaolan.com/hy/exhibit_list.php";
     jsApiSignatureInput: JsApiSignatureInput = new JsApiSignatureInput();
+    successScanHandle = new EventEmitter<string>();
     constructor(
         private injector: Injector,
         private _router: Router,
@@ -25,13 +22,7 @@ export class WeChatScanQRCodeService extends AppComponentBase {
         super(injector);
     }
 
-    ngOnInit() {
-
-    }
-
     init(): void {
-        console.log(device);
-
         if (device.ios) {
             this.jsApiSignatureInput.sourceUrl = AppConsts.WxJssdkUrl;
         } else {
@@ -54,22 +45,22 @@ export class WeChatScanQRCodeService extends AppComponentBase {
                     signature: result.signature,
                     jsApiList: ['scanQRCode']
                 });
-            })
+            });
     }
 
     scanQRCodeHandler(): void {
         if (this.isWeiXin()) {
             wx.scanQRCode({
                 needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-                scanType: ["qrCode", "barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                scanType: ['qrCode', 'barCode'], // 可以指定扫二维码还是一维码，默认二者都有
                 success: res => {
                     // 当needResult 为 1 时，扫码返回的结果
-                    this.scanResult = res.resultStr;
                     this._router.navigate(['/external-exhibit']);
+                    this.successScanHandle.emit(res.resultStr);
                 }
             });
         } else {
-            this.message.warn("请在微信内打开!");
+            this.message.warn('请在微信内打开!');
         }
     }
 }

@@ -50,46 +50,33 @@ export class SaveDirModelComponent extends AppComponentBase implements OnInit {
         this.saveDirModel.hide();
     }
 
-    /* 
+    /*
         是否显示已有目录
         显示：true
-        隐藏：false    
+        隐藏：false
      */
     toggleShowExistedDir(): void {
         this.isShowExistedDirFlag = !this.isShowExistedDirFlag;
-        this.checkIsSave2ExistedDir();
     }
 
     // 获取所有目录
     getAllDir(): void {
-        this._localStorageService.getItem('allDirSelectData', () => {
-            return this._scanServiceProxy
-                .getAllCatalog(
-                this.dirName,
-                this.sorting,
-                this.maxResultCount,
-                this.skipCount
-                )
-        }).then((result: PagedResultDtoOfCatalogListDto) => {
-            console.log(result);
-            this.allDirSelectData = result.items;
-        })
+        this._scanServiceProxy
+            .getAllCatalog(
+            this.dirName,
+            this.sorting,
+            this.maxResultCount,
+            this.skipCount
+            ).subscribe(result => {
+                this.allDirSelectData = result.items;
+            });
     }
 
     saveDirData(): void {
-        // 编辑状态下，只对目录名更新
-        if (!this.checkIsCreateOrEditState()) {
-            this.catalogInput.id = +this._route.snapshot.paramMap.get('dirId');
-            this.catalogInput.name = this.catalogInputName;
-            this.catalogInput.save2ExistedCatalog = false;
-            this.catalogInput.scanRecords = [];
-            this.catalogInput.sticked = false;
-        }
+        this.checkIsSave2ExistedDir();
         this._scanServiceProxy
             .createOrUpdateCatalog(this.catalogInput).subscribe(result => {
                 this.hideModel();
-                this._localStorageService.removeItem("allDirSelectData");
-                this._localStorageService.removeItem("wxScaenQRCodeInfoList");
                 this._router.navigate(['/looked-exhibit']);
             });
     }
@@ -97,7 +84,6 @@ export class SaveDirModelComponent extends AppComponentBase implements OnInit {
     getSelectedDirInfo(dirItem: CatalogListDto, index: number): void {
         this.selectedDirIndex = index;
         this.selectedDirItem = dirItem;
-        this.checkIsSave2ExistedDir();
     }
 
     // 获取已存在目录的高度
@@ -129,18 +115,27 @@ export class SaveDirModelComponent extends AppComponentBase implements OnInit {
 
     // 检测是否保存到已存在的目录
     private checkIsSave2ExistedDir(): void {
-        if (!this.isShowExistedDirFlag) {
-            this.catalogInput.sticked = false;
-            this.catalogInput.id = null;
+        // 编辑状态下，只对目录名更新
+        if (!this.checkIsCreateOrEditState()) {
+            this.catalogInput.id = +this._route.snapshot.paramMap.get('dirId');
             this.catalogInput.name = this.catalogInputName;
             this.catalogInput.save2ExistedCatalog = false;
-            this.catalogInput.scanRecords = this.allDirIds;
+            this.catalogInput.scanRecords = [];
+            this.catalogInput.sticked = false;
         } else {
-            this.catalogInput.save2ExistedCatalog = true;
-            this.catalogInput.id = this.selectedDirItem.id;
-            this.catalogInput.name = this.selectedDirItem.name;
-            this.catalogInput.sticked = this.selectedDirItem.sticked;
-            this.catalogInput.scanRecords = this.allDirIds;
+            if (!this.isShowExistedDirFlag) {
+                this.catalogInput.sticked = false;
+                this.catalogInput.id = null;
+                this.catalogInput.name = this.catalogInputName;
+                this.catalogInput.save2ExistedCatalog = false;
+                this.catalogInput.scanRecords = this.allDirIds;
+            } else {
+                this.catalogInput.sticked = this.selectedDirItem.sticked;
+                this.catalogInput.id = this.selectedDirItem.id;
+                this.catalogInput.name = this.selectedDirItem.name;
+                this.catalogInput.save2ExistedCatalog = true;
+                this.catalogInput.scanRecords = this.allDirIds;
+            }
         }
     }
 }

@@ -24,93 +24,105 @@
     -moz-osx-font-smoothing: grayscale;
     vertical-align: middle;
 }
-.yaojiangjie-icon-linked-qq {
-  &:before {
-    content: $yaojiangjie-icon-linked-qq;
-  }
-}
-.yaojiangjie-icon-linked-wechat {
-  &:before {
-    content: $yaojiangjie-icon-linked-wechat;
-  }
-}
-.yaojiangjie-icon-linked-weibo {
-  &:before {
-    content: $yaojiangjie-icon-linked-weibo;
-  }
-}
-.yaojiangjie-icon-app-close {
-  &:before {
-    content: $yaojiangjie-icon-app-close;
-  }
-}
-.yaojiangjie-icon-app-confirm {
-  &:before {
-    content: $yaojiangjie-icon-app-confirm;
-  }
-}
-.yaojiangjie-icon-app-settings {
-  &:before {
-    content: $yaojiangjie-icon-app-settings;
-  }
-}
-.yaojiangjie-icon-app-catalog-1 {
-  &:before {
-    content: $yaojiangjie-icon-app-catalog-1;
-  }
-}
-.yaojiangjie-icon-app-drop-down {
-  &:before {
-    content: $yaojiangjie-icon-app-drop-down;
-  }
-}
-.yaojiangjie-icon-app-home {
-  &:before {
-    content: $yaojiangjie-icon-app-home;
-  }
-}
+
+
 .yaojiangjie-icon-app-catalog {
-  &:before {
-    content: $yaojiangjie-icon-app-catalog;
+    &:before {
+      content: $yaojiangjie-icon-app-catalog;
+    }
   }
-}
-.yaojiangjie-icon-app-collection {
-  &:before {
-    content: $yaojiangjie-icon-app-collection;
+  .yaojiangjie-icon-app-catalog-1 {
+    &:before {
+      content: $yaojiangjie-icon-app-catalog-1;
+    }
   }
-}
-.yaojiangjie-icon-app-delete {
-  &:before {
-    content: $yaojiangjie-icon-app-delete;
+  .yaojiangjie-icon-app-close {
+    &:before {
+      content: $yaojiangjie-icon-app-close;
+    }
   }
-}
-.yaojiangjie-icon-app-edit {
-  &:before {
-    content: $yaojiangjie-icon-app-edit;
+  .yaojiangjie-icon-app-collection {
+    &:before {
+      content: $yaojiangjie-icon-app-collection;
+    }
   }
-}
-.yaojiangjie-icon-app-not-collection {
-  &:before {
-    content: $yaojiangjie-icon-app-not-collection;
+  .yaojiangjie-icon-app-confirm {
+    &:before {
+      content: $yaojiangjie-icon-app-confirm;
+    }
   }
-}
-.yaojiangjie-icon-app-photo {
-  &:before {
-    content: $yaojiangjie-icon-app-photo;
+  .yaojiangjie-icon-app-delete {
+    &:before {
+      content: $yaojiangjie-icon-app-delete;
+    }
   }
-}
-.yaojiangjie-icon-app-qrcode {
-  &:before {
-    content: $yaojiangjie-icon-app-qrcode;
+  .yaojiangjie-icon-app-drop-down {
+    &:before {
+      content: $yaojiangjie-icon-app-drop-down;
+    }
   }
-}
-.yaojiangjie-icon-app-scancode {
-  &:before {
-    content: $yaojiangjie-icon-app-scancode;
+  .yaojiangjie-icon-app-edit {
+    &:before {
+      content: $yaojiangjie-icon-app-edit;
+    }
   }
-}
-.yaojiangjie-icon-app-user {
-  &:before {
-    content: $yaojiangjie-icon-app-user;
+  .yaojiangjie-icon-app-home {
+    &:before {
+      content: $yaojiangjie-icon-app-home;
+    }
   }
-}
+  .yaojiangjie-icon-app-linked-qq {
+    &:before {
+      content: $yaojiangjie-icon-app-linked-qq;
+    }
+  }
+  .yaojiangjie-icon-app-linked-wechat {
+    &:before {
+      content: $yaojiangjie-icon-app-linked-wechat;
+    }
+  }
+  .yaojiangjie-icon-app-linked-weibo {
+    &:before {
+      content: $yaojiangjie-icon-app-linked-weibo;
+    }
+  }
+  .yaojiangjie-icon-app-not-collection {
+    &:before {
+      content: $yaojiangjie-icon-app-not-collection;
+    }
+  }
+  .yaojiangjie-icon-app-passwd {
+    &:before {
+      content: $yaojiangjie-icon-app-passwd;
+    }
+  }
+  .yaojiangjie-icon-app-phone {
+    &:before {
+      content: $yaojiangjie-icon-app-phone;
+    }
+  }
+  .yaojiangjie-icon-app-photo {
+    &:before {
+      content: $yaojiangjie-icon-app-photo;
+    }
+  }
+  .yaojiangjie-icon-app-qrcode {
+    &:before {
+      content: $yaojiangjie-icon-app-qrcode;
+    }
+  }
+  .yaojiangjie-icon-app-scancode {
+    &:before {
+      content: $yaojiangjie-icon-app-scancode;
+    }
+  }
+  .yaojiangjie-icon-app-settings {
+    &:before {
+      content: $yaojiangjie-icon-app-settings;
+    }
+  }
+  .yaojiangjie-icon-app-user {
+    &:before {
+      content: $yaojiangjie-icon-app-user;
+    }
+  }

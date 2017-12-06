@@ -35,25 +35,28 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
 
     ngOnInit() {
         this._route
-        .queryParams
-        .subscribe(params => {
-            // 如果路由带有可选参数，即从已有的目录跳转过来，则不创建扫码记录；反之则是扫码进入
-            if (params['exhibitUrl']) {
-                this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(params['exhibitUrl']);
-                return;
-            }
-            this.getWxScanQRCodeUrl();
-        })
+            .queryParams
+            .subscribe(params => {
+                // 如果路由带有可选参数，即从已有的目录跳转过来，则不创建扫码记录；反之则是扫码进入
+                if (params['exhibitUrl']) {
+                    this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(params['exhibitUrl']);
+                    return;
+                }
+                this._weChatScanQRCodeService
+                    .successScanHandle
+                    .subscribe((utl: string) => {
+                        this.getWxScanQRCodeUrl(utl);
+                    });
+            });
     }
 
-    getWxScanQRCodeUrl(): void {
-        if (this._weChatScanQRCodeService.scanResult) {
-            this.createRecord(this._weChatScanQRCodeService.scanResult);
+    getWxScanQRCodeUrl(url: string): void {
+        if (url) {
+            this.createRecord(url);
             // this.createRecord("http://www.vdaolan.com/hy/exhibit_list.php");
             this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this._weChatScanQRCodeService.scanResult);
-            this._localStorageService.removeItem("wxScaenQRCodeInfoList");
         } else {
-            this.message.warn("未能检测到有效的URL");
+            this.message.warn('未能检测到有效的URL');
             this._router.navigate(['/index']);
         }
     }
@@ -63,6 +66,5 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
         this.scanRecordInput.url = url;
         this.scanRecordInput.catalogId = null;
         this._scanServiceProxy.createOrUpdateRecord(this.scanRecordInput).subscribe();
-        this._localStorageService.removeItem("wxScaenQRCodeInfoList");
     }
 }

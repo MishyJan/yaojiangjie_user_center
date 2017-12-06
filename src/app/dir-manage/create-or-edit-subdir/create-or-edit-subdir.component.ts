@@ -60,8 +60,7 @@ export class CreateOrEditSubdirComponent extends AppComponentBase implements OnI
         this._scanServiceProxy
         .createOrUpdateRecord(this.recordInput)
         .subscribe( result => {
-            this.message.success("保存成功!");
-            this._localStorageService.removeItem("wxScaenQRCodeInfoList");
+            this.message.success('保存成功!');
             this._location.back();
         });
     }
