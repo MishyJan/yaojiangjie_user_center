@@ -55,7 +55,7 @@ body {
 }
 
 .primary-bgcolor {
-    background-color: #FF9641!important;
+    background-color: $color-theme!important;
 }
 
 .no-padding {
@@ -118,7 +118,7 @@ body {
     padding-top: 32px;
 }
 
-.xiaoyuyue-title-box {
+.yaojiangjie-title-box {
     width: 100%;
     line-height: 64px;
     text-align: center;

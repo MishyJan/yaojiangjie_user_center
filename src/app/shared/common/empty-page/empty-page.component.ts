@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'xiaoyuyue-empty-page',
+  selector: 'yaojiangjie-empty-page',
   templateUrl: './empty-page.component.html',
   styleUrls: ['./empty-page.component.scss']
 })

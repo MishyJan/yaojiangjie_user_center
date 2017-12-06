@@ -6,7 +6,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { AppComponent } from './app.component';
 import { RootModule } from '../root.module';
 
-describe('App: Xiaoyuyue', () => {
+describe('App: Yaojiangjie', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [

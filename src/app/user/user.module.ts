@@ -13,6 +13,8 @@ import { UserHomeComponent } from 'app/user/home/home.component';
 import { AboutComponent } from './about/about.component';
 import { SettingsComponent } from './settings/settings.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { ChangePasswdComponent } from 'app/user/settings/change-passwd/change-passwd.component';
+import { ChangePhoneComponent } from 'app/user/settings/change-phone/change-phone.component';
 
 @NgModule({
     imports: [
@@ -30,11 +32,13 @@ import { FeedbackComponent } from './feedback/feedback.component';
     ],
     declarations: [
         UserComponent,
-        UserHomeComponent,
-    AboutComponent,
-    SettingsComponent,
-    FeedbackComponent
-],
+        UserHomeComponent,
+        AboutComponent,
+        SettingsComponent,
+        FeedbackComponent,
+        ChangePasswdComponent,
+        ChangePhoneComponent
+    ],
     providers: [
     ],
     bootstrap: [UserComponent]

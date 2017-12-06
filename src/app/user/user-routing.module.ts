@@ -9,6 +9,8 @@ import { NgModule } from '@angular/core';
 import { SettingsComponent } from 'app/user/settings/settings.component';
 import { UserComponent } from './user.component';
 import { UserHomeComponent } from './home/home.component';
+import { ChangePasswdComponent } from 'app/user/settings/change-passwd/change-passwd.component';
+import { ChangePhoneComponent } from 'app/user/settings/change-phone/change-phone.component';
 
 @NgModule({
     imports: [
@@ -34,6 +36,14 @@ import { UserHomeComponent } from './home/home.component';
                     {
                         path: 'settings',
                         component: SettingsComponent
+                    },
+                    {
+                        path: 'settings/phone',
+                        component: ChangePhoneComponent
+                    },
+                    {
+                        path: 'settings/passwd',
+                        component: ChangePasswdComponent
                     }
                 ]
             }

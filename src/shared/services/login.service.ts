@@ -93,7 +93,7 @@ export class LoginService {
                         appid: provider.clientId,
                         scope: 'snsapi_login',
                         redirect_uri: AppConsts.appBaseUrl + AppConsts.externalLoginUrl + '?providerName=' + ExternalLoginProvider.WECHAT, /*暂用测试域名*/
-                        state: 'xiaoyuyue',
+                        state: 'yaojiangjie',
                         style: 'black',
                         href: 'https://static.vapps.com.cn/vappszero/wechat-login.css'
                     });
@@ -179,7 +179,7 @@ export class LoginService {
 
         UrlHelper.redirectUrl = this._cookiesService.getCookieValue('UrlHelper.redirectUrl');
         this._cookiesService.deleteCookie('UrlHelper.redirectUrl', '/');
-        const initialUrl = UrlHelper.redirectUrl ? UrlHelper.redirectUrl : UrlHelper.redirectUrl = AppConsts.appBaseUrl + '/user/home';
+        const initialUrl = UrlHelper.redirectUrl ? UrlHelper.redirectUrl : UrlHelper.redirectUrl = AppConsts.appBaseUrl + '/user';
         if (redirectUrl) {
             location.href = redirectUrl;
         } else {
@@ -246,7 +246,7 @@ export class LoginService {
         this._tokenAuthService.externalBinding(model).subscribe(() => {
             UrlHelper.redirectUrl = this._cookiesService.getCookieValue('UrlHelper.redirectUrl');
             this._cookiesService.deleteCookie('UrlHelper.redirectUrl', '/');
-            const initialUrl = UrlHelper.redirectUrl ? UrlHelper.redirectUrl : UrlHelper.redirectUrl = AppConsts.appBaseUrl + '/user/home';
+            const initialUrl = UrlHelper.redirectUrl ? UrlHelper.redirectUrl : UrlHelper.redirectUrl = AppConsts.appBaseUrl + '/user';
             location.href = initialUrl;
         });
     }

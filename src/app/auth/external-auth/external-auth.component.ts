@@ -13,7 +13,7 @@ import { UrlHelper } from '@shared/helpers/UrlHelper';
 import { element } from 'protractor';
 
 @Component({
-    selector: 'xiaoyuyue-loading',
+    selector: 'yaojiangjie-loading',
     templateUrl: './external-auth.component.html',
     styleUrls: ['./external-auth.component.scss']
 })
@@ -88,7 +88,7 @@ export class ExternalAuthComponent extends AppComponentBase implements OnInit, A
         if (!this._sessionService.user) { return; }
         UrlHelper.redirectUrl = this._cookiesService.getCookieValue('UrlHelper.redirectUrl');
         this._cookiesService.deleteCookie('UrlHelper.redirectUrl', '/');
-        const initialUrl = UrlHelper.redirectUrl ? UrlHelper.redirectUrl : UrlHelper.redirectUrl = AppConsts.appBaseUrl + '/user/home';
+        const initialUrl = UrlHelper.redirectUrl ? UrlHelper.redirectUrl : UrlHelper.redirectUrl = AppConsts.appBaseUrl + '/user';
         location.href = initialUrl;
     }
 }

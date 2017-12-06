@@ -23,7 +23,7 @@
         "mobile": false,
         "styles": [
             "../node_modules/bootstrap/dist/css/bootstrap.css",
-            "assets/md-pro/css/material-dashboard.css",
+            "assets/md-pro/sass/material-dashboard.scss",
             "../node_modules/toastr/build/toastr.css",
             "assets/common/styles/flatpickr.css",
             "assets/swiper/css/swiper.css",

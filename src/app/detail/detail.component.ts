@@ -4,7 +4,7 @@ import { YaojiangjieService } from 'shared/services/yaojiangjie-mock.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'xiaoyuyue-detail',
+    selector: 'yaojiangjie-detail',
     templateUrl: './detail.component.html',
     styleUrls: ['./detail.component.scss'],
     animations: [appModuleAnimation()]

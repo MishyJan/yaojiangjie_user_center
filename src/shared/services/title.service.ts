@@ -18,7 +18,7 @@ export class TitleService {
     }
 
     setTitle(routesCollection: Breadcrumb[]) {
-        const title = this.l('Xiaoyuyue');
+        const title = this.l('Yaojiangjie');
 
         const titles = routesCollection.filter((route) => route.displayName);
 
@@ -29,7 +29,7 @@ export class TitleService {
     }
 
     setSingleTitle(title: string) {
-        const newTitle = `${title} - ${this.l('Xiaoyuyue')}`;
+        const newTitle = `${title} - ${this.l('Yaojiangjie')}`;
 
         this.titleService.setTitle(newTitle);
     }

@@ -1,10 +1,10 @@
-import { XiaoyuyuePage } from './app.po';
+import { YaojiangjiePage } from './app.po';
 
-describe('xiaoyuyue App', function() {
-  let page: XiaoyuyuePage;
+describe('Yaojiangjie App', function() {
+  let page: YaojiangjiePage;
 
   beforeEach(() => {
-    page = new XiaoyuyuePage();
+    page = new YaojiangjiePage();
   });
 
   it('should display message saying app works', () => {

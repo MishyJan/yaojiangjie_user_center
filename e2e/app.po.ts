@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class XiaoyuyuePage {
+export class YaojiangjiePage {
   navigateTo() {
     return browser.get('/');
   }

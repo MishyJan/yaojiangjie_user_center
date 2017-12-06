@@ -7,7 +7,7 @@ import { WeChatScanQRCodeService } from 'shared/services/wechat-scan-qrcode.serv
 import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
 
 @Component({
-    selector: 'xiaoyuyue-index',
+    selector: 'yaojiangjie-index',
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.scss'],
     animations: [appModuleSlowAnimation()]

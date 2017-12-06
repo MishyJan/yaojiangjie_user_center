@@ -8,7 +8,7 @@ export class CookiesService {
     appPath: '/';
     tenantIdCookieName = 'Abp.TenantId';
     tokenCookieName = 'Abp.AuthToken';
-    bootDomain = 'xiaoyuyue.com';
+    bootDomain = 'yaojiangjie.com';
     constructor() {
         this.domain = this.getTopDomain(document.domain);
         abp.auth.tokenCookieName = this.tokenCookieName;
