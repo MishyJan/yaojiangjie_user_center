@@ -44,8 +44,8 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
                 }
                 this._weChatScanQRCodeService
                     .successScanHandle
-                    .subscribe((utl: string) => {
-                        this.getWxScanQRCodeUrl(utl);
+                    .subscribe((url: string) => {
+                        this.getWxScanQRCodeUrl(url);
                     });
             });
     }

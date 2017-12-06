@@ -1,4 +1,4 @@
-<div [@routerTransition] style="height: 100%;">
+<div [@routerTransition] style="height: 100%; background-color: #F7F7F7;">
     <div class="looked-exhibit-wrap">
         <div class="content">
             <div class="exhibit-item" (click)="toDirPath(item.id)" *ngFor="let item of allDirSelectData">
@@ -10,7 +10,7 @@
                     <div class="img-wrap" [ngStyle]="{'background-image': 'url(' + item.coverUrl + ')'}"></div>
                     <div class="bottom-info">
                         <p class="title text-overflow">{{ item.name }}</p>
-                        <div class="exhibit-num box-shadow"><span class="number">{{ item.count }}</span></div>
+                        <div class="exhibit-num"><span class="number">{{ item.count }}</span></div>
                     </div>
                 </div>
             </div>

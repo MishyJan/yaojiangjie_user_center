@@ -34,11 +34,11 @@
             <div class="clearfix">
                 <!-- 微信绑定 -->
                 <div class="card-wrap col-xs-6">
-                    <div class="card">
-                        <div class="item">
-                            <div class="content">
-                                <span class="icon yaojiangjie-icon-app-linked-wechat" style="font-size: 30px;"></span>
-                                <p class="text"></p>
+                    <div class="card" (click)="linkWechat()">
+                        <div class=" item ">
+                            <div class="content ">
+                                <span class="icon yaojiangjie-icon-app-linked-wechat " style="font-size: 30px; "></span>
+                                <p class="text ">{{ linkedWechatText }}</p>
                             </div>
                         </div>
                     </div>
