@@ -50,9 +50,9 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
 
     getWxScanQRCodeUrl(url: string): void {
         if (url) {
-            this.createRecord(url);
             // this.createRecord("http://www.vdaolan.com/hy/exhibit_list.php");
             this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+            this.createRecord(url);
         } else {
             this.message.warn('未能检测到有效的URL');
             this._router.navigate(['/index']);
