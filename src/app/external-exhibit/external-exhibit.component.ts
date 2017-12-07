@@ -34,14 +34,8 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
         this._route
             .queryParams
             .subscribe(params => {
-                // 如果路由带有可选参数exhibitUrl，即从已有的目录跳转过来
-                // 如果路由带有可选参数wxScanUrl，即从扫码入口进入
                 if (params['exhibitUrl']) {
                     this.weChatScanQRCodeService.scanQRCodeResultUrl = params['exhibitUrl'];
-                }
-
-                if (params['wxScanUrl']) {
-                    this.weChatScanQRCodeService.scanQRCodeResultUrl = params['wxScanUrl'];
                 }
             });
     }
