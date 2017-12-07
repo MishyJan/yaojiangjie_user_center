@@ -12,10 +12,10 @@ import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Injectable()
 export class WeChatScanQRCodeService extends AppComponentBase {
+    scanQRCodeResultUrl: SafeResourceUrl;
     jsApiSignatureInput: JsApiSignatureInput = new JsApiSignatureInput();
     scanRecordInput: CreateOrUpdateRecordInput = new CreateOrUpdateRecordInput();
     successScanHandle = new EventEmitter<string>();
-    scanQRCodeResultUrl: string;
     constructor(
         private injector: Injector,
         private _router: Router,
@@ -79,9 +79,8 @@ export class WeChatScanQRCodeService extends AppComponentBase {
                         return;
                     }
                     this.createRecord(res.resultStr);
-                    alert(location.href.indexOf);
                     if (location.href.indexOf('/external-exhibit') > 0) {
-                        this.scanQRCodeResultUrl = res.resultStr;
+                        this.scanQRCodeResultUrl = this.sanitizer.bypassSecurityTrustResourceUrl(res.resultStr);
                     } else {
                         this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: res.resultStr }});
                     }

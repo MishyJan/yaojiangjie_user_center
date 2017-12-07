@@ -30,9 +30,6 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
     }
 
     ngOnInit() {
-        setTimeout( () => {
-            alert(this.weChatScanQRCodeService.scanQRCodeResultUrl);
-        }, 3000);
         this._route
             .queryParams
             .subscribe(params => {

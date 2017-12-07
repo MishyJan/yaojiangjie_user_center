@@ -1,5 +1,4 @@
 <div [@routerTransition] style="width: 100%; height: 100%;">
-    <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(weChatScanQRCodeService.scanQRCodeResultUrl)" frameborder="0" width="100%" height="100%"></iframe>
-    <!-- <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(src)" frameborder="0" width="100%" height="100%"></iframe> -->
+    <iframe [src]="weChatScanQRCodeService.scanQRCodeResultUrl" frameborder="0" width="100%" height="100%"></iframe>
 </div>
 <yaojiangjie-paging></yaojiangjie-paging>
