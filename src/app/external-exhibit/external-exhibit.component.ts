@@ -27,8 +27,8 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
         private _location: Location,
         private _localStorageService: LocalStorageService,
         private _scanServiceProxy: ScanServiceProxy,
-        private _weChatScanQRCodeService: WeChatScanQRCodeService,
-        sanitizer: DomSanitizer,
+        public weChatScanQRCodeService: WeChatScanQRCodeService,
+        public sanitizer: DomSanitizer,
     ) {
         super(injector);
     }
@@ -40,9 +40,9 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
                 // 如果路由带有可选参数，即从已有的目录跳转过来，则不创建扫码记录；反之则是扫码进入
                 if (params['exhibitUrl']) {
                     // this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(params['exhibitUrl']);
-                    this._weChatScanQRCodeService.scanQRCodeResultUrl = params['exhibitUrl'];
+                    this.weChatScanQRCodeService.scanQRCodeResultUrl = params['exhibitUrl'];
                 } else {
-                    this.getWxScanQRCodeUrl(this._weChatScanQRCodeService.scanQRCodeResultUrl);
+                    this.getWxScanQRCodeUrl(this.weChatScanQRCodeService.scanQRCodeResultUrl);
                 }
 
                 // if (params['wxScanUrl']) {
