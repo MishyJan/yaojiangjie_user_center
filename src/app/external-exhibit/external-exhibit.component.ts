@@ -16,7 +16,6 @@ import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
 })
 export class ExternalExhibitComponent extends AppComponentBase implements OnInit {
     trustScanQRCodeUrl: SafeResourceUrl;
-    src: string = 'http://www.vdaolan.com/hy/2017/hsj/hsj_01.php';
     constructor(
         private injector: Injector,
         private el: ElementRef,
@@ -32,14 +31,14 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
 
     ngOnInit() {
         setTimeout( () => {
-            this.src = 'http://www.vdaolan.com/hy/2017/hsj/hsj_02.php';
-        }, 3000)
-        // this._route
-        //     .queryParams
-        //     .subscribe(params => {
-        //         if (params['exhibitUrl']) {
-        //             this.weChatScanQRCodeService.scanQRCodeResultUrl = params['exhibitUrl'];
-        //         }
-        //     });
+            alert(this.weChatScanQRCodeService.scanQRCodeResultUrl);
+        }, 3000);
+        this._route
+            .queryParams
+            .subscribe(params => {
+                if (params['exhibitUrl']) {
+                    this.weChatScanQRCodeService.scanQRCodeResultUrl = params['exhibitUrl'];
+                }
+            });
     }
 }

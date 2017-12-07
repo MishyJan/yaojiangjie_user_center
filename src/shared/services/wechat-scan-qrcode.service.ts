@@ -79,6 +79,7 @@ export class WeChatScanQRCodeService extends AppComponentBase {
                         return;
                     }
                     this.createRecord(res.resultStr);
+                    alert(location.href.indexOf);
                     if (location.href.indexOf('/external-exhibit') > 0) {
                         this.scanQRCodeResultUrl = res.resultStr;
                     } else {
