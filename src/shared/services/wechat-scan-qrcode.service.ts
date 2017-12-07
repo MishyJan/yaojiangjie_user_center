@@ -69,7 +69,7 @@ export class WeChatScanQRCodeService extends AppComponentBase {
                     if (location.href.indexOf('/external-exhibit')) {
                         this.scanQRCodeResultUrl = res.resultStr;
                     } else {
-                        this._router.navigate(['/external-exhibit']);
+                        this._router.navigate(['/external-exhibit'], { queryParams: { wxScanUrl: res.resultStr }, replaceUrl: true });
                     }
 
                 }

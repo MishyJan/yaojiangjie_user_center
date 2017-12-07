@@ -41,27 +41,25 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
                 if (params['exhibitUrl']) {
                     // this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(params['exhibitUrl']);
                     this.weChatScanQRCodeService.scanQRCodeResultUrl = params['exhibitUrl'];
-                } else {
-                    this.getWxScanQRCodeUrl(this.weChatScanQRCodeService.scanQRCodeResultUrl);
                 }
 
-                // if (params['wxScanUrl']) {
-                //     this.getWxScanQRCodeUrl(params['wxScanUrl']);
-                // }
+                if (params['wxScanUrl']) {
+                    this.weChatScanQRCodeService.scanQRCodeResultUrl = params['wxScanUrl'];
+                }
             });
     }
 
-    getWxScanQRCodeUrl(url: string): void {
-        if (url) {
-            // this.createRecord("http://www.vdaolan.com/hy/exhibit_list.php");
-            // this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-            // alert(url);
-            this.createRecord(url);
-        } else {
-            this.message.warn('未能检测到有效的URL');
-            this._router.navigate(['/index']);
-        }
-    }
+    // getWxScanQRCodeUrl(url: string): void {
+    //     if (url) {
+    //         // this.createRecord("http://www.vdaolan.com/hy/exhibit_list.php");
+    //         // this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    //         // alert(url);
+    //         this.createRecord(url);
+    //     } else {
+    //         this.message.warn('未能检测到有效的URL');
+    //         this._router.navigate(['/index']);
+    //     }
+    // }
 
     // 获取URL让服务器分析页面，创建分析记录
     private createRecord(url: string): void {
@@ -69,4 +67,5 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
         this.scanRecordInput.catalogId = null;
         this._scanServiceProxy.createOrUpdateRecord(this.scanRecordInput).subscribe();
     }
+
 }

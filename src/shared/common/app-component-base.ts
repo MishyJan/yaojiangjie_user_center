@@ -97,11 +97,9 @@ export abstract class AppComponentBase {
         }
     }
 
-    // 记录微信jssdk扫码的URL
-
     // 是否有效的URL
     isValidURL(url: string): boolean {
-        var reg = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
-        return reg.test(url);
+        const regexp = /((http|https):\/\/([\w\-]+\.)+[\w\-]+(\/[\w\u4e00-\u9fa5\-\.\/?\@\%\!\&=\+\~\:\#\;\,]*)?)/ig;
+        return regexp.test(url);
     }
 }
