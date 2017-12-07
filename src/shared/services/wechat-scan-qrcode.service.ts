@@ -66,8 +66,11 @@ export class WeChatScanQRCodeService extends AppComponentBase {
                     // } else {
                     //     this._router.navigate(['/external-exhibit'], { queryParams: { wxScanUrl: res.resultStr }, replaceUrl: true });
                     // }
-                    this.scanQRCodeResultUrl = res.resultStr;
-                    this._router.navigate(['/external-exhibit']);
+                    if (location.href.indexOf('/external-exhibit')) {
+                        this.scanQRCodeResultUrl = res.resultStr;
+                    } else {
+                        this._router.navigate(['/external-exhibit']);
+                    }
 
                 }
             });
