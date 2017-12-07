@@ -34,7 +34,7 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
             .queryParams
             .subscribe(params => {
                 if (params['exhibitUrl']) {
-                    this.weChatScanQRCodeService.scanQRCodeResultUrl = params['exhibitUrl'];
+                    this.weChatScanQRCodeService.scanQRCodeResultUrl = this.sanitizer.bypassSecurityTrustResourceUrl(params['exhibitUrl']);
                 }
             });
     }
