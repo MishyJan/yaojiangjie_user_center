@@ -5,6 +5,7 @@ export class appLoadingBusy {
     static effectText = '知晓世界 领略美好';
     static setBusy(): void {
         let bodyEle = $('body');
+        let content = $('<div></div>').addClass('content');
         let effectTextEle = $('<p></p>').addClass('effect-text-wrap').text(appLoadingBusy.effectText);
         let effectTitleEle = $('<h1></h1>').addClass('effect-title-wrap').text(appLoadingBusy.effectTitle);
         let loadingAniWrap = $('<div></div>').addClass('loading-wrap');
@@ -14,14 +15,15 @@ export class appLoadingBusy {
         let appLoadingBusyWrap = $('<div></div>').addClass('app-loading-busy-wrap');
 
         bodyEle.append(appLoadingBusyWrap);
-        appLoadingBusyWrap.append(imgLogo);
-        appLoadingBusyWrap.append(effectTitleEle);
-        appLoadingBusyWrap.append(effectTextEle);
+        appLoadingBusyWrap.append(content);
+        content.append(imgLogo);
+        content.append(effectTitleEle);
+        content.append(effectTextEle);
         appLoadingBusyWrap.append(loadingAniWrap);
         loadingAniWrap.append(loadingSpinner);
-    };
+    }
 
     static clearBusy(): void {
         $('.app-loading-busy-wrap').remove();
-    };
-};
+    }
+}

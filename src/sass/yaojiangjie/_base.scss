@@ -355,30 +355,31 @@ input:-webkit-autofill {
     padding: 0px;
     background-color: #FFF;
     cursor: wait;
-    img.logo {
+    .content {
+        width: 100%;
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -100%);
-    }
-    .effect-title-wrap {
-        width: 100%;
-        position: absolute;
-        bottom: 270px;
-        font-size: 30px;
-        color: #3C4858;
+        transform: translate(-50%, -50%);
         text-align: center;
-        letter-spacing: 8px;
+        .effect-title-wrap {
+            width: 100%;
+            font-size: 30px;
+            color: #3C4858;
+            text-align: center;
+            letter-spacing: 8px;
+            margin-top: 10px;
+        }
+        .effect-text-wrap {
+            width: 100%;
+            font-size: 16px;
+            color: #3C4858;
+            text-align: center;
+            letter-spacing: 8px;
+            margin-top: 16px;
+        }
     }
-    .effect-text-wrap {
-        width: 100%;
-        position: absolute;
-        bottom: 230px;
-        font-size: 16px;
-        color: #3C4858;
-        text-align: center;
-        letter-spacing: 8px;
-    }
+
     .loading-wrap {
         width: 100%;
         position: absolute;
