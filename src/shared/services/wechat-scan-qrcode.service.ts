@@ -8,14 +8,17 @@ import { LocalStorageService } from 'shared/services/local-storage.service';
 import { RandomHelper } from 'shared/helpers/RandomHelper';
 import { Router } from '@angular/router';
 import { device } from 'device.js';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Injectable()
 export class WeChatScanQRCodeService extends AppComponentBase {
     jsApiSignatureInput: JsApiSignatureInput = new JsApiSignatureInput();
     successScanHandle = new EventEmitter<string>();
+    scanQRCodeResultUrl: string;
     constructor(
         private injector: Injector,
         private _router: Router,
+        private sanitizer: DomSanitizer,
         private _localStorageService: LocalStorageService,
         private _wechatJSService: WeChatJSServiceProxy
     ) {
@@ -57,7 +60,15 @@ export class WeChatScanQRCodeService extends AppComponentBase {
                     // 当needResult 为 1 时，扫码返回的结果
                     // let url = `${AppConsts.appBaseUrl}/external-exhibit?wxScanUrl=${res.resultStr}`;
                     // location.href = url;
-                    this._router.navigate(['/external-exhibit'], { queryParams: { wxScanUrl: res.resultStr } , replaceUrl : true});
+                    // if (location.href.indexOf('/external-exhibit')) {
+                    //     this.scanQRCodeResultUrl = this.sanitizer.bypassSecurityTrustResourceUrl(res.resultStr);
+                    //     this.successScanHandle.emit(res.resultStr);
+                    // } else {
+                    //     this._router.navigate(['/external-exhibit'], { queryParams: { wxScanUrl: res.resultStr }, replaceUrl: true });
+                    // }
+                    this.scanQRCodeResultUrl = res.resultStr;
+                    this._router.navigate(['/external-exhibit']);
+
                 }
             });
         } else {

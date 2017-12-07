@@ -39,20 +39,23 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
             .subscribe(params => {
                 // 如果路由带有可选参数，即从已有的目录跳转过来，则不创建扫码记录；反之则是扫码进入
                 if (params['exhibitUrl']) {
-                    this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(params['exhibitUrl']);
+                    // this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(params['exhibitUrl']);
+                    this._weChatScanQRCodeService.scanQRCodeResultUrl = params['exhibitUrl'];
+                } else {
+                    this.getWxScanQRCodeUrl(this._weChatScanQRCodeService.scanQRCodeResultUrl);
                 }
 
-                if (params['wxScanUrl']) {
-                    this.getWxScanQRCodeUrl(params['wxScanUrl']);
-                }
+                // if (params['wxScanUrl']) {
+                //     this.getWxScanQRCodeUrl(params['wxScanUrl']);
+                // }
             });
     }
 
     getWxScanQRCodeUrl(url: string): void {
         if (url) {
             // this.createRecord("http://www.vdaolan.com/hy/exhibit_list.php");
-            this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-            alert(url);
+            // this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+            // alert(url);
             this.createRecord(url);
         } else {
             this.message.warn('未能检测到有效的URL');
