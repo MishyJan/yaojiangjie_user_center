@@ -52,6 +52,7 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
         if (url) {
             // this.createRecord("http://www.vdaolan.com/hy/exhibit_list.php");
             this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+            alert(url);
             this.createRecord(url);
         } else {
             this.message.warn('未能检测到有效的URL');
