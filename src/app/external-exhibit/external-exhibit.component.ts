@@ -30,10 +30,10 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
     }
 
     ngOnInit() {
-        alert(111111111111111111111);
         this._route
             .queryParams
             .subscribe(params => {
+                alert('路由参数变化');
                 if (params['exhibitUrl']) {
                     this.weChatScanQRCodeService.scanQRCodeResultUrl = this.sanitizer.bypassSecurityTrustResourceUrl(params['exhibitUrl']);
                 }
