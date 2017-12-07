@@ -73,16 +73,16 @@ export class WeChatScanQRCodeService extends AppComponentBase {
                 needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                 scanType: ['qrCode', 'barCode'], // 可以指定扫二维码还是一维码，默认二者都有
                 success: res => {
-                    alert(location.href)
                     if (!this.isValidURL(res.resultStr)) {
                         this.message.warn('未能检测到有效的URL,请重新扫码!');
                         this._router.navigate(['/index']);
                         return;
                     }
-                    this.createRecord(res.resultStr);
                     if (location.href.indexOf('/external-exhibit') > 0) {
                         this.scanQRCodeResultUrl = this.sanitizer.bypassSecurityTrustResourceUrl(res.resultStr);
+                        this.createRecord(res.resultStr);
                     } else {
+                        this.createRecord(res.resultStr);
                         this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: res.resultStr }});
                     }
                 }
