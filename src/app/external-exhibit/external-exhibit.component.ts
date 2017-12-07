@@ -22,13 +22,13 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
     constructor(
         private injector: Injector,
         private el: ElementRef,
-        private sanitizer: DomSanitizer,
         private _route: ActivatedRoute,
         private _router: Router,
         private _location: Location,
         private _localStorageService: LocalStorageService,
         private _scanServiceProxy: ScanServiceProxy,
-        private _weChatScanQRCodeService: WeChatScanQRCodeService
+        private _weChatScanQRCodeService: WeChatScanQRCodeService,
+        sanitizer: DomSanitizer,
     ) {
         super(injector);
     }
