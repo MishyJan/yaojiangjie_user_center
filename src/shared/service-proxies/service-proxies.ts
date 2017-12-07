@@ -18,7 +18,7 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
 import { Http, Headers, ResponseContentType, Response } from '@angular/http';
 
-import { Moment } from 'moment';
+import * as moment from 'moment';
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
@@ -661,7 +661,7 @@ export class AuditLogServiceProxy {
      * @skipCount 列表跳过数量(等同: PageSize*PageIndex)
      * @return Success
      */
-    getAuditLogs(startDate: Moment, endDate: Moment, userName: string, serviceName: string, methodName: string, browserInfo: string, hasException: boolean, minExecutionDuration: number, maxExecutionDuration: number, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfAuditLogListDto> {
+    getAuditLogs(startDate: moment.Moment, endDate: moment.Moment, userName: string, serviceName: string, methodName: string, browserInfo: string, hasException: boolean, minExecutionDuration: number, maxExecutionDuration: number, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfAuditLogListDto> {
         let url_ = this.baseUrl + "/api/services/app/AuditLog/GetAuditLogs?";
         if (startDate === undefined || startDate === null)
             throw new Error("The parameter 'startDate' must be defined and cannot be null.");
@@ -752,7 +752,7 @@ export class AuditLogServiceProxy {
      * @skipCount 列表跳过数量(等同: PageSize*PageIndex)
      * @return Success
      */
-    getAuditLogsToExcel(startDate: Moment, endDate: Moment, userName: string, serviceName: string, methodName: string, browserInfo: string, hasException: boolean, minExecutionDuration: number, maxExecutionDuration: number, sorting: string, maxResultCount: number, skipCount: number): Observable<FileDto> {
+    getAuditLogsToExcel(startDate: moment.Moment, endDate: moment.Moment, userName: string, serviceName: string, methodName: string, browserInfo: string, hasException: boolean, minExecutionDuration: number, maxExecutionDuration: number, sorting: string, maxResultCount: number, skipCount: number): Observable<FileDto> {
         let url_ = this.baseUrl + "/api/services/app/AuditLog/GetAuditLogsToExcel?";
         if (startDate === undefined || startDate === null)
             throw new Error("The parameter 'startDate' must be defined and cannot be null.");
@@ -2352,7 +2352,7 @@ export class HostDashboardServiceProxy {
     /**
      * @return Success
      */
-    getDashboardStatisticsData(incomeStatisticsDateInterval: IncomeStatisticsDateInterval, startDate: Moment, endDate: Moment): Observable<HostDashboardData> {
+    getDashboardStatisticsData(incomeStatisticsDateInterval: IncomeStatisticsDateInterval, startDate: moment.Moment, endDate: moment.Moment): Observable<HostDashboardData> {
         let url_ = this.baseUrl + "/api/services/app/HostDashboard/GetDashboardStatisticsData?";
         if (incomeStatisticsDateInterval === undefined || incomeStatisticsDateInterval === null)
             throw new Error("The parameter 'incomeStatisticsDateInterval' must be defined and cannot be null.");
@@ -2410,7 +2410,7 @@ export class HostDashboardServiceProxy {
     /**
      * @return Success
      */
-    getIncomeStatistics(incomeStatisticsDateInterval: IncomeStatisticsDateInterval2, startDate: Moment, endDate: Moment): Observable<GetIncomeStatisticsDataOutput> {
+    getIncomeStatistics(incomeStatisticsDateInterval: IncomeStatisticsDateInterval2, startDate: moment.Moment, endDate: moment.Moment): Observable<GetIncomeStatisticsDataOutput> {
         let url_ = this.baseUrl + "/api/services/app/HostDashboard/GetIncomeStatistics?";
         if (incomeStatisticsDateInterval === undefined || incomeStatisticsDateInterval === null)
             throw new Error("The parameter 'incomeStatisticsDateInterval' must be defined and cannot be null.");
@@ -2468,7 +2468,7 @@ export class HostDashboardServiceProxy {
     /**
      * @return Success
      */
-    getEditionTenantStatistics(startDate: Moment, endDate: Moment): Observable<GetEditionTenantStatisticsOutput> {
+    getEditionTenantStatistics(startDate: moment.Moment, endDate: moment.Moment): Observable<GetEditionTenantStatisticsOutput> {
         let url_ = this.baseUrl + "/api/services/app/HostDashboard/GetEditionTenantStatistics?";
         if (startDate === undefined || startDate === null)
             throw new Error("The parameter 'startDate' must be defined and cannot be null.");
@@ -2781,7 +2781,7 @@ export class IncomeStatisticsServiceServiceProxy {
     /**
      * @return Success
      */
-    getIncomeStatisticsData(startDate: Moment, endDate: Moment, dateInterval: DateInterval): Observable<IncomeStastistic[]> {
+    getIncomeStatisticsData(startDate: moment.Moment, endDate: moment.Moment, dateInterval: DateInterval): Observable<IncomeStastistic[]> {
         let url_ = this.baseUrl + "/api/services/app/IncomeStatisticsService/GetIncomeStatisticsData?";
         if (startDate === undefined || startDate === null)
             throw new Error("The parameter 'startDate' must be defined and cannot be null.");
@@ -6109,6 +6109,57 @@ export class ScanServiceProxy {
     }
 
     /**
+     * 获取目录详情
+     * @return Success
+     */
+    getScanCatalogForEdit(id: number): Observable<GetCatalogForEditOutput> {
+        let url_ = this.baseUrl + "/api/services/app/Scan/GetScanCatalogForEdit?";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined and cannot be null.");
+        else
+            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_ : any) => {
+            return this.processGetScanCatalogForEdit(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetScanCatalogForEdit(response_);
+                } catch (e) {
+                    return <Observable<GetCatalogForEditOutput>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<GetCatalogForEditOutput>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetScanCatalogForEdit(response: Response): Observable<GetCatalogForEditOutput> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? GetCatalogForEditOutput.fromJS(resultData200) : new GetCatalogForEditOutput();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<GetCatalogForEditOutput>(<any>null);
+    }
+
+    /**
      * 创建或更新目录
      * @input (optional) 
      * @return Success
@@ -7478,7 +7529,7 @@ export class TenantServiceProxy {
      * @skipCount 列表跳过数量(等同: PageSize*PageIndex)
      * @return Success
      */
-    getTenants(tenancyName: string, name: string, subscriptionEndDateStart: Moment, subscriptionEndDateEnd: Moment, creationDateStart: Moment, creationDateEnd: Moment, editionId: number, editionIdSpecified: boolean, isActive: boolean, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfTenantListDto> {
+    getTenants(tenancyName: string, name: string, subscriptionEndDateStart: moment.Moment, subscriptionEndDateEnd: moment.Moment, creationDateStart: moment.Moment, creationDateEnd: moment.Moment, editionId: number, editionIdSpecified: boolean, isActive: boolean, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfTenantListDto> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/GetTenants?";
         if (tenancyName !== undefined)
             url_ += "TenancyName=" + encodeURIComponent("" + tenancyName) + "&"; 
@@ -11099,7 +11150,7 @@ export class AuditLogListDto implements IAuditLogListDto {
     /** 参数 */
     parameters: string;
     /** 执行时间 */
-    executionTime: Moment;
+    executionTime: moment.Moment;
     /** 执行时长 */
     executionDuration: number;
     /** 客户端地址 */
@@ -11186,7 +11237,7 @@ export interface IAuditLogListDto {
     /** 参数 */
     parameters: string;
     /** 执行时间 */
-    executionTime: Moment;
+    executionTime: moment.Moment;
     /** 执行时长 */
     executionDuration: number;
     /** 客户端地址 */
@@ -11368,7 +11419,7 @@ export interface IEntityDtoOfString {
 
 export class GetUserChatFriendsWithSettingsOutput implements IGetUserChatFriendsWithSettingsOutput {
     /** 服务器时间 */
-    serverTime: Moment;
+    serverTime: moment.Moment;
     /** 好友集合 */
     friends: FriendDto[];
 
@@ -11412,7 +11463,7 @@ export class GetUserChatFriendsWithSettingsOutput implements IGetUserChatFriends
 
 export interface IGetUserChatFriendsWithSettingsOutput {
     /** 服务器时间 */
-    serverTime: Moment;
+    serverTime: moment.Moment;
     /** 好友集合 */
     friends: FriendDto[];
 }
@@ -11541,7 +11592,7 @@ export class ChatMessageDto implements IChatMessageDto {
     /** 消息内容 */
     message: string;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     sharedMessageId: string;
     id: number;
 
@@ -11611,7 +11662,7 @@ export interface IChatMessageDto {
     /** 消息内容 */
     message: string;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     sharedMessageId: string;
     id: number;
 }
@@ -11665,7 +11716,7 @@ export class ChatMessage implements IChatMessage {
     targetUserId: number;
     targetTenantId: number;
     message: string;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     side: ChatMessageSide;
     readState: ChatMessageReadState;
     receiverReadState: ChatMessageReceiverReadState;
@@ -11726,7 +11777,7 @@ export interface IChatMessage {
     targetUserId: number;
     targetTenantId: number;
     message: string;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     side: ChatMessageSide;
     readState: ChatMessageReadState;
     receiverReadState: ChatMessageReceiverReadState;
@@ -12308,7 +12359,7 @@ export interface IListResultDtoOfEditionListDto {
 export class EditionListDto implements IEditionListDto {
     name: string;
     displayName: string;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 
     constructor(data?: IEditionListDto) {
@@ -12348,7 +12399,7 @@ export class EditionListDto implements IEditionListDto {
 export interface IEditionListDto {
     name: string;
     displayName: string;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 }
 
@@ -13407,9 +13458,9 @@ export class HostDashboardData implements IHostDashboardData {
     maxRecentTenantsShownCount: number;
     subscriptionEndAlertDayCount: number;
     recentTenantsDayCount: number;
-    subscriptionEndDateStart: Moment;
-    subscriptionEndDateEnd: Moment;
-    tenantCreationStartDate: Moment;
+    subscriptionEndDateStart: moment.Moment;
+    subscriptionEndDateEnd: moment.Moment;
+    tenantCreationStartDate: moment.Moment;
 
     constructor(data?: IHostDashboardData) {
         if (data) {
@@ -13512,14 +13563,14 @@ export interface IHostDashboardData {
     maxRecentTenantsShownCount: number;
     subscriptionEndAlertDayCount: number;
     recentTenantsDayCount: number;
-    subscriptionEndDateStart: Moment;
-    subscriptionEndDateEnd: Moment;
-    tenantCreationStartDate: Moment;
+    subscriptionEndDateStart: moment.Moment;
+    subscriptionEndDateEnd: moment.Moment;
+    tenantCreationStartDate: moment.Moment;
 }
 
 export class IncomeStastistic implements IIncomeStastistic {
     label: string;
-    date: Moment;
+    date: moment.Moment;
     amount: number;
 
     constructor(data?: IIncomeStastistic) {
@@ -13556,7 +13607,7 @@ export class IncomeStastistic implements IIncomeStastistic {
 
 export interface IIncomeStastistic {
     label: string;
-    date: Moment;
+    date: moment.Moment;
     amount: number;
 }
 
@@ -13641,7 +13692,7 @@ export interface IExpiringTenant {
 export class RecentTenant implements IRecentTenant {
     id: number;
     name: string;
-    creationTime: Moment;
+    creationTime: moment.Moment;
 
     constructor(data?: IRecentTenant) {
         if (data) {
@@ -13678,7 +13729,7 @@ export class RecentTenant implements IRecentTenant {
 export interface IRecentTenant {
     id: number;
     name: string;
-    creationTime: Moment;
+    creationTime: moment.Moment;
 }
 
 export class GetIncomeStatisticsDataOutput implements IGetIncomeStatisticsDataOutput {
@@ -14630,7 +14681,7 @@ export class InvoiceDto implements IInvoiceDto {
     amount: number;
     editionDisplayName: string;
     invoiceNo: string;
-    invoiceDate: Moment;
+    invoiceDate: moment.Moment;
     tenantLegalName: string;
     tenantAddress: string[];
     tenantTaxNo: string;
@@ -14701,7 +14752,7 @@ export interface IInvoiceDto {
     amount: number;
     editionDisplayName: string;
     invoiceNo: string;
-    invoiceDate: Moment;
+    invoiceDate: moment.Moment;
     tenantLegalName: string;
     tenantAddress: string[];
     tenantTaxNo: string;
@@ -14799,10 +14850,10 @@ export class ApplicationLanguageListDto implements IApplicationLanguageListDto {
     isDisabled: boolean;
     isDeleted: boolean;
     deleterUserId: number;
-    deletionTime: Moment;
-    lastModificationTime: Moment;
+    deletionTime: moment.Moment;
+    lastModificationTime: moment.Moment;
     lastModifierUserId: number;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     creatorUserId: number;
     id: number;
 
@@ -14866,10 +14917,10 @@ export interface IApplicationLanguageListDto {
     isDisabled: boolean;
     isDeleted: boolean;
     deleterUserId: number;
-    deletionTime: Moment;
-    lastModificationTime: Moment;
+    deletionTime: moment.Moment;
+    lastModificationTime: moment.Moment;
     lastModifierUserId: number;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     creatorUserId: number;
     id: number;
 }
@@ -15391,7 +15442,7 @@ export class TenantNotification implements ITenantNotification {
     entityTypeName: string;
     entityId: any;
     severity: TenantNotificationSeverity;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: string;
 
     constructor(data?: ITenantNotification) {
@@ -15458,7 +15509,7 @@ export interface ITenantNotification {
     entityTypeName: string;
     entityId: any;
     severity: TenantNotificationSeverity;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: string;
 }
 
@@ -15798,9 +15849,9 @@ export class OrganizationUnitDto implements IOrganizationUnitDto {
     code: string;
     displayName: string;
     memberCount: number;
-    lastModificationTime: Moment;
+    lastModificationTime: moment.Moment;
     lastModifierUserId: number;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     creatorUserId: number;
     id: number;
 
@@ -15853,9 +15904,9 @@ export interface IOrganizationUnitDto {
     code: string;
     displayName: string;
     memberCount: number;
-    lastModificationTime: Moment;
+    lastModificationTime: moment.Moment;
     lastModifierUserId: number;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     creatorUserId: number;
     id: number;
 }
@@ -15913,7 +15964,7 @@ export class OrganizationUnitUserListDto implements IOrganizationUnitUserListDto
     userName: string;
     emailAddress: string;
     profilePictureId: number;
-    addedTime: Moment;
+    addedTime: moment.Moment;
     id: number;
 
     constructor(data?: IOrganizationUnitUserListDto) {
@@ -15962,7 +16013,7 @@ export interface IOrganizationUnitUserListDto {
     userName: string;
     emailAddress: string;
     profilePictureId: number;
-    addedTime: Moment;
+    addedTime: moment.Moment;
     id: number;
 }
 
@@ -16397,9 +16448,9 @@ export class SubscriptionPaymentListDto implements ISubscriptionPaymentListDto {
     editionDisplayName: string;
     tenantId: number;
     invoiceNo: string;
-    lastModificationTime: Moment;
+    lastModificationTime: moment.Moment;
     lastModifierUserId: number;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     creatorUserId: number;
     id: number;
 
@@ -16473,9 +16524,9 @@ export interface ISubscriptionPaymentListDto {
     editionDisplayName: string;
     tenantId: number;
     invoiceNo: string;
-    lastModificationTime: Moment;
+    lastModificationTime: moment.Moment;
     lastModifierUserId: number;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     creatorUserId: number;
     id: number;
 }
@@ -16647,7 +16698,7 @@ export class PictureListDto implements IPictureListDto {
     /** 图片类型 */
     mimeType: string;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 
     constructor(data?: IPictureListDto) {
@@ -16698,13 +16749,13 @@ export interface IPictureListDto {
     /** 图片类型 */
     mimeType: string;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 }
 
 export class UploadTokenOutput implements IUploadTokenOutput {
     token: string;
-    expirationOnUtc: Moment;
+    expirationOnUtc: moment.Moment;
 
     constructor(data?: IUploadTokenOutput) {
         if (data) {
@@ -16738,7 +16789,7 @@ export class UploadTokenOutput implements IUploadTokenOutput {
 
 export interface IUploadTokenOutput {
     token: string;
-    expirationOnUtc: Moment;
+    expirationOnUtc: moment.Moment;
 }
 
 export class UpdatePictureInput implements IUpdatePictureInput {
@@ -16849,7 +16900,7 @@ export class PictureGroupListDto implements IPictureGroupListDto {
     /** 创建者Id */
     creatorUserId: number;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 
     constructor(data?: IPictureGroupListDto) {
@@ -16900,7 +16951,7 @@ export interface IPictureGroupListDto {
     /** 创建者Id */
     creatorUserId: number;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 }
 
@@ -17456,7 +17507,7 @@ export class RoleListDto implements IRoleListDto {
     /** 是否默认分配(给用户) */
     isDefault: boolean;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 
     constructor(data?: IRoleListDto) {
@@ -17507,7 +17558,7 @@ export interface IRoleListDto {
     /** 是否默认分配(给用户) */
     isDefault: boolean;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 }
 
@@ -17796,7 +17847,7 @@ export class ScanRecordListDto implements IScanRecordListDto {
     /** 是否置顶 */
     sticked: boolean;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 
     constructor(data?: IScanRecordListDto) {
@@ -17851,7 +17902,7 @@ export interface IScanRecordListDto {
     /** 是否置顶 */
     sticked: boolean;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 }
 
@@ -18101,7 +18152,7 @@ export class CatalogListDto implements ICatalogListDto {
     /** 扫码记录数量 */
     count: number;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 
     constructor(data?: ICatalogListDto) {
@@ -18152,7 +18203,72 @@ export interface ICatalogListDto {
     /** 扫码记录数量 */
     count: number;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
+    id: number;
+}
+
+export class GetCatalogForEditOutput implements IGetCatalogForEditOutput {
+    /** 目录名称 */
+    name: string;
+    /** 是否置顶 */
+    sticked: boolean;
+    /** 封面Url */
+    coverUrl: string;
+    /** 扫码记录数量 */
+    count: number;
+    /** 创建时间 */
+    creationTime: moment.Moment;
+    id: number;
+
+    constructor(data?: IGetCatalogForEditOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.name = data["name"];
+            this.sticked = data["sticked"];
+            this.coverUrl = data["coverUrl"];
+            this.count = data["count"];
+            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): GetCatalogForEditOutput {
+        let result = new GetCatalogForEditOutput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
+        data["sticked"] = this.sticked;
+        data["coverUrl"] = this.coverUrl;
+        data["count"] = this.count;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["id"] = this.id;
+        return data; 
+    }
+}
+
+export interface IGetCatalogForEditOutput {
+    /** 目录名称 */
+    name: string;
+    /** 是否置顶 */
+    sticked: boolean;
+    /** 封面Url */
+    coverUrl: string;
+    /** 扫码记录数量 */
+    count: number;
+    /** 创建时间 */
+    creationTime: moment.Moment;
     id: number;
 }
 
@@ -18330,10 +18446,10 @@ export class TenantLoginInfoDto implements ITenantLoginInfoDto {
     name: string;
     logoId: number;
     logoFileType: string;
-    subscriptionEndDateUtc: Moment;
+    subscriptionEndDateUtc: moment.Moment;
     isInTrialPeriod: boolean;
     edition: EditionInfoDto;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     paymentPeriodType: TenantLoginInfoDtoPaymentPeriodType;
     subscriptionDateString: string;
     creationTimeString: string;
@@ -18394,10 +18510,10 @@ export interface ITenantLoginInfoDto {
     name: string;
     logoId: number;
     logoFileType: string;
-    subscriptionEndDateUtc: Moment;
+    subscriptionEndDateUtc: moment.Moment;
     isInTrialPeriod: boolean;
     edition: EditionInfoDto;
-    creationTime: Moment;
+    creationTime: moment.Moment;
     paymentPeriodType: TenantLoginInfoDtoPaymentPeriodType;
     subscriptionDateString: string;
     creationTimeString: string;
@@ -18406,7 +18522,7 @@ export interface ITenantLoginInfoDto {
 
 export class ApplicationInfoDto implements IApplicationInfoDto {
     version: string;
-    releaseDate: Moment;
+    releaseDate: moment.Moment;
     features: { [key: string] : boolean; };
 
     constructor(data?: IApplicationInfoDto) {
@@ -18455,7 +18571,7 @@ export class ApplicationInfoDto implements IApplicationInfoDto {
 
 export interface IApplicationInfoDto {
     version: string;
-    releaseDate: Moment;
+    releaseDate: moment.Moment;
     features: { [key: string] : boolean; };
 }
 
@@ -18820,7 +18936,7 @@ export class SMSTemplateListDto implements ISMSTemplateListDto {
     /** 短信供应商名称 */
     smsProvider: string;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     /** 是否激活 */
     isActive: boolean;
     id: number;
@@ -18871,7 +18987,7 @@ export interface ISMSTemplateListDto {
     /** 短信供应商名称 */
     smsProvider: string;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     /** 是否激活 */
     isActive: boolean;
     id: number;
@@ -18885,9 +19001,9 @@ export class GetSMSTemplateForEditDto implements IGetSMSTemplateForEditDto {
     /** 短信供应商名称 */
     smsProvider: string;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     /** 最后修改时间 */
-    lastModificationTime: Moment;
+    lastModificationTime: moment.Moment;
     /** 是否激活 */
     isActive: boolean;
     /** 模板参数集合 */
@@ -18964,9 +19080,9 @@ export interface IGetSMSTemplateForEditDto {
     /** 短信供应商名称 */
     smsProvider: string;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     /** 最后修改时间 */
-    lastModificationTime: Moment;
+    lastModificationTime: moment.Moment;
     /** 是否激活 */
     isActive: boolean;
     /** 模板参数集合 */
@@ -18978,7 +19094,7 @@ export interface IGetSMSTemplateForEditDto {
 
 export class SMSTemplateItemDto implements ISMSTemplateItemDto {
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     /** 模板参数Id，null时为创建,有值时为更新 */
     id: number;
     /** 模板消息字段名 */
@@ -19022,7 +19138,7 @@ export class SMSTemplateItemDto implements ISMSTemplateItemDto {
 
 export interface ISMSTemplateItemDto {
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     /** 模板参数Id，null时为创建,有值时为更新 */
     id: number;
     /** 模板消息字段名 */
@@ -19728,7 +19844,7 @@ export class TenantListDto implements ITenantListDto {
     /** 是否激活 */
     isActive: boolean;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 
     constructor(data?: ITenantListDto) {
@@ -19783,7 +19899,7 @@ export interface ITenantListDto {
     /** 是否激活 */
     isActive: boolean;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 }
 
@@ -19808,7 +19924,7 @@ export class CreateTenantInput implements ICreateTenantInput {
     editionId: number;
     /** 激活 */
     isActive: boolean;
-    subscriptionEndDateUtc: Moment;
+    subscriptionEndDateUtc: moment.Moment;
     isInTrialPeriod: boolean;
 
     constructor(data?: ICreateTenantInput) {
@@ -19882,7 +19998,7 @@ export interface ICreateTenantInput {
     editionId: number;
     /** 激活 */
     isActive: boolean;
-    subscriptionEndDateUtc: Moment;
+    subscriptionEndDateUtc: moment.Moment;
     isInTrialPeriod: boolean;
 }
 
@@ -21961,11 +22077,11 @@ export class UserListDto implements IUserListDto {
     /** 角色 */
     roles: UserListRoleDto[];
     /** 最后登陆时间 */
-    lastLoginTime: Moment;
+    lastLoginTime: moment.Moment;
     /** 是否已激活 */
     isActive: boolean;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 
     constructor(data?: IUserListDto) {
@@ -22044,11 +22160,11 @@ export interface IUserListDto {
     /** 角色 */
     roles: UserListRoleDto[];
     /** 最后登陆时间 */
-    lastLoginTime: Moment;
+    lastLoginTime: moment.Moment;
     /** 是否已激活 */
     isActive: boolean;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
     id: number;
 }
 
@@ -22405,9 +22521,9 @@ export class ExternalUserLoginDto implements IExternalUserLoginDto {
     /** 刷新凭证 */
     refreshToken: string;
     /** 调用凭证过期时间 */
-    accessTokenOutDataTime: Moment;
+    accessTokenOutDataTime: moment.Moment;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
 
     constructor(data?: IExternalUserLoginDto) {
         if (data) {
@@ -22465,9 +22581,9 @@ export interface IExternalUserLoginDto {
     /** 刷新凭证 */
     refreshToken: string;
     /** 调用凭证过期时间 */
-    accessTokenOutDataTime: Moment;
+    accessTokenOutDataTime: moment.Moment;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
 }
 
 export class EntityDtoOfInt64 implements IEntityDtoOfInt64 {
@@ -22734,7 +22850,7 @@ export class LinkedUserDto implements ILinkedUserDto {
     tenantId: number;
     tenancyName: string;
     username: string;
-    lastLoginTime: Moment;
+    lastLoginTime: moment.Moment;
     id: number;
 
     constructor(data?: ILinkedUserDto) {
@@ -22778,7 +22894,7 @@ export interface ILinkedUserDto {
     tenantId: number;
     tenancyName: string;
     username: string;
-    lastLoginTime: Moment;
+    lastLoginTime: moment.Moment;
     id: number;
 }
 
@@ -22926,7 +23042,7 @@ export class UserLoginAttemptDto implements IUserLoginAttemptDto {
     /** 结果 */
     result: string;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
 
     constructor(data?: IUserLoginAttemptDto) {
         if (data) {
@@ -22983,7 +23099,7 @@ export interface IUserLoginAttemptDto {
     /** 结果 */
     result: string;
     /** 创建时间 */
-    creationTime: Moment;
+    creationTime: moment.Moment;
 }
 
 export class GetLatestWebLogsOutput implements IGetLatestWebLogsOutput {

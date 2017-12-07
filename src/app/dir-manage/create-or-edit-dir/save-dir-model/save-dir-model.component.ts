@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     styleUrls: ['./save-dir-model.component.scss']
 })
 export class SaveDirModelComponent extends AppComponentBase implements OnInit {
+    dirId: string;
     catalogInputName: string;
     selectedDirIndex: number;
     allDirIds: number[] = [];
@@ -38,9 +39,17 @@ export class SaveDirModelComponent extends AppComponentBase implements OnInit {
     }
 
     ngOnInit() {
+        this.dirId = this._route.snapshot.paramMap.get('dirId');
     }
 
     public showModel(result: ScanRecordListDto[]): void {
+        if (!this.checkIsCreateOrEditState()) {
+            this._scanServiceProxy
+            .getScanCatalogForEdit(+this.dirId)
+            .subscribe( result => {
+                this.catalogInputName = result.name;
+            });
+        }
         this.getAllDir();
         this.allDirIds = this.getAllDirItemId(result);
         this.saveDirModel.show();
