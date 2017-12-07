@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, Injector } from '@angular/core';
-import { GetJsApiSignatureOutput, WeChatJSServiceProxy } from 'shared/service-proxies/service-proxies';
+import { GetJsApiSignatureOutput, WeChatJSServiceProxy, CreateOrUpdateRecordInput, ScanServiceProxy } from 'shared/service-proxies/service-proxies';
 
 import { AppComponentBase } from 'shared/common/app-component-base';
 import { AppConsts } from 'shared/AppConsts';
@@ -13,6 +13,7 @@ import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 @Injectable()
 export class WeChatScanQRCodeService extends AppComponentBase {
     jsApiSignatureInput: JsApiSignatureInput = new JsApiSignatureInput();
+    scanRecordInput: CreateOrUpdateRecordInput = new CreateOrUpdateRecordInput();
     successScanHandle = new EventEmitter<string>();
     scanQRCodeResultUrl: string;
     constructor(
@@ -20,7 +21,8 @@ export class WeChatScanQRCodeService extends AppComponentBase {
         private _router: Router,
         private sanitizer: DomSanitizer,
         private _localStorageService: LocalStorageService,
-        private _wechatJSService: WeChatJSServiceProxy
+        private _wechatJSService: WeChatJSServiceProxy,
+        private _scanServiceProxy: ScanServiceProxy,
     ) {
         super(injector);
     }
@@ -57,21 +59,13 @@ export class WeChatScanQRCodeService extends AppComponentBase {
                 needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                 scanType: ['qrCode', 'barCode'], // 可以指定扫二维码还是一维码，默认二者都有
                 success: res => {
-                    // 当needResult 为 1 时，扫码返回的结果
-                    // let url = `${AppConsts.appBaseUrl}/external-exhibit?wxScanUrl=${res.resultStr}`;
-                    // location.href = url;
-                    // if (location.href.indexOf('/external-exhibit')) {
-                    //     this.scanQRCodeResultUrl = this.sanitizer.bypassSecurityTrustResourceUrl(res.resultStr);
-                    //     this.successScanHandle.emit(res.resultStr);
-                    // } else {
-                    //     this._router.navigate(['/external-exhibit'], { queryParams: { wxScanUrl: res.resultStr }, replaceUrl: true });
-                    // }
                     if (!this.isValidURL(res.resultStr)) {
                         this.message.warn('未能检测到有效的URL,请重新扫码!');
                         this._router.navigate(['/index']);
                         return;
                     }
-                    if (location.href.indexOf('/external-exhibit') < 0) {
+                    this.createRecord(res.resultStr);
+                    if (location.href.indexOf('/external-exhibit') > 0) {
                         this.scanQRCodeResultUrl = res.resultStr;
                     } else {
                         this._router.navigate(['/external-exhibit'], { queryParams: { wxScanUrl: res.resultStr }, replaceUrl: true });
@@ -82,5 +76,12 @@ export class WeChatScanQRCodeService extends AppComponentBase {
         } else {
             this.message.warn('请在微信内打开!');
         }
+    }
+
+    // 获取URL让服务器分析页面，创建分析记录
+    private createRecord(url: string): void {
+        this.scanRecordInput.url = url;
+        this.scanRecordInput.catalogId = null;
+        this._scanServiceProxy.createOrUpdateRecord(this.scanRecordInput).subscribe();
     }
 }
