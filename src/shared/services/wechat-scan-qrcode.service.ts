@@ -54,14 +54,14 @@ export class WeChatScanQRCodeService extends AppComponentBase {
     }
 
     scanQRCodeHandler(): void {
-        let url = 'http://www.vdaolan.com/hy/2017/hsj/hsj_01.php';
-        debugger
-        if (!this.isValidURL(url)) {
-            this.message.warn('未能检测到有效的URL,请重新扫码!');
-            this._router.navigate(['/index']);
-            return;
-        }
-        this.createRecord(url);
+        // let url = 'http://www.vdaolan.com/hy/2017/hsj/hsj_01.php';
+        // debugger
+        // if (!this.isValidURL(url)) {
+        //     this.message.warn('未能检测到有效的URL,请重新扫码!');
+        //     this._router.navigate(['/index']);
+        //     return;
+        // }
+        // this.createRecord(url);
         // if (location.href.indexOf('/external-exhibit') > 0) {
         //     this.scanQRCodeResultUrl = url;
         // } else {
