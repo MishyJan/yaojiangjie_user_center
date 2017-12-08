@@ -79,13 +79,14 @@ export class WeChatScanQRCodeService extends AppComponentBase {
                         return;
                     }
                     this.createRecord(res.resultStr);
-                    if (location.href.indexOf('/external-exhibit') > 0) {
-                        alert('不跳转');
-                        this.scanQRCodeResultUrl = this.sanitizer.bypassSecurityTrustResourceUrl(res.resultStr);
-                    } else {
-                        alert('跳转');
+                    // if (location.href.indexOf('/external-exhibit') > 0) {
+                    //     alert('不跳转');
+                    //     this.scanQRCodeResultUrl = this.sanitizer.bypassSecurityTrustResourceUrl(res.resultStr);
+                    // } else {
+                    //     alert('跳转');
+                    //     this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: res.resultStr }});
+                    // }
                         this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: res.resultStr }});
-                    }
                 }
             });
         } else {
