@@ -70,29 +70,40 @@ export class WeChatScanQRCodeService extends AppComponentBase {
         // }
 
         if (this.isWeiXin()) {
-            // wx.scanQRCode({
-            //     needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-            //     scanType: ['qrCode', 'barCode'], // 可以指定扫二维码还是一维码，默认二者都有
-            //     success: res => {
-            //         if (!this.isValidURL(res.resultStr)) {
-            //             this.message.warn('未能检测到有效的URL,请重新扫码!');
-            //             this._router.navigate(['/index']);
-            //             return;
-            //         }
-            //         this.createRecord(res.resultStr);
-            //         // if (location.href.indexOf('/external-exhibit') > 0) {
-            //         //     alert('不跳转');
-            //         //     this.scanQRCodeResultUrl = this.sanitizer.bypassSecurityTrustResourceUrl(res.resultStr);
-            //         //     alert(this.scanQRCodeResultUrl);
-            //         // } else {
-            //         alert('跳转');
-            //         this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: res.resultStr } });
-            //         // }
-            //     }
-            // });
-            var result = 'http://mp.weixin.qq.com/s/Fm92Rgqhu8u_MAiIh8XpAQ';
-            this.createRecord(result);
-            this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: result } });
+            wx.scanQRCode({
+                needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                scanType: ['qrCode', 'barCode'], // 可以指定扫二维码还是一维码，默认二者都有
+                success: res => {
+                    if (!this.isValidURL(res.resultStr)) {
+                        this.message.warn('未能检测到有效的URL,请重新扫码!');
+                        this._router.navigate(['/index']);
+                        return;
+                    }
+                    this.createRecord(res.resultStr);
+                    // if (location.href.indexOf('/external-exhibit') > 0) {
+                    //     alert('不跳转');
+                    //     this.scanQRCodeResultUrl = this.sanitizer.bypassSecurityTrustResourceUrl(res.resultStr);
+                    //     alert(this.scanQRCodeResultUrl);
+                    // } else {
+                    alert('跳转');
+                    this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: res.resultStr } });
+                    // }
+                }
+            });
+            // var resultStr = 'http://www.vdaolan.com/hy/2017/hsj/hsj_01.php';
+            // if (!this.isValidURL(resultStr)) {
+            //     this.message.warn('未能检测到有效的URL,请重新扫码!');
+            //     this._router.navigate(['/index']);
+            //     return;
+            // }
+            // this.createRecord(resultStr);
+            // if (location.href.indexOf('/external-exhibit') > 0) {
+            //     alert('不跳转');
+            //     this.scanQRCodeResultUrl = this.sanitizer.bypassSecurityTrustResourceUrl(resultStr);
+            // } else {
+            //     alert('跳转');
+            //     this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: resultStr } });
+            // }
         } else {
             this.message.warn('请在微信内打开!');
         }

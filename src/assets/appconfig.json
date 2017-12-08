@@ -1,5 +1,5 @@
 ﻿{
-    "remoteServiceBaseUrl": "http://localhost:6001",
+    "remoteServiceBaseUrl": "http://vappshk.oicp.net:6001",
     "appBaseUrl": "http://www.yaojiangjie.com/",
     "appBusinessBaseUrl": "http://vappshk.oicp.net:6202",
     "appLanguage": "zh_cn"
