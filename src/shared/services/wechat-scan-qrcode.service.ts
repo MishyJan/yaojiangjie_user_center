@@ -54,20 +54,6 @@ export class WeChatScanQRCodeService extends AppComponentBase {
     }
 
     scanQRCodeHandler(): void {
-        // let url = 'http://www.vdaolan.com/hy/2017/hsj/hsj_01.php';
-        // debugger
-        // if (!this.isValidURL(url)) {
-        //     this.message.warn('未能检测到有效的URL,请重新扫码!');
-        //     this._router.navigate(['/index']);
-        //     return;
-        // }
-        // this.createRecord(url);
-        // if (location.href.indexOf('/external-exhibit') > 0) {
-        //     this.scanQRCodeResultUrl = url;
-        // } else {
-        //     this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: url }});
-        // }
-
         if (this.isWeiXin()) {
             wx.scanQRCode({
                 needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
@@ -79,14 +65,7 @@ export class WeChatScanQRCodeService extends AppComponentBase {
                         return;
                     }
                     this.createRecord(res.resultStr);
-                    // if (location.href.indexOf('/external-exhibit') > 0) {
-                    //     alert('不跳转');
-                    //     this.scanQRCodeResultUrl = this.sanitizer.bypassSecurityTrustResourceUrl(res.resultStr);
-                    // } else {
-                    //     alert('跳转');
-                    //     this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: res.resultStr }});
-                    // }
-                        this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: res.resultStr }});
+                    this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: res.resultStr } });
                 }
             });
         } else {
