@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable, Injector } from '@angular/core';
-import { GetJsApiSignatureOutput, WeChatJSServiceProxy, CreateOrUpdateRecordInput, ScanServiceProxy } from 'shared/service-proxies/service-proxies';
+import { GetJsApiSignatureOutput, WeChatJSServiceProxy, CreateOrUpdateRecordInput, ScanServiceProxy, CreateOrUpdateRecordOutput } from 'shared/service-proxies/service-proxies';
 
 import { AppComponentBase } from 'shared/common/app-component-base';
 import { AppConsts } from 'shared/AppConsts';
@@ -12,10 +12,11 @@ import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Injectable()
 export class WeChatScanQRCodeService extends AppComponentBase {
-    scanQRCodeResultUrl: SafeResourceUrl;
     jsApiSignatureInput: JsApiSignatureInput = new JsApiSignatureInput();
     scanRecordInput: CreateOrUpdateRecordInput = new CreateOrUpdateRecordInput();
-    successScanHandle = new EventEmitter<string>();
+
+    // 保存扫码返回记录
+    scanRecordOutput: CreateOrUpdateRecordOutput = new CreateOrUpdateRecordOutput();
     constructor(
         private injector: Injector,
         private _router: Router,
@@ -53,8 +54,16 @@ export class WeChatScanQRCodeService extends AppComponentBase {
             });
     }
 
-    scanQRCodeHandler(): void {
+    scanQRCodeHandler(url?: string): void {
+        // let url = 'http://www.vdaolan.com/hy/2017/hsj/hsj_06.php';
+        // this.createRecord(url);
+        // this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: url } });
         if (this.isWeiXin()) {
+            if (url) {
+                this.createRecord(url);
+                let completeUrl = `http://www.yaojiangjie.com/external-exhibit?exhibitUrl=${url}`;
+                return;
+            }
             wx.scanQRCode({
                 needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                 scanType: ['qrCode', 'barCode'], // 可以指定扫二维码还是一维码，默认二者都有
@@ -80,7 +89,12 @@ export class WeChatScanQRCodeService extends AppComponentBase {
         this._scanServiceProxy
             .createOrUpdateRecord(this.scanRecordInput)
             .subscribe(result => {
-                console.log(result);
+                // console.log(result);
+                this.scanRecordOutput = result;
+
+                // mock 数据
+                this.scanRecordOutput.previous = 'http://www.vdaolan.com/hy/2017/hsj/hsj_16.php';
+                this.scanRecordOutput.next = 'http://www.vdaolan.com/hy/2017/hsj/hsj_17.php';
             });
     }
 }
