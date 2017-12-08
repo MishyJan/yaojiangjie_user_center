@@ -4,7 +4,7 @@ import { AppComponentBase } from 'shared/common/app-component-base';
 import { DomSanitizer } from '@angular/platform-browser';
 import { WeChatScanQRCodeService } from 'shared/services/wechat-scan-qrcode.service';
 import { Router } from '@angular/router';
-import { CreateOrUpdateRecordOutput } from 'shared/service-proxies/service-proxies';
+import { GetRecordForDisplayOutput } from 'shared/service-proxies/service-proxies';
 
 @Component({
     selector: 'yaojiangjie-paging',
@@ -14,7 +14,7 @@ import { CreateOrUpdateRecordOutput } from 'shared/service-proxies/service-proxi
 export class PagingComponent extends AppComponentBase implements OnInit {
     scanQRCodeUrl: any;
     @Input()
-    scanRecordOutput: CreateOrUpdateRecordOutput = new CreateOrUpdateRecordOutput();
+    scanRecordOutput: GetRecordForDisplayOutput = new GetRecordForDisplayOutput();
     @Output()
     sendExhibitUrl: EventEmitter<string> = new EventEmitter();
     constructor(

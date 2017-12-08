@@ -1,4 +1,4 @@
 <div [@routerTransition] style="width: 100%; height: 100%;">
     <iframe #exhibitIframe frameborder="0" width="100%" height="100%"></iframe>
 </div>
-<yaojiangjie-paging [scanRecordOutput]="_weChatScanQRCodeService.scanRecordOutput" (sendExhibitUrl)="getExhibitUrlHandle($event)"></yaojiangjie-paging>
+<yaojiangjie-paging [scanRecordOutput]="recordForDisplayOutput" (sendExhibitUrl)="getExhibitUrlHandle($event)"></yaojiangjie-paging>

@@ -5952,6 +5952,56 @@ export class ScanServiceProxy {
     }
 
     /**
+     * 获取记录显示详情
+     * @url (optional) 
+     * @return Success
+     */
+    getRecordForDisplay(url: string): Observable<GetRecordForDisplayOutput> {
+        let url_ = this.baseUrl + "/api/services/app/Scan/GetRecordForDisplay?";
+        if (url !== undefined)
+            url_ += "url=" + encodeURIComponent("" + url) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_ : any) => {
+            return this.processGetRecordForDisplay(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetRecordForDisplay(response_);
+                } catch (e) {
+                    return <Observable<GetRecordForDisplayOutput>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<GetRecordForDisplayOutput>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetRecordForDisplay(response: Response): Observable<GetRecordForDisplayOutput> {
+        const status = response.status; 
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? GetRecordForDisplayOutput.fromJS(resultData200) : new GetRecordForDisplayOutput();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<GetRecordForDisplayOutput>(<any>null);
+    }
+
+    /**
      * 创建或更新扫描记录
      * @input (optional) 
      * @return Success
@@ -17902,6 +17952,10 @@ export class ScanRecordListDto implements IScanRecordListDto {
     sticked: boolean;
     /** 创建时间 */
     creationTime: moment.Moment;
+    /** 上一页 */
+    previous: string;
+    /** 下一页 */
+    next: string;
     id: number;
 
     constructor(data?: IScanRecordListDto) {
@@ -17921,6 +17975,8 @@ export class ScanRecordListDto implements IScanRecordListDto {
             this.catalogId = data["catalogId"];
             this.sticked = data["sticked"];
             this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
+            this.previous = data["previous"];
+            this.next = data["next"];
             this.id = data["id"];
         }
     }
@@ -17939,6 +17995,8 @@ export class ScanRecordListDto implements IScanRecordListDto {
         data["catalogId"] = this.catalogId;
         data["sticked"] = this.sticked;
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["previous"] = this.previous;
+        data["next"] = this.next;
         data["id"] = this.id;
         return data; 
     }
@@ -17957,6 +18015,10 @@ export interface IScanRecordListDto {
     sticked: boolean;
     /** 创建时间 */
     creationTime: moment.Moment;
+    /** 上一页 */
+    previous: string;
+    /** 下一页 */
+    next: string;
     id: number;
 }
 
@@ -18037,6 +18099,55 @@ export interface IGetRecordForEditOutput {
     /** 图片 */
     images: string[];
     id: number;
+}
+
+export class GetRecordForDisplayOutput implements IGetRecordForDisplayOutput {
+    /** 页面名称 */
+    name: string;
+    /** 上一页 */
+    previous: string;
+    /** 下一页 */
+    next: string;
+
+    constructor(data?: IGetRecordForDisplayOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.name = data["name"];
+            this.previous = data["previous"];
+            this.next = data["next"];
+        }
+    }
+
+    static fromJS(data: any): GetRecordForDisplayOutput {
+        let result = new GetRecordForDisplayOutput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
+        data["previous"] = this.previous;
+        data["next"] = this.next;
+        return data; 
+    }
+}
+
+export interface IGetRecordForDisplayOutput {
+    /** 页面名称 */
+    name: string;
+    /** 上一页 */
+    previous: string;
+    /** 下一页 */
+    next: string;
 }
 
 export class CreateOrUpdateRecordInput implements ICreateOrUpdateRecordInput {
