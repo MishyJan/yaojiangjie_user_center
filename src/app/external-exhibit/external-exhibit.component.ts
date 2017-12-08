@@ -33,10 +33,25 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
         this._route
             .queryParams
             .subscribe(params => {
-                alert('路由参数变化');
                 if (params['exhibitUrl']) {
                     this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(params['exhibitUrl']);
                 }
+
+                $.ajaxPrefilter(function (options) {
+                    if (options.crossDomain && jQuery.support.cors) {
+                        var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
+                        options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
+                    };
+                });
+
+                var share_link = "http://mp.weixin.qq.com/s/Fm92Rgqhu8u_MAiIh8XpAQ";
+                $.get(share_link, function (response) {
+                    var html = response;
+                    html = html.replace(/data-src/g, "src");
+                    var html_src = 'data:text/html;charset=utf-8,' + html;
+                    $("iframeId").attr("src", html_src);
+                });
+
             });
     }
 }
