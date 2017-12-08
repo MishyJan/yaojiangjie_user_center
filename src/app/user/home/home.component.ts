@@ -32,7 +32,6 @@ export class UserHomeComponent extends AppComponentBase implements OnInit {
         this._profileServiceProxy
             .getCurrentUserProfileForEdit()
             .subscribe((result: CurrentUserProfileEditDto) => {
-                console.log(result);
                 this.userAvatarUrl = result.profilePictureUrl ? result.profilePictureUrl : DefaultProfilePath.defaultProfilePictureUrl;
                 this.shownLoginName = result.name;
             });

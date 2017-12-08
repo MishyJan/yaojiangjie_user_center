@@ -89,12 +89,11 @@ export class WeChatScanQRCodeService extends AppComponentBase {
         this._scanServiceProxy
             .createOrUpdateRecord(this.scanRecordInput)
             .subscribe(result => {
-                // console.log(result);
                 this.scanRecordOutput = result;
 
                 // mock 数据
-                this.scanRecordOutput.previous = 'http://www.vdaolan.com/hy/2017/hsj/hsj_16.php';
-                this.scanRecordOutput.next = 'http://www.vdaolan.com/hy/2017/hsj/hsj_17.php';
+                // this.scanRecordOutput.previous = 'http://www.vdaolan.com/hy/2017/hsj/hsj_16.php';
+                // this.scanRecordOutput.next = 'http://www.vdaolan.com/hy/2017/hsj/hsj_17.php';
             });
     }
 }

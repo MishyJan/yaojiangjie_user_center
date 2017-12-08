@@ -26,13 +26,11 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
             .subscribe(params => {
                 if (params['exhibitUrl']) {
                     this.exhibitIframe.nativeElement.src = params['exhibitUrl'];
-                    console.log('scanRecordOutput ' , this._weChatScanQRCodeService.scanRecordOutput);
                 }
             });
     }
 
     getExhibitUrlHandle(url: string): void {
-        console.log(url);
         this._weChatScanQRCodeService.scanQRCodeHandler(url);
         // this.exhibitIframe.nativeElement.src = url;
     }
