@@ -32,6 +32,5 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
 
     getExhibitUrlHandle(url: string): void {
         this._weChatScanQRCodeService.scanQRCodeHandler(url);
-        // this.exhibitIframe.nativeElement.src = url;
     }
 }
