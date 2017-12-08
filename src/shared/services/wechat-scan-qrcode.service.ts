@@ -61,7 +61,7 @@ export class WeChatScanQRCodeService extends AppComponentBase {
         if (this.isWeiXin()) {
             if (url) {
                 this.createRecord(url);
-                let completeUrl = `http://www.yaojiangjie.com/external-exhibit?exhibitUrl=${url}`;
+                this._router.navigate(['/external-exhibit'], { queryParams: { exhibitUrl: url } });
                 return;
             }
             wx.scanQRCode({
