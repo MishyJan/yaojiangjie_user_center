@@ -5,7 +5,6 @@
     right: 0;
     z-index: 1001;
     width: 42px;
-    height: 126px;
     background-color: $color-black-l;
     transform: translateY(-50%);
     border-radius: 4px;
@@ -18,8 +17,12 @@
         font-size: 18px;
         cursor: pointer;
         color: #FFF;
-        &:nth-child(2) {
+        &.scan-icon {
             font-size: 16px;
+        }
+        &.prev-icon,
+        &.next-icon {
+            font-size: 12px;
         }
     }
 }

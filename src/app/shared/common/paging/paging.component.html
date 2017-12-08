@@ -1,5 +1,7 @@
 <section class="pagination">
-    <p class="icon" routerLink="/dir-manage/create"><span class="icon yaojiangjie-icon-app-catalog"></span></p>
-    <p class="icon" (click)="scanQRCode()"><span class="icon yaojiangjie-icon-app-scancode"></span></p>
-    <p class="icon" routerLink="/index"><span class="icon yaojiangjie-icon-app-home"></span></p>
+    <p class="icon prev-icon" (click)="getExhibitUrl(scanRecordOutput.previous)" *ngIf="scanRecordOutput.previous"><span class="yaojiangjie-icon-app-prev"></span></p>
+    <p class="icon dirs-icon" routerLink="/dir-manage/create"><span class="yaojiangjie-icon-app-catalog"></span></p>
+    <p class="icon scan-icon" (click)="scanQRCode()"><span class="yaojiangjie-icon-app-scancode"></span></p>
+    <p class="icon home-icon" routerLink="/index"><span class="yaojiangjie-icon-app-home"></span></p>
+    <p class="icon next-icon" (click)="getExhibitUrl(scanRecordOutput.next)" *ngIf="scanRecordOutput.next"><span class="yaojiangjie-icon-app-next"></span></p>
 </section>

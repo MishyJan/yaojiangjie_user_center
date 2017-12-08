@@ -1,12 +1,8 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { AfterViewInit, Component, ElementRef, Injector, OnInit, ViewChild } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-
+import { ActivatedRoute } from '@angular/router';
+import { Component, ElementRef, Injector, OnInit, ViewChild } from '@angular/core';
 import { AppComponentBase } from 'shared/common/app-component-base';
-import { LocalStorageService } from 'shared/services/local-storage.service';
-import { Location } from '@angular/common';
-import { WeChatScanQRCodeService } from 'shared/services/wechat-scan-qrcode.service';
 import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
+import { WeChatScanQRCodeService } from 'shared/services/wechat-scan-qrcode.service';
 
 @Component({
     selector: 'yaojiangjie-externalExhibit',
@@ -15,16 +11,11 @@ import { appModuleSlowAnimation } from 'shared/animations/routerTransition';
     animations: [appModuleSlowAnimation()]
 })
 export class ExternalExhibitComponent extends AppComponentBase implements OnInit {
-    trustScanQRCodeUrl: SafeResourceUrl;
+    @ViewChild('exhibitIframe') exhibitIframe: ElementRef;
     constructor(
         private injector: Injector,
-        private el: ElementRef,
         private _route: ActivatedRoute,
-        private _router: Router,
-        private _location: Location,
-        private _localStorageService: LocalStorageService,
-        public weChatScanQRCodeService: WeChatScanQRCodeService,
-        public sanitizer: DomSanitizer
+        public _weChatScanQRCodeService: WeChatScanQRCodeService
     ) {
         super(injector);
     }
@@ -34,7 +25,7 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
             .queryParams
             .subscribe(params => {
                 if (params['exhibitUrl']) {
-                    this.trustScanQRCodeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(params['exhibitUrl']);
+                    this.exhibitIframe.nativeElement.src = params['exhibitUrl'];
                 }
 
                 $.ajaxPrefilter(function (options) {
@@ -53,5 +44,9 @@ export class ExternalExhibitComponent extends AppComponentBase implements OnInit
                 });
 
             });
+    }
+
+    getExhibitUrlHandle(url: string): void {
+        this._weChatScanQRCodeService.scanQRCodeHandler(url);
     }
 }

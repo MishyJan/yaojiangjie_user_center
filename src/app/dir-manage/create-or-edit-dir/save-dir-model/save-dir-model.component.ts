@@ -45,10 +45,17 @@ export class SaveDirModelComponent extends AppComponentBase implements OnInit {
     public showModel(result: ScanRecordListDto[]): void {
         if (!this.checkIsCreateOrEditState()) {
             this._scanServiceProxy
-            .getScanCatalogForEdit(+this.dirId)
-            .subscribe( result => {
-                this.catalogInputName = result.name;
-            });
+                .getScanCatalogForEdit(+this.dirId)
+                .subscribe(result => {
+                    this.catalogInputName = result.name;
+                });
+        } else {
+            // 获取推荐目录名
+            this._scanServiceProxy
+                .getRecommendCatalogName(undefined)
+                .subscribe(result => {
+                    this.catalogInputName = result;
+                });
         }
         this.getAllDir();
         this.allDirIds = this.getAllDirItemId(result);
